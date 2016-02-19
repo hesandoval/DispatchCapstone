@@ -20,18 +20,3 @@
     }
   }]
 }
-{
-  "carry_destinaiton":{
-    "start_location": {
-      "latitude": 0.00,
-      "longitude": 0.00,
-      "elevation": 0.00
-    },
-    "end_location": {
-      "latitude": 0.00,
-      "longitude": 0.00,
-      "elevation": 0.00
-    },
-  }
-
-}
