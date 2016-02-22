@@ -1,7 +1,8 @@
 from __future__ import print_function
 import time
-from socket import *
+import socket as socket
 import json
+import random
 import sys
 
 
@@ -15,12 +16,17 @@ if __name__ == "__main__":
         for line in f:
             data.append(line)
         data = json.loads("".join(data))
-    HOST,PORT = gethostname(), 9999
-
-
+    HOST,PORT = socket.gethostname(), 9999
     for message in data:
-        clientSocket = socket(AF_INET, SOCK_STREAM)
-        clientSocket.connect((HOST, PORT))
+        try:
+            clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            clientSocket.connect((HOST, PORT))
+        except socket.error, (v, message):
+            if clientSocket:
+                clientSocket.close()
+                sys.exit(1)
+            print("Could not open socket {}".format(message))
+
         clientSocket.send(json.dumps(message))
         clientSocket.close()
-        time.sleep(5)
+        time.sleep(random.randint(0, 5))
