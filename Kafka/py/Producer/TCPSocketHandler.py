@@ -1,5 +1,5 @@
 from __future__ import print_function
-import SampleProducer
+import DispatchSimpleProducer
 from socket import *
 import SocketServer
 import json
@@ -8,17 +8,16 @@ __author__ = 'Edgar Sandoval'
 
 
 class TCPSocketHandler(SocketServer.BaseRequestHandler):
+   # def setup(self):
 
-    kafkaProducer = None
-    def setup(self):
-        self.kafkaProducer = SampleProducer.DispatchKafkaProducer()
 
     def handle(self):
+        kafkaProducer = DispatchSimpleProducer.DispatchKafkaProducer()
         self.data = self.request.recv(1024).strip()
         print("{} wrote:".format(self.client_address[0]))
         dat = json.loads(self.data)
         print(self.data)
-        self.kafkaProducer.send(b"test_topic", bytes(self.data))
+        kafkaProducer.send(b"test_topic", self.data)
 
 
 if __name__ == "__main__":
