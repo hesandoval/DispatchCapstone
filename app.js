@@ -16,8 +16,12 @@ var backOn = false;
 var picture;
 var packageID;
 
-function UpdateValues()
+function CheckForChange()
 {
 
 }
 
+function DisplayValues()
+{
+
+}
