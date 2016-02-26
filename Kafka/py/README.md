@@ -9,14 +9,14 @@ http://kafka.apache.org/documentation.html#quickstart_download
 tar -xzf kafka_2.11-0.9.0.0.tgz
 ```
 3. Travel to root directory
-```bash 
+..*```bash 
 cd kafka_2.11-0.9.0.0
 ```
 4. Start Zookeeper
-```bash 
+..*```bash 
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 5. Start Kafka Server
-```bash 
+..*```bash 
 bin/kafka-server-start.sh config/server.properties
 ```
