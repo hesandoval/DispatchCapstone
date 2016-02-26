@@ -11,7 +11,8 @@ __author__ = 'Edgar Sandoval'
 
 if __name__ == "__main__":
     data = []
-    with open("messages.json") as f:
+    directory =
+    with open("/SupportFiles/messages.json") as f:
 
         for line in f:
             data.append(line)
