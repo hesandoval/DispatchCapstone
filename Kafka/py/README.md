@@ -4,7 +4,7 @@ version: 0.9.0
 ## How to Run
 1. Download
 http://kafka.apache.org/documentation.html#quickstart_download
-Untar
+2.Untar
 ```bash 
 tar -xzf kafka_2.11-0.9.0.0.tgz
 ```
