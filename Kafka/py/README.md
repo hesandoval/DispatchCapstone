@@ -1,6 +1,8 @@
 # Kafka Setup
 ## Specifications
-version: 0.9.0
+version: 0.9.0<br>
+Python 2.7
+conda 3.18.8 or Anaconda distro
 ## How to Run
 1. Download
 http://kafka.apache.org/documentation.html#quickstart_download
