@@ -13,10 +13,10 @@ tar -xzf kafka_2.11-0.9.0.0.tgz
 cd kafka_2.11-0.9.0.0
 ```
 4. Start Zookeeper
-..*```bash 
+```bash 
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 5. Start Kafka Server
-..*```bash 
+```bash 
 bin/kafka-server-start.sh config/server.properties
 ```
