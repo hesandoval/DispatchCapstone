@@ -4,6 +4,7 @@ import socket as socket
 import json
 import random
 import sys
+import os
 
 
 __author__ = 'Edgar Sandoval'
@@ -11,8 +12,8 @@ __author__ = 'Edgar Sandoval'
 
 if __name__ == "__main__":
     data = []
-    directory =
-    with open("/SupportFiles/messages.json") as f:
+    MESSAGESDIRECTORY = "/SupportFiles/messages.json"
+    with open(MESSAGESDIRECTORY) as f:
 
         for line in f:
             data.append(line)
