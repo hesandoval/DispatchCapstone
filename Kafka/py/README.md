@@ -4,9 +4,9 @@ version: 0.9.0<br>
 Python 2.7<br>
 conda 3.18.8 or Anaconda distro<br>
 ## How to Run
-1. Download
+Download
 http://kafka.apache.org/documentation.html#quickstart_download
-2. Untar
+Untar
 ```bash 
 $ tar -xzf kafka_2.11-0.9.0.0.tgz
 ```
@@ -23,26 +23,26 @@ In a new terminal window start Kafka Server
 $ bin/kafka-server-start.sh config/server.properties
 ```
 ## Python Environment Setup
-1. Load environment from environment file
+Load environment from environment file
 ```bash 
 $ conda env create -f environment.yml
 ```
-2. Activate environment
+Activate environment
 ```bash 
 $ source activate peppermint
 ```
 ## Running Python Kafka Producer
-1. Start TCP Socket Handler kafka produer
+Start TCP Socket Handler kafka produer
 ```bash 
 $ python TCPSocketHandler.py
 ```
-2. In a new terminal window start the TCP Data Transfer Client
+In a new terminal window start the TCP Data Transfer Client
 ```bash 
 $ python DataTransferClient.py
 ```
 
 ## Consuming Messages
-1. In a new terminal window start the packaged kafka consumer
+In a new terminal window start the packaged kafka consumer
 ```bash 
 $ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
 ```
