@@ -1,60 +1,37 @@
-var app = require("express")();
-var mysql = require("mysql")();
-var http = require('http').Server(app);
-var io = require("socket.io").listen(3000);
+var express = require('express');
+var path = require('path');
+var http = require('http');
+var socketio =require('socket.io');
+var app = express();
+var r = require('rethinkdb');
 
-io.sockets.on('connection', function (socket) {
-    
-})
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
 
-var speed;
-var timestamp;
-var latitude_s;
-var longitude_s;
-var elevation_s;
-var latitude_e;
-var longitude_e;
-var elevation;
-var sender;
-var battery_life;
-var leftOpen = false;
-var rightOpen = false;
-var frontOn = false;
-var backOn = false;
-var picture;
-var packageID;
-
-var pool = mysql.createPool({
-    connectionLimit : 100,
-    host : 'localhost',
-    database : 'test',
-    table : 'table1',
-    speed : 0,
-    timestamp : 0,
-    latitude_s : 0,
-    longitude_s : 0,
-    elevation_s : 0,
-    latitude_e : 0,
-    longitude_e : 0,
-    elevation : 0,
-    sender : 0,
-    battery_life : 0,
-    leftOpen : false,
-    rightOpen : false,
-    frontOn : false,
-    backOn : false,
-    picture,
-    packageID
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
 });
 
-app.get("/", function(req,res){
-    res.sendFile(__dirname + '/index.html');
-})
+var server = http.createServer(app)
 
-io.on('connection', function(socket){
-    
-})
+var io = socketio(server);
 
-http.listen(3000, function(){
-    consol.log("Listens for 3000");
+server.listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
+});
+
+io.on("connection", function(socket) {
+    console.log("User connected to the page");
+    var connection = null;
+    r.connect({host: 'localhost', port: 28015}, function (err, conn) {
+        if (err) throw err;
+        connection = conn;
+        r.table('test').filter(r.row('sender').eq('Carry1')).run(connection, function(err, cursor){
+            if (err) throw err;
+            cursor.toArray(function(err, result){
+              if (err) throw err;
+                console.log(JSON.stringify(result, null, 2));
+            });
+        });
+    });
 });
