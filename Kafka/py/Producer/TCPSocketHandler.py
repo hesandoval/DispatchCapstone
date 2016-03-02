@@ -13,11 +13,19 @@ class TCPSocketHandler(SocketServer.BaseRequestHandler):
 
     def handle(self):
         kafkaProducer = DispatchSimpleProducer.DispatchKafkaProducer()
-        self.data = self.request.recv(1024).strip()
+        totalData = []
+        while 1:
+            try:
+                data = self.request.recv(1024).strip()
+                if data:
+                    totalData.append(data)
+            except:
+                pass
         print("{} wrote:".format(self.client_address[0]))
         #dat = json.loads(self.data)
-        print(self.data)
-        kafkaProducer.send(b"test_topic", self.data)
+        totalData = ''.join(totalData)
+        print(totalData)
+        kafkaProducer.send(b"test_topic", totalData)
 
 
 if __name__ == "__main__":
