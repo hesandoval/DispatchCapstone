@@ -4,17 +4,26 @@ import socket as socket
 import json
 import random
 import sys
-import os
+from PIL import Image
+import glob
 
 
 __author__ = 'Edgar Sandoval'
 
+def addPhoto(jsonObject, pictureFiles):
+    picture = Image.open(random.choice(pictureFiles))
+    jsonObject['carry_data_current']["photograph"].append(picture.tobytes().encode('base64'))
+    return jsonObject
+
+
+
 
 if __name__ == "__main__":
     data = []
-    MESSAGESDIRECTORY = "/SupportFiles/messages.json"
+    MESSAGESDIRECTORY = "SupportFiles/messages.json"
+    PHOTOSDIRECTORY = "SupportFiles/photos/"
+    pictureFiles = glob.glob(PHOTOSDIRECTORY + "/*")
     with open(MESSAGESDIRECTORY) as f:
-
         for line in f:
             data.append(line)
         data = json.loads("".join(data))
@@ -28,7 +37,8 @@ if __name__ == "__main__":
                 clientSocket.close()
                 sys.exit(1)
             print("Could not open socket {}".format(message))
-
+        if (random.uniform(0,1) < .1):
+            message = addPhoto(message, pictureFiles)
         clientSocket.send(json.dumps(message))
         clientSocket.close()
         time.sleep(random.randint(0, 5))

@@ -44,7 +44,7 @@ $ python DataTransferClient.py
 ## Consuming Messages
 In a new terminal window start the packaged kafka consumer
 ```bash 
-$ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+$ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test_topic --from-beginning
 ```
 * Eventually this would be replaced by our custom built consumer client
 
