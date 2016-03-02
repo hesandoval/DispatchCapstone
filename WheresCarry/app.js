@@ -1,27 +1,37 @@
+var express = require('express');
+var path = require('path');
 var http = require('http');
-var speed;
-var timestamp;
-var latitude_s;
-var longitude_s;
-var elevation_s;
-var latitude_e;
-var longitude_e;
-var elevation;
-var sender;
-var battery_life;
-var leftOpen = false;
-var rightOpen = false;
-var frontOn = false;
-var backOn = false;
-var picture;
-var packageID;
+var socketio =require('socket.io');
+var app = express();
+var r = require('rethinkdb');
 
-function CheckForChange()
-{
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
 
-}
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
 
-function DisplayValues()
-{
+var server = http.createServer(app)
 
-}
+var io = socketio(server);
+
+server.listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
+});
+
+io.on("connection", function(socket) {
+    console.log("User connected to the page");
+    var connection = null;
+    r.connect({host: 'localhost', port: 28015}, function (err, conn) {
+        if (err) throw err;
+        connection = conn;
+        r.table('test').filter(r.row('sender').eq('Carry1')).run(connection, function(err, cursor){
+            if (err) throw err;
+            cursor.toArray(function(err, result){
+              if (err) throw err;
+                console.log(JSON.stringify(result, null, 2));
+            });
+        });
+    });
+});

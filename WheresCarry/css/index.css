@@ -1,6 +1,6 @@
 #wrapper
 {
-    color: black;
+    color: white;
 	width: 700px;
 	margin: auto;
 	background: gray;
@@ -8,9 +8,21 @@
 	border-radius: 15px;
 }
 
-h1
+
+#mainheader 
 {
+	color:white;
+	background-color:#002f5d;
 	text-align:center;
+}
+
+nav a
+{
+	background:silver;
+	padding:10px;
+	padding-bottom:1px;
+	border-top-left-radius:20px;
+	border-top-right-radius:20px;
 }
 
 #login
@@ -20,5 +32,16 @@ h1
 
 p
 {
+	font-weight:bold;
+}
+
+body
+{
+	background-color:silver;
+}
+
+tr
+{
+	color:black;
 	font-weight:bold;
 }
