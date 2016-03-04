@@ -37,7 +37,7 @@ if __name__ == "__main__":
                 clientSocket.close()
                 sys.exit(1)
             print("Could not open socket {}".format(message))
-        if (random.uniform(0,1) < .1):
+        if (random.uniform(0,1) < .25):
             message = addPhoto(message, pictureFiles)
         clientSocket.send(json.dumps(message))
         clientSocket.close()
