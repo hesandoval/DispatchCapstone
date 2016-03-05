@@ -12,6 +12,12 @@ __author__ = 'Edgar Sandoval'
 
 def addPhoto(jsonObject, pictureFiles):
     picture = Image.open(random.choice(pictureFiles))
+    width,height = picture.size
+    aspectRatio = 1.0*height/width
+    NEWWIDTH = 400
+    newHeight = NEWWIDTH * aspectRatio
+    newSize = NEWWIDTH,newHeight
+    picture.thumbnail(newSize, Image.ANTIALIAS)
     jsonObject['carry_data_current']["photograph"].append(picture.tobytes().encode('base64'))
     return jsonObject
 

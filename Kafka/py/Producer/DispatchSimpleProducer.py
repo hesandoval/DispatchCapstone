@@ -10,8 +10,9 @@ class DispatchKafkaProducer:
     def __init__(self):
         if not DispatchKafkaProducer.instance:
             DispatchKafkaProducer.instance = KafkaProducer(bootstrap_servers=['localhost:9092'],
-                                                 client_id="Producer1",
-                                                 value_serializer=None,
-                                                 acks=1, key_serializer=None)
+                                                           client_id='Producer1',
+                                                           value_serializer=None,
+                                                           acks=1, key_serializer=None,
+                                                          compression_type='gzip')
     def __getattr__(self, name):
         return getattr(self.instance, name)
