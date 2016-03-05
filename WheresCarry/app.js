@@ -1,16 +1,32 @@
 var express = require('express');
 var path = require('path');
 var http = require('http');
+var logger = require('morgan');
 var socketio =require('socket.io');
-var app = express();
+var hogan = require('hogan-express');
 var r = require('rethinkdb');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+
+var routes = require('./routes/index');
+
+var app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
+app.engine('html', hogan);
+app.set('view engine', 'html');
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname + '/index.html');
-});
+
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
 
 var server = http.createServer(app)
 
