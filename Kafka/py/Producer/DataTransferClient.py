@@ -10,18 +10,23 @@ import glob
 
 __author__ = 'Edgar Sandoval'
 
+
 def addPhoto(jsonObject, pictureFiles):
+
+    """
+    @param jsonObject: - json object representation of a single Carry message
+    @param pictureFiles: - a list that references the items in the directory SupportFiles/photos/
+    @return: jsonObject
+    """
     picture = Image.open(random.choice(pictureFiles))
-    width,height = picture.size
-    aspectRatio = 1.0*height/width
-    NEWWIDTH = 400
-    newHeight = NEWWIDTH * aspectRatio
-    newSize = NEWWIDTH,newHeight
+    width, height = picture.size
+    aspectRatio = 1.0 * height / width
+    newWidth = width * .25
+    newHeight = newWidth * aspectRatio
+    newSize = newWidth, newHeight
     picture.thumbnail(newSize, Image.ANTIALIAS)
     jsonObject['carry_data_current']["photograph"].append(picture.tobytes().encode('base64'))
     return jsonObject
-
-
 
 
 if __name__ == "__main__":

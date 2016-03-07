@@ -7,6 +7,7 @@ __author__ = 'Edgar Sandoval'
 
 class DispatchKafkaProducer:
     instance = None
+    #TODO add functionality to pass parameters to the producer constructor
     def __init__(self):
         if not DispatchKafkaProducer.instance:
             DispatchKafkaProducer.instance = KafkaProducer(bootstrap_servers=['localhost:9092'],
