@@ -34,11 +34,11 @@ $ source activate peppermint
 ## Running Python Kafka Producer
 Start TCP Socket Handler kafka produer
 ```bash 
-$ python TCPSocketHandler.py
+$ python Producer/DispatchTCPServer.py
 ```
 In a new terminal window start the TCP Data Transfer Client
 ```bash 
-$ python DataTransferClient.py
+$ python Producer/DataTransferClient.py
 ```
 
 ## Consuming Messages
