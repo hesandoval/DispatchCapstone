@@ -29,7 +29,7 @@ $ conda env create -f environment.yml
 ```
 Activate environment
 ```bash 
-$ source activate peppermint
+$ source activate CapstoneEnv1
 ```
 ## Running Python Kafka Producer
 Start TCP Socket Handler kafka produer

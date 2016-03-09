@@ -14,6 +14,7 @@ __author__ = 'Edgar Sandoval'
 def addPhoto(jsonObject, pictureFiles):
 
     """
+    Resizes the image to 25% its original size using PIL
     @param jsonObject: - json object representation of a single Carry message
     @param pictureFiles: - a list that references the items in the directory SupportFiles/photos/
     @return: jsonObject
