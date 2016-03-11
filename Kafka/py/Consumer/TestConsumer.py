@@ -36,7 +36,7 @@ def dbGetConnection():
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='Run the Flask todo app')
+    parser = argparse.ArgumentParser(description='Run test consumer')
     parser.add_argument('--setup', dest='run_setup', action='store_true')
 
     args = parser.parse_args()
