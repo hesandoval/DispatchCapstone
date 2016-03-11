@@ -6,40 +6,43 @@ import random
 import sys
 import msgpack
 import glob
+import os
 
 
 __author__ = 'Edgar Sandoval'
 
+#Environment Variables
+MESSAGESDIRECTORY = "SupportFiles/messages.json"
+PHOTOSDIRECTORY = "SupportFiles/photos/"
+SERVER_PORT = os.environ.get('SERVER_PORT') or 9999
 
-def addPhoto(jsonObject, pictureFiles):
-
+def addPhoto(dispatchDict, pictureFiles):
     """
-    Resizes the image to 25% its original size using PIL
-    @param jsonObject: - json object representation of a single Carry message
+    Adds a random folder to the python dictionary
+    @param dispatchDict: - json object representation of a single Carry message
     @param pictureFiles: - a list that references the items in the directory SupportFiles/photos/
     @return: jsonObject
     """
     picture = random.choice(pictureFiles)
     with open(picture, "rb") as infile:
         photoData = infile.read()
-    jsonObject['carry_data_current']["photograph"].append(photoData)
-    return jsonObject
+    dispatchDict['carry_data_current']["photograph"].append(photoData)
+    return dispatchDict
 
 
 if __name__ == "__main__":
     data = []
-    MESSAGESDIRECTORY = "SupportFiles/messages.json"
-    PHOTOSDIRECTORY = "SupportFiles/photos/"
+
     pictureFiles = glob.glob(PHOTOSDIRECTORY + "/*")
     with open(MESSAGESDIRECTORY) as f:
         for line in f:
             data.append(line)
         data = json.loads("".join(data))
-    HOST,PORT = socket.gethostname(), 9999
+    connectionCredentials = socket.gethostname(), SERVER_PORT
     for message in data:
         try:
             clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            clientSocket.connect((HOST, PORT))
+            clientSocket.connect(connectionCredentials)
         except socket.error, (v, message):
             if clientSocket:
                 clientSocket.close()
