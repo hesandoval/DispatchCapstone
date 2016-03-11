@@ -1,4 +1,6 @@
 from __future__ import print_function
+import msgpack
+import json
 import DispatchSingletonProducer
 import SocketServer
 
@@ -9,19 +11,18 @@ class TCPSocketHandler(SocketServer.BaseRequestHandler):
     def handle(self):
         kafkaProducer = DispatchSingletonProducer.DispatchKafkaProducer()
         totalData = []
-        #print("{} wrote:".format(self.client_address[0]))
+        print("{} wrote:".format(self.client_address[0]))
         while 1:
             try:
-                data = self.request.recv(1024).strip()
+                data = self.request.recv(1024)
                 if data:
                     totalData.append(data)
                 else:
                     break
             except:
                 pass
-        #dat = json.loads(self.data)
-        totalData = ''.join(totalData)
-        #print(totalData)
+
+        totalData = r''.join(totalData)
         kafkaServerResponse = kafkaProducer.send(b"test_topic", totalData)
 
         #uncomment to debug
