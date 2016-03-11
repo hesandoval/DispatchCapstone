@@ -22,9 +22,9 @@ class TCPSocketHandler(SocketServer.BaseRequestHandler):
         #dat = json.loads(self.data)
         totalData = ''.join(totalData)
         #print(totalData)
-        x = kafkaProducer.send(b"test_topic", totalData)
+        kafkaServerResponse = kafkaProducer.send(b"test_topic", totalData)
 
         #uncomment to debug
-        # print(x.succeeded())
-        # print(x.exception)
+        # print(kafkaServerResponse.succeeded())
+        # print(kafkaServerResponse.exception)
 
