@@ -8,6 +8,12 @@ import os
 __author__ = 'Edgar Sandoval'
 
 
+#Environment variables
+RDB_HOST = os.environ.get('RDB_HOST') or 'localhost'
+RDB_PORT = os.environ.get('RDB_PORT') or 28015
+DISPATCH_DB = 'dispatch'
+TABLE = 'test'
+
 #TODO Add database configuration here
 def dbSetup(connection):
     #code here
