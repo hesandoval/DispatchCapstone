@@ -1,55 +1,52 @@
 from __future__ import print_function
 from kafka import KafkaConsumer
-import json
 import rethinkdb as r
+import msgpack
+import os
 
 __author__ = 'Edgar Sandoval'
 
-r.connect("localhost", 28015).repl()
 
-myConsumer = KafkaConsumer('test_topic', 
-							grou_id='dispatch',
-							value_deserializer=lambda m: json.loads(m.decode('ascii')),
-                            bootstrap_servers=['localhost:9092'])
+#TODO Add database configuration here
+def dbSetup(connection):
+    #code here
+    connection = r.connect("localhost", 28015)
+    dispatch = r.db('dispatch').table('test')
 
-dispatch = r.db('dispatch').table('test')
+def dbGetConnection():
+    connection = r.connect("localhost", 28015)
+    table = r.db('dispatch').table('test')
+    return (connection, table)
 
-# This will now insert the data into the rethinkdb
-dispatch.insert(data).run()
+if __name__ == "__main__":
+    DIRECTORY = 'SupportFiles/KafkaTransfers/'
 
-# for message in myConsumer:
-#     print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
-#                                       message.offset, message.key,
-#                                       message.value))
 
-# # Consume earliest message avaliable but don't commit offsets
-# KafkaConsumer(auto_offset_reset='earliest', enable_autocommit=False)
+    if not os.path.exists(DIRECTORY):
+        os.makedirs(DIRECTORY)
 
-# # Consume msgpack
-# KafkaConsumer(value_deserializer=msgpack.unpackb)
+    myConsumer = KafkaConsumer('test_topic', value_deserializer=msgpack.unpackb,
+                                bootstrap_servers=['localhost:9092'])
 
-# #StopIteration if no message after 1 sec (Testing purposes but can be changed later on)
-# KafkaConsumer(consumer_timeout_ms=1000)
+    for message in myConsumer:
+        # print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
+        #                                   message.offset, message.key,
+        #                                   message.value))
+        data = message.value
 
-#Create a DB and table if you havent done already
-# //r.db("dispatch").table_create("test").run()
 
-# I beleive here the producer will send messages to the cluster and to the consumer to be sent through the db
-# r.table('dispatch').insert({
-#     "sender": 'Carry1',
-#     "battery": 89.21212121212122,
-#     "elevation": 0.11060606060606061,
-#     "latitude": 37.642992121212124,
-#     "longitude": -122.41739909090909,
-#     "left_open": "false",
-#     "right_open": "false",
-#     "light_back_on": "true",
-#     "light_front_on": "true",
-#     "speed": 2.0,
-#     "filename": '2016-02-22T01:22:00.132580-08:00',
-#     # //file: r.binary(contents) #This is for passing in the photo
-#   }).run()
+        #TODO Add rethinkDB code here
+        # This will now insert the data into the rethinkdb
+        connection, table = dbGetConnection()
+        table.insert(data).run(connection)
 
-#Retrieve a document by Primary Key
-# //r.db('test').table('authors').get('7644aaf2-9928-4231-aa68-4e65e31bf219').run()
-myConsumer.close()
+
+        if len(data['carry_data_current']['photograph']) != 0:
+             photographData = data['carry_data_current']['photograph'][0]
+             outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
+             with open(DIRECTORY+outfile, "wb") as fh:
+                 fh.write(photographData)
+
+
+    myConsumer.close()
+
