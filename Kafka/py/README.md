@@ -32,7 +32,11 @@ $ bin/kafka-server-start.sh config/server.properties
 * Zookeeper and the Kafka Server will output many lines of log information if no Java Exceptions are present <br> in the terminal output then the servers are ready to broker messages
 
 ## Python Environment Setup 
-Load environment from environment file *ONE TIME*
+If you're in the root project directory change directories to DispatchCapstone/Kafka/py
+```bash 
+$ cd Kafka/py
+```
+Load environment from environment file __ONE TIME__
 ```bash 
 $ conda env create -f environment.yml
 ```
@@ -65,6 +69,7 @@ In a new terminal window start the Data Transfer Client
 * This client transfers binary encoded python dictionaries to DispatchTCPServer.py
 
 ## Consuming Messages
+### There are two ways to consume messages:
 In a new terminal window start the packaged kafka consumer
 ```bash 
 $ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test_topic --from-beginning
@@ -73,4 +78,9 @@ $ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test_topic --
 ```
 * This will dump all of the messages in the Kafka Queue into terminal output
 
-
+__Or Use TestConsumer.py__
+```bash 
+(CapstoneEnv1)$ python Consumer/TestConsumer.py
+```
+* This will output messages that do not contain photo data to the terminal 
+and save .jpg images to SupportFiles/KafkaTransfers/ as they are produced by DispatchTCPServer.py
