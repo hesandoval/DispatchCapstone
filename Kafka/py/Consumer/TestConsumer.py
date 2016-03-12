@@ -58,6 +58,8 @@ if __name__ == "__main__":
                  outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
                  with open(DIRECTORY+outfile, "wb") as fh:
                      fh.write(photographData)
+            else:
+                print(data)
             if args.with_db:
             #run with no database
                 #TODO Add rethinkDB code here
