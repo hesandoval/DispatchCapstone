@@ -44,3 +44,14 @@ tr
 	color:black;
 	font-weight:bold;
 }
+
+#map
+{
+	height:440px;
+ 	width:700px
+}
+
+#autocomplete
+{
+	width:700px;
+}
