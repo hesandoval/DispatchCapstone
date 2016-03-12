@@ -36,11 +36,13 @@ Load environment from environment file *ONE TIME*
 ```bash 
 $ conda env create -f environment.yml
 ```
-At times it may be necessary to update the Python environment if the environment file has changed 
+
+At times it may be necessary to update the Python environment if the environment.yml file has changed 
 ```bash 
 $ conda env update
 Fetching package metadata: ....
 ```
+
 Activate environment
 ```bash 
 $ source activate CapstoneEnv1
