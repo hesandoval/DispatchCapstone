@@ -2,6 +2,7 @@ from __future__ import print_function
 from socket import *
 import SocketServer
 import TCPSocketHandler
+import os
 
 __author__ = 'Edgar Sandoval'
 
@@ -14,11 +15,5 @@ if __name__ == "__main__":
     handler = TCPSocketHandler.TCPSocketHandler
     # Create the server, binding to localhost on port 9999
     server = SocketServer.TCPServer(connectionCredentials, handler)
-    print("Listening on port {}:{}".format(connectionCredentials))
-
-    try:
-        server.serve_forever()
-    except (KeyboardInterrupt, SystemExit):
-        raise
-    except:
-        print("Goodbye")
+    print("Listening on port {}:{}".format(connectionCredentials[0], connectionCredentials[1]))
+    server.serve_forever()
