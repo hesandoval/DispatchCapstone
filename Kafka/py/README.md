@@ -1,8 +1,10 @@
 # Kafka Setup
+
 ## Specifications
 version: 0.9.0<br>
 Python 2.7<br>
 conda 3.18.8 or Anaconda distro<br>
+
 ## How to Run
 Download
 http://kafka.apache.org/documentation.html#quickstart_download
@@ -28,6 +30,7 @@ $ bin/kafka-server-start.sh config/server.properties
 ...
 ```
 * Zookeeper and the Kafka Server will output many lines of log information if no Java Exceptions are present <br> in the terminal output then the servers are ready to broker messages
+
 ## Python Environment Setup 
 Load environment from environment file *ONE TIME*
 ```bash 
@@ -44,6 +47,7 @@ $ source activate CapstoneEnv1
 discarding .../anaconda/bin from PATH
 prepending .../anaconda/envs/CapstoneEnv1/bin to PATH
 ```
+
 ## Running Python Kafka Producer
 Start TCP Socket Handler
 ```bash 
