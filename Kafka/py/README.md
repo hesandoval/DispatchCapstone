@@ -57,6 +57,7 @@ In a new terminal window start the Data Transfer Client
 (CapstoneEnv1)$ python Producer/DataTransferClient.py
 ```
 * This client transfers binary encoded python dictionaries to DispatchTCPServer.py
+
 ## Consuming Messages
 In a new terminal window start the packaged kafka consumer
 ```bash 
