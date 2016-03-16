@@ -67,6 +67,7 @@ if __name__ == "__main__":
                      fh.write(photographData)
 
             #TODO check result for valid parameters
+            
 
 
         myConsumer.close()
