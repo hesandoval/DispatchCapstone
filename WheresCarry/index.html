@@ -91,16 +91,12 @@
 	<!--------------------------------------- Google Maps API END --------------------------------------->
            
     <!------------------------------------------- Carry Data -------------------------------------------->
-    <table id ="table">
-    	<tr>
-        	Lattitude
-             <td>degrees</td>
-        </tr>
-             	
-        <tr>
-            Longitude
-        </tr>
-             <td>degrees</td>
+    <table id ="table" border="1">
+    	<!-- Hogan Code -->
+		<tr><td>Latitude</td><td id = "latval">{{carry_data_current.current_location.lattitude}}</td></tr>
+		<tr><td>Longtitude</td><td id=""longval">{{carry_data_current.current_location.longitude}}</td></tr>
+		<tr><td>Speed</td><td id="speedval">Speed value</td></tr>
+		<tr><td>Elevation</td><td id=""eleval">{{}}carry_data_current.current_location.elevation}}</td></tr>
     </table>
     <!------------------------------------------- Carry Data END -------------------------------------------->
                
