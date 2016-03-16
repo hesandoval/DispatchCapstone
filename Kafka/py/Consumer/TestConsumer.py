@@ -16,7 +16,6 @@ RDB_PORT = os.environ.get('RDB_PORT') or 28015
 DISPATCH_DB = 'dispatch'
 TABLE = 'test'
 
-#TODO Add database configuration here
 def dbSetup():
     #code here
     connection = r.connect(host=RDB_HOST, port=RDB_PORT)
@@ -56,8 +55,6 @@ if __name__ == "__main__":
             #                                   message.value))
             data = message.value
 
-
-            #TODO Add rethinkDB code here
             # This will now insert the data into the rethinkdb
             connection, table = dbGetConnection()
             result = table.insert(data).run(connection)
@@ -70,6 +67,7 @@ if __name__ == "__main__":
                      fh.write(photographData)
 
             #TODO check result for valid parameters
+
 
         myConsumer.close()
 
