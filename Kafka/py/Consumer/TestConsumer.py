@@ -50,6 +50,7 @@ if __name__ == "__main__":
                                     bootstrap_servers=['localhost:9092'])
 
         for message in myConsumer:
+<<<<<<< HEAD
             # print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
             #                                   message.offset, message.key,
             #                                   message.value))
@@ -59,6 +60,8 @@ if __name__ == "__main__":
             connection, table = dbGetConnection()
             result = table.insert(data).run(connection)
 
+=======
+>>>>>>> master
 
             data = message.value
             if len(data['carry_data_current']['photograph']) != 0:
