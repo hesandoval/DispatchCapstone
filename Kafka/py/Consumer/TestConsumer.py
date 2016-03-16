@@ -62,12 +62,13 @@ if __name__ == "__main__":
             if args.with_db:
             #run with no database
                 #TODO Add rethinkDB code here
-                print(data)
+                # print(data)
                 data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
-                #TODO check result for valid parameters
+            #TODO check result for valid parameters
+                print(result)
                 
         myConsumer.close()
 
