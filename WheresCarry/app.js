@@ -45,7 +45,7 @@ io.on("connection", function(socket) {
         r.table('test').filter(r.row('sender').eq('Carry1')).run(connection, function(err, cursor){
             if (err) throw err;
             cursor.toArray(function(err, result){
-              if (err) throw err;
+                if (err) throw err;
                 console.log(JSON.stringify(result, null, 2));
             });
         });
@@ -53,26 +53,27 @@ io.on("connection", function(socket) {
 });
 
 r.connect({host:'localhost', port:28015}, function(err, conn){
-  if(err) throw err;
-  connection = conn;
-  });
+    if(err) throw err;
+    connection = conn;
+});
 
 r.table('test').changes().run(connection, function(err, cursor){
-  if(err) throw err;
-  cursor.each(function(err,row){
     if(err) throw err;
-console.log(JSON.stringify(row,null,2));
-io.socket.emit('update-msg', {data: 'this is the data'}); //change and add update messages depending on what field will be updated in the html
-});
+    //cursor.toArray(function(err,row){
+    cursor.each(function(err,row){
+        if(err) throw err;
+        console.log(JSON.stringify(row,null,2));
+        io.socket.emit('update-msg', {data: 'this is the data'}); //change and add update messages depending on what field will be updated in the html
+    });
 });
 
 /*
 var tid = document.getElementById("TripNumber).value;
 
 r.table('test').filter(r.row('trip_id').eq(tid)).run(connection, function(err, cursor){
-  if(err) throw err;
-  cursor.toArray(function(err,result){
-    if(err) throw err;
-  });
+if(err) throw err;
+cursor.toArray(function(err,result){
+if(err) throw err;
+});
 });
 */
