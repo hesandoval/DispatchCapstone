@@ -14,7 +14,7 @@ DIRECTORY = 'SupportFiles/KafkaTransfers/'
 RDB_HOST = os.environ.get('RDB_HOST') or 'localhost'
 RDB_PORT = os.environ.get('RDB_PORT') or 28015
 DISPATCH_DB = 'dispatch'
-TABLE = 'test'
+TABLE = 'wheres_carry'
 
 #TODO Add database configuration here
 def dbSetup():
@@ -22,7 +22,7 @@ def dbSetup():
     connection = r.connect(host=RDB_HOST, port=RDB_PORT)
     try:
         r.db_create(DISPATCH_DB).run(connection)
-        r.db(DISPATCH_DB).table_create('dispatch').run(connection)
+        r.db(DISPATCH_DB).table_create(TABLE).run(connection)
         print('Database completed. Run application')
     except RqlRuntimeError:
         print('Database already exists. Run Application')
@@ -63,12 +63,12 @@ if __name__ == "__main__":
             if args.with_db:
             #run with no database
                 #TODO Add rethinkDB code here
+                print(data)
+                data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
-
-
-            #TODO check result for valid parameters
+                #TODO check result for valid parameters
 
         myConsumer.close()
 
