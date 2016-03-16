@@ -67,6 +67,7 @@ if __name__ == "__main__":
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
-
+                #TODO check result for valid parameters
+                
         myConsumer.close()
 
