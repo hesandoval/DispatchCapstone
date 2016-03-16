@@ -53,22 +53,24 @@ if __name__ == "__main__":
         for message in myConsumer:
 
             data = message.value
-            if len(data['carry_data_current']['photograph']) != 0:
-                 photographData = data['carry_data_current']['photograph'][0]
-                 outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
-                 with open(DIRECTORY+outfile, "wb") as fh:
-                     fh.write(photographData)
-            else:
-                print(data)
             if args.with_db:
             #run with no database
-                #TODO Add rethinkDB code here
-                print(data)
+
                 data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
+                connection.close()
                 #TODO check result for valid parameters
+
+            else:
+                if len(data['carry_data_current']['photograph']) != 0:
+                    photographData = data['carry_data_current']['photograph'][0]
+                    outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
+                    with open(DIRECTORY+outfile, "wb") as fh:
+                        fh.write(photographData)
+                else:
+                    print(data)
 
         myConsumer.close()
 
