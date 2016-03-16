@@ -63,6 +63,7 @@ r.table('test').changes().run(connection, function(err, cursor){
   cursor.each(function(err,row){
     if(err) throw err;
 console.log(JSON.stringify(row,null,2));
+io.socket.emit('update-msg', {data: 'this is the data'}); //change and add update messages depending on what field will be updated in the html
 });
 });
 
