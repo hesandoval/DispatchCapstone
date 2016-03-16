@@ -61,6 +61,7 @@ if __name__ == "__main__":
             #TODO check result for valid parameters
                 print(result)
                 
+
                 connection.close()
                 #TODO check result for valid parameters
 
@@ -72,6 +73,5 @@ if __name__ == "__main__":
                         fh.write(photographData)
                 else:
                     print(data)
-
         myConsumer.close()
 
