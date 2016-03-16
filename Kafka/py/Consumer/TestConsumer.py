@@ -16,7 +16,6 @@ RDB_PORT = os.environ.get('RDB_PORT') or 28015
 DISPATCH_DB = 'dispatch'
 TABLE = 'wheres_carry'
 
-#TODO Add database configuration here
 def dbSetup():
     #code here
     connection = r.connect(host=RDB_HOST, port=RDB_PORT)
@@ -55,7 +54,6 @@ if __name__ == "__main__":
             data = message.value
             if args.with_db:
             #run with no database
-
                 data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
@@ -71,6 +69,5 @@ if __name__ == "__main__":
                         fh.write(photographData)
                 else:
                     print(data)
-
         myConsumer.close()
 
