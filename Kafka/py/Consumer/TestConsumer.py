@@ -52,13 +52,6 @@ if __name__ == "__main__":
         for message in myConsumer:
 
             data = message.value
-            if len(data['carry_data_current']['photograph']) != 0:
-                 photographData = data['carry_data_current']['photograph'][0]
-                 outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
-                 with open(DIRECTORY+outfile, "wb") as fh:
-                     fh.write(photographData)
-            else:
-                print(data)
             if args.with_db:
             #run with no database
                 #TODO Add rethinkDB code here
@@ -70,5 +63,17 @@ if __name__ == "__main__":
             #TODO check result for valid parameters
                 print(result)
                 
+                connection.close()
+                #TODO check result for valid parameters
+
+            else:
+                if len(data['carry_data_current']['photograph']) != 0:
+                    photographData = data['carry_data_current']['photograph'][0]
+                    outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
+                    with open(DIRECTORY+outfile, "wb") as fh:
+                        fh.write(photographData)
+                else:
+                    print(data)
+
         myConsumer.close()
 
