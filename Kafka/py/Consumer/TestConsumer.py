@@ -54,8 +54,6 @@ if __name__ == "__main__":
             data = message.value
             if args.with_db:
             #run with no database
-                #TODO Add rethinkDB code here
-                # print(data)
                 data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
