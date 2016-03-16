@@ -33,16 +33,16 @@ def dbGetConnection():
     table = r.db(DISPATCH_DB).table(TABLE)
     return (connection, table)
 
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Run test consumer')
     parser.add_argument('--setup', dest='run_setup', action='store_true')
-
+    parser.add_argument('--database', dest='with_db', action='store_true')
     args = parser.parse_args()
     if args.run_setup:
         dbSetup()
     else:
-
         if not os.path.exists(DIRECTORY):
             os.makedirs(DIRECTORY)
 
@@ -60,11 +60,21 @@ if __name__ == "__main__":
             result = table.insert(data).run(connection)
 
 
+            data = message.value
             if len(data['carry_data_current']['photograph']) != 0:
                  photographData = data['carry_data_current']['photograph'][0]
                  outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
                  with open(DIRECTORY+outfile, "wb") as fh:
                      fh.write(photographData)
+            else:
+                print(data)
+            if args.with_db:
+            #run with no database
+                #TODO Add rethinkDB code here
+                # This will now insert the data into the rethinkdb
+                connection, table = dbGetConnection()
+                result = table.insert(data).run(connection)
+
 
             #TODO check result for valid parameters
             
