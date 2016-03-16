@@ -37,3 +37,4 @@ node_modules
 .idea/
 
 KafkaTransfers/
+rethinkdb_data/
