@@ -1,3 +1,9 @@
+# Test Consumer source 
+# This code snippet is needed to consume the messages and push them
+# through rethinkdb. The clusters transmit data through TCP server 
+# connections and pushes data and retrieves to the webpage.
+
+
 from __future__ import print_function
 from kafka import KafkaConsumer
 import rethinkdb as r
