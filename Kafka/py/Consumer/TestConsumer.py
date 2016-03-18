@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
             data = message.value
             if args.with_db:
-            #run with no database
+            #run with database
                 data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
@@ -96,6 +96,7 @@ if __name__ == "__main__":
 
 
             else:
+                #run with no database
                 if len(data['carry_data_current']['photograph']) != 0:
                     photographData = data['carry_data_current']['photograph'][0]
                     outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
