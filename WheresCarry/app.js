@@ -4,10 +4,9 @@ var http = require('http');
 var logger = require('morgan');
 var socketio =require('socket.io');
 var hogan = require('hogan-express');
-var r = require('rethinkdb');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var connection = null;
+var carry = require("./CarryData");
 
 
 var routes = require('./routes/index');
@@ -33,24 +32,26 @@ var server = http.createServer(app);
 
 var io = socketio(server);
 
+carry.setup(io);
+
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-io.on("connection", function(socket) {
-    console.log("User connected to the page");
-    r.connect({host: 'localhost', port: 28015}, function (err, conn) {
-        if (err) throw err;
-        connection = conn;
-        r.table('wheres_carry').filter(r.row('sender').eq('Carry1')).run(connection, function(err, cursor){
-            if (err) throw err;
-            cursor.toArray(function(err, result){
-                if (err) throw err;
-                console.log(JSON.stringify(result, null, 2));
-            });
-        });
-    });
-});
+//io.on("connection", function(socket) {
+//    console.log("User connected to the page");
+//    r.connect({host: 'localhost', port: 28015}, function (err, conn) {
+//        if (err) throw err;
+//        connection = conn;
+//        r.table('wheres_carry').filter(r.row('sender').eq('Carry1')).run(connection, function(err, cursor){
+//            if (err) throw err;
+//            cursor.toArray(function(err, result){
+//                if (err) throw err;
+//                console.log(JSON.stringify(result, null, 2));
+//            });
+//        });
+//    });
+//});
 
 //r.connect({host:'localhost', port:28015}, function(err, conn){
 //    if(err) throw err;

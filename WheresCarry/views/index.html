@@ -17,6 +17,8 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="javascript/client.js"></script>
 	</head>
 
 	<body>
@@ -28,7 +30,7 @@
 			<!--Page Navigation -->
 			<nav>
 				<!--Links to various pages -->
-				<a href="index.html">Dispatch</a>
+				<a href="/">Dispatch</a>
 				<a href="statistics.html">Home</a>
 				<a href="">About</a>
 			</nav>
@@ -95,8 +97,8 @@
     	<!-- Hogan Code -->
 		<tr><td>Latitude</td><td id = "latval">{{carry_data_current.current_location.lattitude}}</td></tr>
 		<tr><td>Longtitude</td><td id="longval">{{carry_data_current.current_location.longitude}}</td></tr>
-		<tr><td>Speed</td><td id="speedval">Speed value</td></tr>
-		<tr><td>Elevation</td><td id="eleval">{{}}carry_data_current.current_location.elevation}}</td></tr>
+		<tr><td>Speed</td><td id="speedval">{{carry_data_current.speed}}</td></tr>
+		<tr><td>Elevation</td><td id="eleval">{{carry_data_current.current_location.elevation}}</td></tr>
     </table>
     <!------------------------------------------- Carry Data END -------------------------------------------->
                
