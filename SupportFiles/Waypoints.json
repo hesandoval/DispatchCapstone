@@ -1,0 +1,23 @@
+{
+	"trip": [{
+	    "sender": "Carry1",
+	    "created": "2015-05-22T14:56:29.000Z",
+	    "trip_id": "de305d54-75b4-431b-adb2-eb6b9e546014",
+	    "waypoints": [{
+	      "latitude": 0.00,
+	      "longitude": 0.00,
+	    },
+	    {
+	      "latitude": 0.00,
+	      "longitude": 0.00,
+	    },
+	   	{
+	      "latitude": 0.00,
+	      "longitude": 0.00,
+	    },
+	   	{
+	      "latitude": 0.00,
+	      "longitude": 0.00,
+	    }]
+	}]
+}
