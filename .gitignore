@@ -36,5 +36,6 @@ node_modules
 *.pyc
 .idea/
 
-KafkaTransfers/
+.metadata/
 rethinkdb_data/
+KafkaTransfers/
