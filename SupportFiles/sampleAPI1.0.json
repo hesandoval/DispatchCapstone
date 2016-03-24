@@ -1,6 +1,7 @@
 {
   "carry_data_current": [{
     "sender": "Carry1",
+    "trip_id": "de305d54-75b4-431b-adb2-eb6b9e546014",
     "created": "2015-05-22T14:56:29.000Z",
     "current_location": {
       "latitude": 0.00,
@@ -9,7 +10,7 @@
     },
     "battery_life": 0.00,
     "speed": 0.00,
-    "photograph": "some binary?",//raw data file data etc??,
+    "photograph": [],//raw data file data etc??,
     "door_status":{
       "left_open": false,
       "right_open": false
