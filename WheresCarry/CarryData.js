@@ -26,8 +26,12 @@ function setup(io){
                 .distinct()
                 .run(callback);
         });
+        //
         socket.on('carry:findTripsByCarryID', function(id, callback){
-            r.table('wheres_carry').orderBy(r.desc('created')).pluck({carry_data_current: "id"}).distinct().run(callback);
+            r.table('wheres_carry').orderBy(r.desc('created'))
+                .filter({carry_data_current:{"sender":id}})
+                .pluck({carry_data_current: ["trip_id", "completed"]})
+                .distinct().run(callback);
         });
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};

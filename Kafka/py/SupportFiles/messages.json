@@ -3,7 +3,7 @@
         "carry_data_current": {
             "battery_life": 90.0,
             "completed": false,
-            "created": "2016-03-24T03:45:13.711696-07:00",
+            "created": "2016-03-24T04:21:46.015936-07:00",
             "current_location": {
                 "elevation": 0.15,
                 "latitude": 37.642714,
@@ -20,6 +20,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -428,7 +429,7 @@
         "carry_data_current": {
             "battery_life": 89.98989898989899,
             "completed": false,
-            "created": "2016-03-24T03:45:13.913716-07:00",
+            "created": "2016-03-24T04:21:46.217956-07:00",
             "current_location": {
                 "elevation": 0.1494949494949495,
                 "latitude": 37.64271756565656,
@@ -445,6 +446,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -853,7 +855,7 @@
         "carry_data_current": {
             "battery_life": 89.97979797979798,
             "completed": false,
-            "created": "2016-03-24T03:45:14.115736-07:00",
+            "created": "2016-03-24T04:21:46.419976-07:00",
             "current_location": {
                 "elevation": 0.14898989898989898,
                 "latitude": 37.64272113131313,
@@ -870,6 +872,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -1278,7 +1281,7 @@
         "carry_data_current": {
             "battery_life": 89.96969696969697,
             "completed": false,
-            "created": "2016-03-24T03:45:14.317757-07:00",
+            "created": "2016-03-24T04:21:46.621997-07:00",
             "current_location": {
                 "elevation": 0.14848484848484847,
                 "latitude": 37.642724696969694,
@@ -1295,6 +1298,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -1703,7 +1707,7 @@
         "carry_data_current": {
             "battery_life": 89.95959595959596,
             "completed": false,
-            "created": "2016-03-24T03:45:14.519777-07:00",
+            "created": "2016-03-24T04:21:46.824017-07:00",
             "current_location": {
                 "elevation": 0.14797979797979796,
                 "latitude": 37.642728262626264,
@@ -1720,6 +1724,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -2128,7 +2133,7 @@
         "carry_data_current": {
             "battery_life": 89.94949494949495,
             "completed": false,
-            "created": "2016-03-24T03:45:14.721797-07:00",
+            "created": "2016-03-24T04:21:47.026037-07:00",
             "current_location": {
                 "elevation": 0.14747474747474748,
                 "latitude": 37.64273182828283,
@@ -2145,6 +2150,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -2553,7 +2559,7 @@
         "carry_data_current": {
             "battery_life": 89.93939393939394,
             "completed": false,
-            "created": "2016-03-24T03:45:14.923817-07:00",
+            "created": "2016-03-24T04:21:47.228057-07:00",
             "current_location": {
                 "elevation": 0.14696969696969697,
                 "latitude": 37.64273539393939,
@@ -2570,6 +2576,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -2978,7 +2985,7 @@
         "carry_data_current": {
             "battery_life": 89.92929292929293,
             "completed": false,
-            "created": "2016-03-24T03:45:15.125837-07:00",
+            "created": "2016-03-24T04:21:47.430077-07:00",
             "current_location": {
                 "elevation": 0.14646464646464646,
                 "latitude": 37.64273895959596,
@@ -2995,6 +3002,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -3403,7 +3411,7 @@
         "carry_data_current": {
             "battery_life": 89.91919191919192,
             "completed": false,
-            "created": "2016-03-24T03:45:15.327858-07:00",
+            "created": "2016-03-24T04:21:47.632098-07:00",
             "current_location": {
                 "elevation": 0.14595959595959596,
                 "latitude": 37.64274252525252,
@@ -3420,6 +3428,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -3828,7 +3837,7 @@
         "carry_data_current": {
             "battery_life": 89.9090909090909,
             "completed": false,
-            "created": "2016-03-24T03:45:15.529878-07:00",
+            "created": "2016-03-24T04:21:47.834118-07:00",
             "current_location": {
                 "elevation": 0.14545454545454545,
                 "latitude": 37.64274609090909,
@@ -3845,6 +3854,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -4253,7 +4263,7 @@
         "carry_data_current": {
             "battery_life": 89.8989898989899,
             "completed": false,
-            "created": "2016-03-24T03:45:15.731898-07:00",
+            "created": "2016-03-24T04:21:48.036138-07:00",
             "current_location": {
                 "elevation": 0.14494949494949494,
                 "latitude": 37.642749656565655,
@@ -4270,6 +4280,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -4678,7 +4689,7 @@
         "carry_data_current": {
             "battery_life": 89.88888888888889,
             "completed": false,
-            "created": "2016-03-24T03:45:15.933918-07:00",
+            "created": "2016-03-24T04:21:48.238158-07:00",
             "current_location": {
                 "elevation": 0.14444444444444443,
                 "latitude": 37.64275322222222,
@@ -4695,6 +4706,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -5103,7 +5115,7 @@
         "carry_data_current": {
             "battery_life": 89.87878787878788,
             "completed": false,
-            "created": "2016-03-24T03:45:16.135938-07:00",
+            "created": "2016-03-24T04:21:48.440178-07:00",
             "current_location": {
                 "elevation": 0.14393939393939392,
                 "latitude": 37.64275678787879,
@@ -5120,6 +5132,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -5528,7 +5541,7 @@
         "carry_data_current": {
             "battery_life": 89.86868686868686,
             "completed": false,
-            "created": "2016-03-24T03:45:16.337959-07:00",
+            "created": "2016-03-24T04:21:48.642199-07:00",
             "current_location": {
                 "elevation": 0.14343434343434344,
                 "latitude": 37.64276035353535,
@@ -5545,6 +5558,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -5953,7 +5967,7 @@
         "carry_data_current": {
             "battery_life": 89.85858585858585,
             "completed": false,
-            "created": "2016-03-24T03:45:16.539979-07:00",
+            "created": "2016-03-24T04:21:48.844219-07:00",
             "current_location": {
                 "elevation": 0.14292929292929293,
                 "latitude": 37.64276391919192,
@@ -5970,6 +5984,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -6378,7 +6393,7 @@
         "carry_data_current": {
             "battery_life": 89.84848484848484,
             "completed": false,
-            "created": "2016-03-24T03:45:16.741999-07:00",
+            "created": "2016-03-24T04:21:49.046239-07:00",
             "current_location": {
                 "elevation": 0.14242424242424243,
                 "latitude": 37.642767484848484,
@@ -6395,6 +6410,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -6803,7 +6819,7 @@
         "carry_data_current": {
             "battery_life": 89.83838383838383,
             "completed": false,
-            "created": "2016-03-24T03:45:16.944019-07:00",
+            "created": "2016-03-24T04:21:49.248259-07:00",
             "current_location": {
                 "elevation": 0.14191919191919192,
                 "latitude": 37.64277105050505,
@@ -6820,6 +6836,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -7228,7 +7245,7 @@
         "carry_data_current": {
             "battery_life": 89.82828282828282,
             "completed": false,
-            "created": "2016-03-24T03:45:17.146039-07:00",
+            "created": "2016-03-24T04:21:49.450279-07:00",
             "current_location": {
                 "elevation": 0.1414141414141414,
                 "latitude": 37.64277461616162,
@@ -7245,6 +7262,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -7653,7 +7671,7 @@
         "carry_data_current": {
             "battery_life": 89.81818181818181,
             "completed": false,
-            "created": "2016-03-24T03:45:17.348060-07:00",
+            "created": "2016-03-24T04:21:49.652300-07:00",
             "current_location": {
                 "elevation": 0.1409090909090909,
                 "latitude": 37.64277818181818,
@@ -7670,6 +7688,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -8078,7 +8097,7 @@
         "carry_data_current": {
             "battery_life": 89.8080808080808,
             "completed": false,
-            "created": "2016-03-24T03:45:17.550080-07:00",
+            "created": "2016-03-24T04:21:49.854320-07:00",
             "current_location": {
                 "elevation": 0.1404040404040404,
                 "latitude": 37.64278174747474,
@@ -8095,6 +8114,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -8503,7 +8523,7 @@
         "carry_data_current": {
             "battery_life": 89.79797979797979,
             "completed": false,
-            "created": "2016-03-24T03:45:17.752100-07:00",
+            "created": "2016-03-24T04:21:50.056340-07:00",
             "current_location": {
                 "elevation": 0.13989898989898988,
                 "latitude": 37.64278531313131,
@@ -8520,6 +8540,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -8928,7 +8949,7 @@
         "carry_data_current": {
             "battery_life": 89.78787878787878,
             "completed": false,
-            "created": "2016-03-24T03:45:17.954120-07:00",
+            "created": "2016-03-24T04:21:50.258360-07:00",
             "current_location": {
                 "elevation": 0.1393939393939394,
                 "latitude": 37.642788878787876,
@@ -8945,6 +8966,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -9353,7 +9375,7 @@
         "carry_data_current": {
             "battery_life": 89.77777777777777,
             "completed": false,
-            "created": "2016-03-24T03:45:18.156140-07:00",
+            "created": "2016-03-24T04:21:50.460380-07:00",
             "current_location": {
                 "elevation": 0.1388888888888889,
                 "latitude": 37.642792444444446,
@@ -9370,6 +9392,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -9778,7 +9801,7 @@
         "carry_data_current": {
             "battery_life": 89.76767676767676,
             "completed": false,
-            "created": "2016-03-24T03:45:18.358161-07:00",
+            "created": "2016-03-24T04:21:50.662401-07:00",
             "current_location": {
                 "elevation": 0.1383838383838384,
                 "latitude": 37.64279601010101,
@@ -9795,6 +9818,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -10203,7 +10227,7 @@
         "carry_data_current": {
             "battery_life": 89.75757575757575,
             "completed": false,
-            "created": "2016-03-24T03:45:18.560181-07:00",
+            "created": "2016-03-24T04:21:50.864421-07:00",
             "current_location": {
                 "elevation": 0.13787878787878788,
                 "latitude": 37.64279957575757,
@@ -10220,6 +10244,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -10628,7 +10653,7 @@
         "carry_data_current": {
             "battery_life": 89.74747474747475,
             "completed": false,
-            "created": "2016-03-24T03:45:18.762201-07:00",
+            "created": "2016-03-24T04:21:51.066441-07:00",
             "current_location": {
                 "elevation": 0.13737373737373737,
                 "latitude": 37.64280314141414,
@@ -10645,6 +10670,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -11053,7 +11079,7 @@
         "carry_data_current": {
             "battery_life": 89.73737373737374,
             "completed": false,
-            "created": "2016-03-24T03:45:18.964221-07:00",
+            "created": "2016-03-24T04:21:51.268461-07:00",
             "current_location": {
                 "elevation": 0.13686868686868686,
                 "latitude": 37.642806707070704,
@@ -11070,6 +11096,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -11478,7 +11505,7 @@
         "carry_data_current": {
             "battery_life": 89.72727272727273,
             "completed": false,
-            "created": "2016-03-24T03:45:19.166241-07:00",
+            "created": "2016-03-24T04:21:51.470481-07:00",
             "current_location": {
                 "elevation": 0.13636363636363635,
                 "latitude": 37.642810272727274,
@@ -11495,6 +11522,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -11903,7 +11931,7 @@
         "carry_data_current": {
             "battery_life": 89.71717171717172,
             "completed": false,
-            "created": "2016-03-24T03:45:19.368262-07:00",
+            "created": "2016-03-24T04:21:51.672502-07:00",
             "current_location": {
                 "elevation": 0.13585858585858585,
                 "latitude": 37.64281383838384,
@@ -11920,6 +11948,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -12328,7 +12357,7 @@
         "carry_data_current": {
             "battery_life": 89.70707070707071,
             "completed": false,
-            "created": "2016-03-24T03:45:19.570282-07:00",
+            "created": "2016-03-24T04:21:51.874522-07:00",
             "current_location": {
                 "elevation": 0.13535353535353534,
                 "latitude": 37.6428174040404,
@@ -12345,6 +12374,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -12753,7 +12783,7 @@
         "carry_data_current": {
             "battery_life": 89.6969696969697,
             "completed": false,
-            "created": "2016-03-24T03:45:19.772302-07:00",
+            "created": "2016-03-24T04:21:52.076542-07:00",
             "current_location": {
                 "elevation": 0.13484848484848486,
                 "latitude": 37.64282096969697,
@@ -12770,6 +12800,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -13178,7 +13209,7 @@
         "carry_data_current": {
             "battery_life": 89.68686868686869,
             "completed": false,
-            "created": "2016-03-24T03:45:19.974322-07:00",
+            "created": "2016-03-24T04:21:52.278562-07:00",
             "current_location": {
                 "elevation": 0.13434343434343435,
                 "latitude": 37.64282453535353,
@@ -13195,6 +13226,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -13603,7 +13635,7 @@
         "carry_data_current": {
             "battery_life": 89.67676767676768,
             "completed": false,
-            "created": "2016-03-24T03:45:20.176342-07:00",
+            "created": "2016-03-24T04:21:52.480582-07:00",
             "current_location": {
                 "elevation": 0.13383838383838384,
                 "latitude": 37.6428281010101,
@@ -13620,6 +13652,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -14028,7 +14061,7 @@
         "carry_data_current": {
             "battery_life": 89.66666666666667,
             "completed": false,
-            "created": "2016-03-24T03:45:20.378363-07:00",
+            "created": "2016-03-24T04:21:52.682603-07:00",
             "current_location": {
                 "elevation": 0.13333333333333333,
                 "latitude": 37.642831666666666,
@@ -14045,6 +14078,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -14453,7 +14487,7 @@
         "carry_data_current": {
             "battery_life": 89.65656565656566,
             "completed": false,
-            "created": "2016-03-24T03:45:20.580383-07:00",
+            "created": "2016-03-24T04:21:52.884623-07:00",
             "current_location": {
                 "elevation": 0.13282828282828282,
                 "latitude": 37.64283523232323,
@@ -14470,6 +14504,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -14878,7 +14913,7 @@
         "carry_data_current": {
             "battery_life": 89.64646464646465,
             "completed": false,
-            "created": "2016-03-24T03:45:20.782403-07:00",
+            "created": "2016-03-24T04:21:53.086643-07:00",
             "current_location": {
                 "elevation": 0.13232323232323231,
                 "latitude": 37.6428387979798,
@@ -14895,6 +14930,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -15303,7 +15339,7 @@
         "carry_data_current": {
             "battery_life": 89.63636363636364,
             "completed": false,
-            "created": "2016-03-24T03:45:20.984423-07:00",
+            "created": "2016-03-24T04:21:53.288663-07:00",
             "current_location": {
                 "elevation": 0.1318181818181818,
                 "latitude": 37.64284236363636,
@@ -15320,6 +15356,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -15728,7 +15765,7 @@
         "carry_data_current": {
             "battery_life": 89.62626262626263,
             "completed": false,
-            "created": "2016-03-24T03:45:21.186443-07:00",
+            "created": "2016-03-24T04:21:53.490683-07:00",
             "current_location": {
                 "elevation": 0.13131313131313133,
                 "latitude": 37.64284592929293,
@@ -15745,6 +15782,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -16153,7 +16191,7 @@
         "carry_data_current": {
             "battery_life": 89.61616161616162,
             "completed": false,
-            "created": "2016-03-24T03:45:21.388464-07:00",
+            "created": "2016-03-24T04:21:53.692704-07:00",
             "current_location": {
                 "elevation": 0.13080808080808082,
                 "latitude": 37.642849494949495,
@@ -16170,6 +16208,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -16578,7 +16617,7 @@
         "carry_data_current": {
             "battery_life": 89.60606060606061,
             "completed": false,
-            "created": "2016-03-24T03:45:21.590484-07:00",
+            "created": "2016-03-24T04:21:53.894724-07:00",
             "current_location": {
                 "elevation": 0.1303030303030303,
                 "latitude": 37.64285306060606,
@@ -16595,6 +16634,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -17003,7 +17043,7 @@
         "carry_data_current": {
             "battery_life": 89.5959595959596,
             "completed": false,
-            "created": "2016-03-24T03:45:21.792504-07:00",
+            "created": "2016-03-24T04:21:54.096744-07:00",
             "current_location": {
                 "elevation": 0.1297979797979798,
                 "latitude": 37.64285662626263,
@@ -17020,6 +17060,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -17428,7 +17469,7 @@
         "carry_data_current": {
             "battery_life": 89.58585858585859,
             "completed": false,
-            "created": "2016-03-24T03:45:21.994524-07:00",
+            "created": "2016-03-24T04:21:54.298764-07:00",
             "current_location": {
                 "elevation": 0.1292929292929293,
                 "latitude": 37.64286019191919,
@@ -17445,6 +17486,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -17853,7 +17895,7 @@
         "carry_data_current": {
             "battery_life": 89.57575757575758,
             "completed": false,
-            "created": "2016-03-24T03:45:22.196544-07:00",
+            "created": "2016-03-24T04:21:54.500784-07:00",
             "current_location": {
                 "elevation": 0.12878787878787878,
                 "latitude": 37.64286375757576,
@@ -17870,6 +17912,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -18278,7 +18321,7 @@
         "carry_data_current": {
             "battery_life": 89.56565656565657,
             "completed": false,
-            "created": "2016-03-24T03:45:22.398565-07:00",
+            "created": "2016-03-24T04:21:54.702805-07:00",
             "current_location": {
                 "elevation": 0.12828282828282828,
                 "latitude": 37.64286732323232,
@@ -18295,6 +18338,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -18703,7 +18747,7 @@
         "carry_data_current": {
             "battery_life": 89.55555555555556,
             "completed": false,
-            "created": "2016-03-24T03:45:22.600585-07:00",
+            "created": "2016-03-24T04:21:54.904825-07:00",
             "current_location": {
                 "elevation": 0.12777777777777777,
                 "latitude": 37.642870888888886,
@@ -18720,6 +18764,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -19128,7 +19173,7 @@
         "carry_data_current": {
             "battery_life": 89.54545454545455,
             "completed": false,
-            "created": "2016-03-24T03:45:22.802605-07:00",
+            "created": "2016-03-24T04:21:55.106845-07:00",
             "current_location": {
                 "elevation": 0.12727272727272726,
                 "latitude": 37.642874454545456,
@@ -19145,6 +19190,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -19553,7 +19599,7 @@
         "carry_data_current": {
             "battery_life": 89.53535353535354,
             "completed": false,
-            "created": "2016-03-24T03:45:23.004625-07:00",
+            "created": "2016-03-24T04:21:55.308865-07:00",
             "current_location": {
                 "elevation": 0.12676767676767678,
                 "latitude": 37.64287802020202,
@@ -19570,6 +19616,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -19978,7 +20025,7 @@
         "carry_data_current": {
             "battery_life": 89.52525252525253,
             "completed": false,
-            "created": "2016-03-24T03:45:23.206645-07:00",
+            "created": "2016-03-24T04:21:55.510885-07:00",
             "current_location": {
                 "elevation": 0.12626262626262627,
                 "latitude": 37.64288158585859,
@@ -19995,6 +20042,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -20403,7 +20451,7 @@
         "carry_data_current": {
             "battery_life": 89.51515151515152,
             "completed": false,
-            "created": "2016-03-24T03:45:23.408666-07:00",
+            "created": "2016-03-24T04:21:55.712906-07:00",
             "current_location": {
                 "elevation": 0.12575757575757576,
                 "latitude": 37.64288515151515,
@@ -20420,6 +20468,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -20828,7 +20877,7 @@
         "carry_data_current": {
             "battery_life": 89.5050505050505,
             "completed": false,
-            "created": "2016-03-24T03:45:23.610686-07:00",
+            "created": "2016-03-24T04:21:55.914926-07:00",
             "current_location": {
                 "elevation": 0.12525252525252525,
                 "latitude": 37.642888717171715,
@@ -20845,6 +20894,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -21253,7 +21303,7 @@
         "carry_data_current": {
             "battery_life": 89.4949494949495,
             "completed": false,
-            "created": "2016-03-24T03:45:23.812706-07:00",
+            "created": "2016-03-24T04:21:56.116946-07:00",
             "current_location": {
                 "elevation": 0.12474747474747475,
                 "latitude": 37.642892282828285,
@@ -21270,6 +21320,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -21678,7 +21729,7 @@
         "carry_data_current": {
             "battery_life": 89.48484848484848,
             "completed": false,
-            "created": "2016-03-24T03:45:24.014726-07:00",
+            "created": "2016-03-24T04:21:56.318966-07:00",
             "current_location": {
                 "elevation": 0.12424242424242424,
                 "latitude": 37.64289584848485,
@@ -21695,6 +21746,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -22103,7 +22155,7 @@
         "carry_data_current": {
             "battery_life": 89.47474747474747,
             "completed": false,
-            "created": "2016-03-24T03:45:24.216747-07:00",
+            "created": "2016-03-24T04:21:56.520987-07:00",
             "current_location": {
                 "elevation": 0.12373737373737373,
                 "latitude": 37.64289941414141,
@@ -22120,6 +22172,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -22528,7 +22581,7 @@
         "carry_data_current": {
             "battery_life": 89.46464646464646,
             "completed": false,
-            "created": "2016-03-24T03:45:24.418767-07:00",
+            "created": "2016-03-24T04:21:56.723007-07:00",
             "current_location": {
                 "elevation": 0.12323232323232323,
                 "latitude": 37.64290297979798,
@@ -22545,6 +22598,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -22953,7 +23007,7 @@
         "carry_data_current": {
             "battery_life": 89.45454545454545,
             "completed": false,
-            "created": "2016-03-24T03:45:24.620787-07:00",
+            "created": "2016-03-24T04:21:56.925027-07:00",
             "current_location": {
                 "elevation": 0.12272727272727273,
                 "latitude": 37.642906545454544,
@@ -22970,6 +23024,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -23378,7 +23433,7 @@
         "carry_data_current": {
             "battery_life": 89.44444444444444,
             "completed": false,
-            "created": "2016-03-24T03:45:24.822807-07:00",
+            "created": "2016-03-24T04:21:57.127047-07:00",
             "current_location": {
                 "elevation": 0.12222222222222222,
                 "latitude": 37.642910111111114,
@@ -23395,6 +23450,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -23803,7 +23859,7 @@
         "carry_data_current": {
             "battery_life": 89.43434343434343,
             "completed": false,
-            "created": "2016-03-24T03:45:25.024827-07:00",
+            "created": "2016-03-24T04:21:57.329067-07:00",
             "current_location": {
                 "elevation": 0.12171717171717172,
                 "latitude": 37.64291367676768,
@@ -23820,6 +23876,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -24228,7 +24285,7 @@
         "carry_data_current": {
             "battery_life": 89.42424242424242,
             "completed": false,
-            "created": "2016-03-24T03:45:25.226848-07:00",
+            "created": "2016-03-24T04:21:57.531088-07:00",
             "current_location": {
                 "elevation": 0.12121212121212122,
                 "latitude": 37.64291724242424,
@@ -24245,6 +24302,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -24653,7 +24711,7 @@
         "carry_data_current": {
             "battery_life": 89.41414141414141,
             "completed": false,
-            "created": "2016-03-24T03:45:25.428868-07:00",
+            "created": "2016-03-24T04:21:57.733108-07:00",
             "current_location": {
                 "elevation": 0.12070707070707071,
                 "latitude": 37.64292080808081,
@@ -24670,6 +24728,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -25078,7 +25137,7 @@
         "carry_data_current": {
             "battery_life": 89.4040404040404,
             "completed": false,
-            "created": "2016-03-24T03:45:25.630888-07:00",
+            "created": "2016-03-24T04:21:57.935128-07:00",
             "current_location": {
                 "elevation": 0.1202020202020202,
                 "latitude": 37.64292437373737,
@@ -25095,6 +25154,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -25503,7 +25563,7 @@
         "carry_data_current": {
             "battery_life": 89.39393939393939,
             "completed": false,
-            "created": "2016-03-24T03:45:25.832908-07:00",
+            "created": "2016-03-24T04:21:58.137148-07:00",
             "current_location": {
                 "elevation": 0.11969696969696969,
                 "latitude": 37.64292793939394,
@@ -25520,6 +25580,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -25928,7 +25989,7 @@
         "carry_data_current": {
             "battery_life": 89.38383838383838,
             "completed": false,
-            "created": "2016-03-24T03:45:26.034928-07:00",
+            "created": "2016-03-24T04:21:58.339168-07:00",
             "current_location": {
                 "elevation": 0.1191919191919192,
                 "latitude": 37.642931505050505,
@@ -25945,6 +26006,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -26353,7 +26415,7 @@
         "carry_data_current": {
             "battery_life": 89.37373737373737,
             "completed": false,
-            "created": "2016-03-24T03:45:26.236949-07:00",
+            "created": "2016-03-24T04:21:58.541189-07:00",
             "current_location": {
                 "elevation": 0.11868686868686869,
                 "latitude": 37.64293507070707,
@@ -26370,6 +26432,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -26778,7 +26841,7 @@
         "carry_data_current": {
             "battery_life": 89.36363636363636,
             "completed": false,
-            "created": "2016-03-24T03:45:26.438969-07:00",
+            "created": "2016-03-24T04:21:58.743209-07:00",
             "current_location": {
                 "elevation": 0.1181818181818182,
                 "latitude": 37.64293863636364,
@@ -26795,6 +26858,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -27203,7 +27267,7 @@
         "carry_data_current": {
             "battery_life": 89.35353535353535,
             "completed": false,
-            "created": "2016-03-24T03:45:26.640989-07:00",
+            "created": "2016-03-24T04:21:58.945229-07:00",
             "current_location": {
                 "elevation": 0.11767676767676769,
                 "latitude": 37.6429422020202,
@@ -27220,6 +27284,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -27628,7 +27693,7 @@
         "carry_data_current": {
             "battery_life": 89.34343434343434,
             "completed": false,
-            "created": "2016-03-24T03:45:26.843009-07:00",
+            "created": "2016-03-24T04:21:59.147249-07:00",
             "current_location": {
                 "elevation": 0.11717171717171718,
                 "latitude": 37.64294576767677,
@@ -27645,6 +27710,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -28053,7 +28119,7 @@
         "carry_data_current": {
             "battery_life": 89.33333333333333,
             "completed": false,
-            "created": "2016-03-24T03:45:27.045029-07:00",
+            "created": "2016-03-24T04:21:59.349269-07:00",
             "current_location": {
                 "elevation": 0.11666666666666667,
                 "latitude": 37.642949333333334,
@@ -28070,6 +28136,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -28478,7 +28545,7 @@
         "carry_data_current": {
             "battery_life": 89.32323232323232,
             "completed": false,
-            "created": "2016-03-24T03:45:27.247050-07:00",
+            "created": "2016-03-24T04:21:59.551290-07:00",
             "current_location": {
                 "elevation": 0.11616161616161616,
                 "latitude": 37.6429528989899,
@@ -28495,6 +28562,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -28903,7 +28971,7 @@
         "carry_data_current": {
             "battery_life": 89.31313131313131,
             "completed": false,
-            "created": "2016-03-24T03:45:27.449070-07:00",
+            "created": "2016-03-24T04:21:59.753310-07:00",
             "current_location": {
                 "elevation": 0.11565656565656565,
                 "latitude": 37.64295646464647,
@@ -28920,6 +28988,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -29328,7 +29397,7 @@
         "carry_data_current": {
             "battery_life": 89.3030303030303,
             "completed": false,
-            "created": "2016-03-24T03:45:27.651090-07:00",
+            "created": "2016-03-24T04:21:59.955330-07:00",
             "current_location": {
                 "elevation": 0.11515151515151514,
                 "latitude": 37.64296003030303,
@@ -29345,6 +29414,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -29753,7 +29823,7 @@
         "carry_data_current": {
             "battery_life": 89.29292929292929,
             "completed": false,
-            "created": "2016-03-24T03:45:27.853110-07:00",
+            "created": "2016-03-24T04:22:00.157350-07:00",
             "current_location": {
                 "elevation": 0.11464646464646465,
                 "latitude": 37.6429635959596,
@@ -29770,6 +29840,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -30178,7 +30249,7 @@
         "carry_data_current": {
             "battery_life": 89.28282828282828,
             "completed": false,
-            "created": "2016-03-24T03:45:28.055130-07:00",
+            "created": "2016-03-24T04:22:00.359370-07:00",
             "current_location": {
                 "elevation": 0.11414141414141414,
                 "latitude": 37.64296716161616,
@@ -30195,6 +30266,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -30603,7 +30675,7 @@
         "carry_data_current": {
             "battery_life": 89.27272727272727,
             "completed": false,
-            "created": "2016-03-24T03:45:28.257151-07:00",
+            "created": "2016-03-24T04:22:00.561391-07:00",
             "current_location": {
                 "elevation": 0.11363636363636365,
                 "latitude": 37.642970727272726,
@@ -30620,6 +30692,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -31028,7 +31101,7 @@
         "carry_data_current": {
             "battery_life": 89.26262626262626,
             "completed": false,
-            "created": "2016-03-24T03:45:28.459171-07:00",
+            "created": "2016-03-24T04:22:00.763411-07:00",
             "current_location": {
                 "elevation": 0.11313131313131314,
                 "latitude": 37.642974292929296,
@@ -31045,6 +31118,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -31453,7 +31527,7 @@
         "carry_data_current": {
             "battery_life": 89.25252525252525,
             "completed": false,
-            "created": "2016-03-24T03:45:28.661191-07:00",
+            "created": "2016-03-24T04:22:00.965431-07:00",
             "current_location": {
                 "elevation": 0.11262626262626263,
                 "latitude": 37.64297785858586,
@@ -31470,6 +31544,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -31878,7 +31953,7 @@
         "carry_data_current": {
             "battery_life": 89.24242424242425,
             "completed": false,
-            "created": "2016-03-24T03:45:28.863211-07:00",
+            "created": "2016-03-24T04:22:01.167451-07:00",
             "current_location": {
                 "elevation": 0.11212121212121212,
                 "latitude": 37.64298142424243,
@@ -31895,6 +31970,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -32303,7 +32379,7 @@
         "carry_data_current": {
             "battery_life": 89.23232323232324,
             "completed": false,
-            "created": "2016-03-24T03:45:29.065231-07:00",
+            "created": "2016-03-24T04:22:01.369471-07:00",
             "current_location": {
                 "elevation": 0.11161616161616161,
                 "latitude": 37.64298498989899,
@@ -32320,6 +32396,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -32728,7 +32805,7 @@
         "carry_data_current": {
             "battery_life": 89.22222222222223,
             "completed": false,
-            "created": "2016-03-24T03:45:29.267252-07:00",
+            "created": "2016-03-24T04:22:01.571492-07:00",
             "current_location": {
                 "elevation": 0.1111111111111111,
                 "latitude": 37.642988555555554,
@@ -32745,6 +32822,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -33153,7 +33231,7 @@
         "carry_data_current": {
             "battery_life": 89.21212121212122,
             "completed": false,
-            "created": "2016-03-24T03:45:29.469272-07:00",
+            "created": "2016-03-24T04:22:01.773512-07:00",
             "current_location": {
                 "elevation": 0.11060606060606061,
                 "latitude": 37.642992121212124,
@@ -33170,6 +33248,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -33578,7 +33657,7 @@
         "carry_data_current": {
             "battery_life": 89.20202020202021,
             "completed": false,
-            "created": "2016-03-24T03:45:29.671292-07:00",
+            "created": "2016-03-24T04:22:01.975532-07:00",
             "current_location": {
                 "elevation": 0.1101010101010101,
                 "latitude": 37.64299568686869,
@@ -33595,6 +33674,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -34003,7 +34083,7 @@
         "carry_data_current": {
             "battery_life": 89.1919191919192,
             "completed": false,
-            "created": "2016-03-24T03:45:29.873312-07:00",
+            "created": "2016-03-24T04:22:02.177552-07:00",
             "current_location": {
                 "elevation": 0.10959595959595961,
                 "latitude": 37.64299925252526,
@@ -34020,6 +34100,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -34428,7 +34509,7 @@
         "carry_data_current": {
             "battery_life": 89.18181818181819,
             "completed": false,
-            "created": "2016-03-24T03:45:30.075332-07:00",
+            "created": "2016-03-24T04:22:02.379572-07:00",
             "current_location": {
                 "elevation": 0.1090909090909091,
                 "latitude": 37.64300281818182,
@@ -34445,6 +34526,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -34853,7 +34935,7 @@
         "carry_data_current": {
             "battery_life": 89.17171717171718,
             "completed": false,
-            "created": "2016-03-24T03:45:30.277353-07:00",
+            "created": "2016-03-24T04:22:02.581593-07:00",
             "current_location": {
                 "elevation": 0.10858585858585859,
                 "latitude": 37.64300638383838,
@@ -34870,6 +34952,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -35278,7 +35361,7 @@
         "carry_data_current": {
             "battery_life": 89.16161616161617,
             "completed": false,
-            "created": "2016-03-24T03:45:30.479373-07:00",
+            "created": "2016-03-24T04:22:02.783613-07:00",
             "current_location": {
                 "elevation": 0.10808080808080808,
                 "latitude": 37.64300994949495,
@@ -35295,6 +35378,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -35703,7 +35787,7 @@
         "carry_data_current": {
             "battery_life": 89.15151515151516,
             "completed": false,
-            "created": "2016-03-24T03:45:30.681393-07:00",
+            "created": "2016-03-24T04:22:02.985633-07:00",
             "current_location": {
                 "elevation": 0.10757575757575757,
                 "latitude": 37.643013515151516,
@@ -35720,6 +35804,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -36128,7 +36213,7 @@
         "carry_data_current": {
             "battery_life": 89.14141414141415,
             "completed": false,
-            "created": "2016-03-24T03:45:30.883413-07:00",
+            "created": "2016-03-24T04:22:03.187653-07:00",
             "current_location": {
                 "elevation": 0.10707070707070707,
                 "latitude": 37.64301708080808,
@@ -36145,6 +36230,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -36553,7 +36639,7 @@
         "carry_data_current": {
             "battery_life": 89.13131313131314,
             "completed": false,
-            "created": "2016-03-24T03:45:31.085433-07:00",
+            "created": "2016-03-24T04:22:03.389673-07:00",
             "current_location": {
                 "elevation": 0.10656565656565657,
                 "latitude": 37.64302064646465,
@@ -36570,6 +36656,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -36978,7 +37065,7 @@
         "carry_data_current": {
             "battery_life": 89.12121212121212,
             "completed": false,
-            "created": "2016-03-24T03:45:31.287454-07:00",
+            "created": "2016-03-24T04:22:03.591694-07:00",
             "current_location": {
                 "elevation": 0.10606060606060606,
                 "latitude": 37.64302421212121,
@@ -36995,6 +37082,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -37403,7 +37491,7 @@
         "carry_data_current": {
             "battery_life": 89.11111111111111,
             "completed": false,
-            "created": "2016-03-24T03:45:31.489474-07:00",
+            "created": "2016-03-24T04:22:03.793714-07:00",
             "current_location": {
                 "elevation": 0.10555555555555557,
                 "latitude": 37.64302777777778,
@@ -37420,6 +37508,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -37828,7 +37917,7 @@
         "carry_data_current": {
             "battery_life": 89.1010101010101,
             "completed": false,
-            "created": "2016-03-24T03:45:31.691494-07:00",
+            "created": "2016-03-24T04:22:03.995734-07:00",
             "current_location": {
                 "elevation": 0.10505050505050506,
                 "latitude": 37.643031343434345,
@@ -37845,6 +37934,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -38253,7 +38343,7 @@
         "carry_data_current": {
             "battery_life": 89.0909090909091,
             "completed": false,
-            "created": "2016-03-24T03:45:31.893514-07:00",
+            "created": "2016-03-24T04:22:04.197754-07:00",
             "current_location": {
                 "elevation": 0.10454545454545455,
                 "latitude": 37.64303490909091,
@@ -38270,6 +38360,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -38678,7 +38769,7 @@
         "carry_data_current": {
             "battery_life": 89.08080808080808,
             "completed": false,
-            "created": "2016-03-24T03:45:32.095534-07:00",
+            "created": "2016-03-24T04:22:04.399774-07:00",
             "current_location": {
                 "elevation": 0.10404040404040404,
                 "latitude": 37.64303847474748,
@@ -38695,6 +38786,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -39103,7 +39195,7 @@
         "carry_data_current": {
             "battery_life": 89.07070707070707,
             "completed": false,
-            "created": "2016-03-24T03:45:32.297555-07:00",
+            "created": "2016-03-24T04:22:04.601795-07:00",
             "current_location": {
                 "elevation": 0.10353535353535354,
                 "latitude": 37.64304204040404,
@@ -39120,6 +39212,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -39528,7 +39621,7 @@
         "carry_data_current": {
             "battery_life": 89.06060606060606,
             "completed": false,
-            "created": "2016-03-24T03:45:32.499575-07:00",
+            "created": "2016-03-24T04:22:04.803815-07:00",
             "current_location": {
                 "elevation": 0.10303030303030303,
                 "latitude": 37.64304560606061,
@@ -39545,6 +39638,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -39953,7 +40047,7 @@
         "carry_data_current": {
             "battery_life": 89.05050505050505,
             "completed": false,
-            "created": "2016-03-24T03:45:32.701595-07:00",
+            "created": "2016-03-24T04:22:05.005835-07:00",
             "current_location": {
                 "elevation": 0.10252525252525253,
                 "latitude": 37.64304917171717,
@@ -39970,6 +40064,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -40378,7 +40473,7 @@
         "carry_data_current": {
             "battery_life": 89.04040404040404,
             "completed": false,
-            "created": "2016-03-24T03:45:32.903615-07:00",
+            "created": "2016-03-24T04:22:05.207855-07:00",
             "current_location": {
                 "elevation": 0.10202020202020202,
                 "latitude": 37.643052737373736,
@@ -40395,6 +40490,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -40803,7 +40899,7 @@
         "carry_data_current": {
             "battery_life": 89.03030303030303,
             "completed": false,
-            "created": "2016-03-24T03:45:33.105635-07:00",
+            "created": "2016-03-24T04:22:05.409875-07:00",
             "current_location": {
                 "elevation": 0.10151515151515152,
                 "latitude": 37.643056303030306,
@@ -40820,6 +40916,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -41228,7 +41325,7 @@
         "carry_data_current": {
             "battery_life": 89.02020202020202,
             "completed": false,
-            "created": "2016-03-24T03:45:33.307656-07:00",
+            "created": "2016-03-24T04:22:05.611896-07:00",
             "current_location": {
                 "elevation": 0.10101010101010102,
                 "latitude": 37.64305986868687,
@@ -41245,6 +41342,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -41653,7 +41751,7 @@
         "carry_data_current": {
             "battery_life": 89.01010101010101,
             "completed": false,
-            "created": "2016-03-24T03:45:33.509676-07:00",
+            "created": "2016-03-24T04:22:05.813916-07:00",
             "current_location": {
                 "elevation": 0.10050505050505051,
                 "latitude": 37.64306343434344,
@@ -41670,6 +41768,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
@@ -42078,7 +42177,7 @@
         "carry_data_current": {
             "battery_life": 89.0,
             "completed": true,
-            "created": "2016-03-24T03:45:33.711696-07:00",
+            "created": "2016-03-24T04:22:06.015936-07:00",
             "current_location": {
                 "elevation": 0.1,
                 "latitude": 37.643067,
@@ -42095,6 +42194,7 @@
             "photograph": [],
             "sender": "Carry1",
             "speed": 2.0,
+            "trip_id": "694266ec-ce04-4dcd-ad0f-f14d64b071f1",
             "waypoints": [
                 {
                     "latitude": 37.642714,
