@@ -16,7 +16,7 @@
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	</head>
-	<!----------------------------------------------- Head ------------------------------------------------->
+	<!----------------------------------------------- Head END ------------------------------------------------->
 
 	<!----------------------------------------------- Body ------------------------------------------------->
 	<body>
@@ -25,6 +25,7 @@
 				<h1 id="mainheader">Dispatch Robotics Inc</h1>
 			</header>
 			
+			<!-- Page Navigation -->
 			<nav>
 				<a href="index.html">Dispatch</a>
 				<a href="statistics.html">Home</a>
@@ -42,7 +43,7 @@
 				<br> </br>
 			</form> -->
 			
-			<!-------------------------------------------Login Form -------------------------------------------->
+			<!-------------------------------------------Login Form END -------------------------------------------->
 			 
             <!-------------------------------------------Google Maps Code http://embedgooglemaps.com/en/ -------------------------------------------->
             
@@ -64,12 +65,13 @@
 			<input type="text" id="autocomplete">
 
 			<script>
-				var mapOptions = {             <!--Map Options for google api -->
+				var mapOptions = {
 					center: new google.maps.LatLng(37.7831,-122.4039),
 					zoom: 12,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
-				new google.maps.Map(document.getElementById('map'), mapOptions); <!--creates map-->
+				<!--creates map-->
+				new google.maps.Map(document.getElementById('map'), mapOptions);
 
 				var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
