@@ -4,6 +4,7 @@
 
 var express = require('express');
 var router = express.Router();
+var r = require("../rethink.js");
 
 router.get('/', function(req, res){
     res.render('index.html');

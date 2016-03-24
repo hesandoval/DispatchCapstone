@@ -3,6 +3,8 @@
  */
 
 var r = require("./rethink");
+var _ = require("lodash");
+
 function setup(io){
 
     io.on("connection", function(socket) {
@@ -18,8 +20,14 @@ function setup(io){
         //        });
         //    });
         //});
-        socket.on('carry:findByTripID', function(id, callback){
-            r.table('wheres_carry').run();
+        socket.on("carry:getFleet", function(callback){
+            r.table("wheres_carry")
+                .pluck({carry_data_current: "sender"})
+                .distinct()
+                .run(callback);
+        });
+        socket.on('carry:findTripsByCarryID', function(id, callback){
+            r.table('wheres_carry').filter(id).run(callback);
         });
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};

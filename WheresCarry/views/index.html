@@ -15,6 +15,11 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+		<script src="javascript/client.js"></script>
+
 	</head>
 	<!----------------------------------------------- Head END ------------------------------------------------->
 
@@ -30,6 +35,7 @@
 				<a href="index.html">Dispatch</a>
 				<a href="statistics.html">Home</a>
 				<a href="">About</a>
+
 			</nav>
 			
 			<!-------------------------------------------Login Form -------------------------------------------->
@@ -60,6 +66,7 @@
 			-->
             <!-------------------------------------------Google Maps Code http://embedgooglemaps.com/en/ -------------------------------------------->
 
+<<<<<<< HEAD
 			<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
 			<div id="map"> </div>
 			<input type="text" id="autocomplete">
@@ -130,6 +137,27 @@
              	<td>degrees</td>
             </table>
 			<!-------------------------------------------Data -------------------------------------------->
+=======
+			<!------------------------------------------- Carry Data -------------------------------------------->
+			<table id ="table" border="1">
+				<!-- Hogan Code -->
+				<tr><td>Latitude</td><td id = "latval">{{carry_data_current.current_location.lattitude}}</td></tr>
+				<tr><td>Longtitude</td><td id="longval">{{carry_data_current.current_location.longitude}}</td></tr>
+				<tr><td>Speed</td><td id="speedval">{{carry_data_current.speed}}</td></tr>
+				<tr><td>Elevation</td><td id="eleval">{{carry_data_current.current_location.elevation}}</td></tr>
+			</table>
+
+			<!------------------------------------------- Carry Data END -------------------------------------------->
+			<div  id="dropdown_fleet_select">
+
+
+			</div>
+            <footer>
+				<p>
+					&copy; Copyright  by Team SkyNet
+				</p>
+			</footer>
+>>>>>>> origin/rgreen1207
 		</div>
 	</body>
 	<!----------------------------------------------- Body ------------------------------------------------->
