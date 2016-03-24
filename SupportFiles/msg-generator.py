@@ -56,6 +56,7 @@ for i in xrange(0, num_samples):
     carry_data_current["battery_life"] = battery_percentage[i]
     carry_data_current["speed"] = speed[i]
     carry_data_current["photograph"] = []
+    carry_data_current["trip_id"] = trip_id
 
     if i == num_samples-1:
     	carry_data_current["completed"] = True#false if less than or eqaul to num_samples - 1
