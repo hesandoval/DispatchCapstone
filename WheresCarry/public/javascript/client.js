@@ -2,16 +2,27 @@ var socket = io();
 
 socket.emit('carry:getFleet',function(err,data){
     data = {'stuff' : data};
-    console.log(JSON.stringify(data));
-    var template = '<select>{{ #stuff }}<option>{{ carry_data_current.sender }}</option>{{ /stuff }}</select>';
-    console.log(template);
+    var template = '{{ #stuff }}<option value="{{ carry_data_current.sender }}">{{ carry_data_current.sender }}</option>{{ /stuff }}';
     var html = Mustache.to_html(template, data);
-    console.log(html);
-    $('#dropdown_fleet_select').html(html);
+    $('#fleet_select').append(html);
     //$.each(data, function(){
     //    console.log(this.carry_data_current.sender)
     //});
 });
+
+//
+//$("#fleet_select").change(function(){
+//    console.log("Hello");
+//});
+
+function choiceChanged(){
+    console.log(document.getElementById('fleet_select').value);
+    var fleet = document.getElementById('fleet_select').value;
+    socket.emit('carry:findTripsByCarryID', fleet,function(err, data){
+        console.log(JSON.stringify(data))
+    });
+}
+
 
 
 //socket.on('update-msg', function(msg){
