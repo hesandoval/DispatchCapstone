@@ -3,6 +3,7 @@ import  time
 import datetime
 import pytz
 import uuid
+import argparse
 
 def linspace(a, b, num):
     if num < 2:
@@ -11,11 +12,33 @@ def linspace(a, b, num):
     return [diff * i + a  for i in range(num)]
 
 num_samples = 100
-latitude_start = 37.642714 #degrees
-longitude_start = -122.417522
 
-latitude_end = 37.643067 #degrees
-longitude_end = -122.417366
+# parser = argparse.ArgumentParser(description='User store latitude/longitude _start, _end')
+# parser.add_argument('--latitude_start', action="store", dest="latitude_start", type=float, default=37.642714)
+# parser.add_argument('--latitude_end', action="store", dest="latitude_end", type=float, default=-122.417522)
+# parser.add_argument('--longitude_start', action="store", dest="longitude_start", type=float, default=37.643067)
+# parser.add_argument('--longitude_end', action="store", dest="longitude_end", type=float, default=-122.417366)
+# args = parser.parse_args()
+
+# latitude_start = 37.642714 #degrees
+# longitude_start = -122.417522
+
+# latitude_end = 37.643067 #degrees
+# longitude_end = -122.417366
+
+parser = argparse.ArgumentParser(description='User store latitude/longitude _start, _end')
+parser.add_argument('--latitude_start', action="store", help="latitude starting degree", dest="latitude_start", type=float, const=37.642714, default=37.642714)
+parser.add_argument('--latitude_end', action="store", help="longitude starting degree", dest="latitude_end", type=float, const=-122.417522, default=-122.417522)
+parser.add_argument('--longitude_start', action="store", help="latitude ending degree", dest="longitude_start", type=float, const=37.642714, default=37.643067)
+parser.add_argument('--longitude_end', action="store", help="longitude starting degree", dest="longitude_end", type=float, const=-122.417522, default=-122.417366)
+args = parser.parse_args()
+
+latitude_start = args.latitude_start
+longittude_start = args.longitude_start
+latitude_end = args.latitude_start
+longittude_end = args.longitude_start
+
+
 
 elevation_start = .15 #meters
 elevation_end = .1
