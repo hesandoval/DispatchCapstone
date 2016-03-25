@@ -39,3 +39,4 @@ node_modules
 .metadata/
 rethinkdb_data/
 KafkaTransfers/
+massages.json

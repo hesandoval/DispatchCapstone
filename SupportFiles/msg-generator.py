@@ -2,6 +2,7 @@ import json
 import  time
 import datetime
 import pytz
+import uuid
 
 def linspace(a, b, num):
     if num < 2:
@@ -24,6 +25,8 @@ battery_end = 89.0
 
 speed_start = 2.0 #mph
 speed_end = 2.0
+
+trip_id = str(uuid.uuid4())#UUID generator
 
 start_time = time.ctime()
 latitude = linspace(latitude_start, latitude_end, num=num_samples)
@@ -53,7 +56,13 @@ for i in xrange(0, num_samples):
     carry_data_current["battery_life"] = battery_percentage[i]
     carry_data_current["speed"] = speed[i]
     carry_data_current["photograph"] = []
-    
+    carry_data_current["trip_id"] = trip_id
+
+    if i == num_samples-1:
+    	carry_data_current["completed"] = True#false if less than or eqaul to num_samples - 1
+    else:
+    	carry_data_current["completed"] = False    
+
     door_status = {}
     door_status["left_open"] = False
     door_status["right_open"] = False
@@ -63,6 +72,10 @@ for i in xrange(0, num_samples):
     light_status["front_on"] = True
     light_status["back_on"] = True
     carry_data_current["light_status"] = light_status
+    carry_data_current["waypoints"] = []
+    for val in zip(latitude, longitude):
+    	obj = {"latitude":val[0], "longitude":val[1]}
+    	carry_data_current["waypoints"].append(obj)
     
     msg = {}
     msg["carry_data_current"] = carry_data_current
