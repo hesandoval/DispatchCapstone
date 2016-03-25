@@ -2,7 +2,7 @@
 <html lang="en">
 	<!----------------------------------------------- Head ------------------------------------------------->
 	<head>
-		<link rel="stylesheet" type=text/css" href="WheresCarry/public/css/index.css"> <!-- include external css -->
+		<link rel="stylesheet" href="css/index.css"> <!-- include external css -->
 
 		<meta charset="utf-8">
 		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
@@ -38,22 +38,11 @@
 
 			</nav>
 			
-			<!-------------------------------------------Login Form -------------------------------------------->
-			 
-			<!--<form id ="login" action="login.php" method="post">
-				Username: <br>
-				<input type="text" name="username"><br>
-				Password: <br>
-				<input type="text" name="password"><br>
-				<input type="submit" value="Login"/>
-				<br> </br>
-			</form> -->
-			
-			<!-------------------------------------------Login Form END -------------------------------------------->
-			 
+
+
             <!-------------------------------------------Google Maps Code http://embedgooglemaps.com/en/ -------------------------------------------->
-            
-           <!-- <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+
+            <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
             <div style='overflow:hidden;height:440px;width:700px;'>
             	<div id='gmap_canvas' style='height:440px;width:700px;'></div>
             	<div>
@@ -63,81 +52,67 @@
             	<style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
             </div>
             <script type='text/javascript'>function init_map(){var myOptions = {zoom:16,center:new google.maps.LatLng(36.6544501,-121.80176360000002),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(36.6544501,-121.80176360000002)});infowindow = new google.maps.InfoWindow({content:'<strong>CSUMB Campus</strong><br>100 Campus Center Seaside CA 93955<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
-			-->
+
             <!-------------------------------------------Google Maps Code http://embedgooglemaps.com/en/ -------------------------------------------->
 
-<<<<<<< HEAD
-			<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-			<div id="map"> </div>
-			<input type="text" id="autocomplete">
+			<!--<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>-->
+			<!--<div id="map"> </div>-->
+			<!--<input type="text" id="autocomplete">-->
 
-			<script>
-				var mapOptions = {
-					center: new google.maps.LatLng(37.7831,-122.4039),
-					zoom: 12,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				};
-				<!--creates map-->
-				new google.maps.Map(document.getElementById('map'), mapOptions);
+			<!--<script>-->
+				<!--var mapOptions = {-->
+					<!--center: new google.maps.LatLng(37.7831,-122.4039),-->
+					<!--zoom: 12,-->
+					<!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
+				<!--};-->
+				<!--&lt;!&ndash;creates map&ndash;&gt;-->
+				<!--new google.maps.Map(document.getElementById('map'), mapOptions);-->
 
-				var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+				<!--var map = new google.maps.Map(document.getElementById('map'), mapOptions);-->
 
-				var markerOptions = {
-					position: new google.maps.LatLng(37.7831, -122.4039)
-				};
-				var marker = new google.maps.Marker(markerOptions); <!--creates marker object-->
-				marker.setMap(map); <!--adds marker to map -->
+				<!--var markerOptions = {-->
+					<!--position: new google.maps.LatLng(37.7831, -122.4039)-->
+				<!--};-->
+				<!--var marker = new google.maps.Marker(markerOptions); &lt;!&ndash;creates marker object&ndash;&gt;-->
+				<!--marker.setMap(map); &lt;!&ndash;adds marker to map &ndash;&gt;-->
 
-				var infoWindowOptions = {
-					content: 'Moscone Is Here!'
-				};
+				<!--var infoWindowOptions = {-->
+					<!--content: 'Moscone Is Here!'-->
+				<!--};-->
 
-				var infoWindow = new google.maps.InfoWindow(infoWindowOptions); <!--creates infowindow object -->
-				<!--action listener for infowindow-->
-				google.maps.event.addListener(marker,'click',function(e)
-				{
-					infoWindow.open(map, marker);
-				}
+				<!--var infoWindow = new google.maps.InfoWindow(infoWindowOptions); &lt;!&ndash;creates infowindow object &ndash;&gt;-->
+				<!--&lt;!&ndash;action listener for infowindow&ndash;&gt;-->
+				<!--google.maps.event.addListener(marker,'click',function(e)-->
+				<!--{-->
+					<!--infoWindow.open(map, marker);-->
+				<!--}-->
 
-				var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),acOptions);
-				autocomplete.bindTo('bounds',map);
-				var infoWindow = new google.maps.InfoWindow();
-				var marker = new google.maps.Marker({
-					map: map
-				});
+				<!--var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),acOptions);-->
+				<!--autocomplete.bindTo('bounds',map);-->
+				<!--var infoWindow = new google.maps.InfoWindow();-->
+				<!--var marker = new google.maps.Marker({-->
+					<!--map: map-->
+				<!--});-->
 
-				google.maps.event.addListener(autocomplete, 'place_changed', function() {
-					infoWindow.close();
-					var place = autocomplete.getPlace();
-						if (place.geometry.viewport) {
-							map.fitBounds(place.geometry.viewport);
-						} else {
-							map.setCenter(place.geometry.location);
-							map.setZoom(17);
-						}
-						marker.setPosition(place.geometry.location);
-						infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');
-						infoWindow.open(map, marker);
-						google.maps.event.addListener(marker,'click',function(e){
+				<!--google.maps.event.addListener(autocomplete, 'place_changed', function() {-->
+					<!--infoWindow.close();-->
+					<!--var place = autocomplete.getPlace();-->
+						<!--if (place.geometry.viewport) {-->
+							<!--map.fitBounds(place.geometry.viewport);-->
+						<!--} else {-->
+							<!--map.setCenter(place.geometry.location);-->
+							<!--map.setZoom(17);-->
+						<!--}-->
+						<!--marker.setPosition(place.geometry.location);-->
+						<!--infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');-->
+						<!--infoWindow.open(map, marker);-->
+						<!--google.maps.event.addListener(marker,'click',function(e){-->
 
-							infoWindow.open(map, marker);
-						});
-				});
-			</script>
+							<!--infoWindow.open(map, marker);-->
+						<!--});-->
+				<!--});-->
+			<!--</script>-->
 
-            <!-------------------------------------------Data -------------------------------------------->
-            <table>
-             	<tr>
-             		Lattitude
-             		<td>degrees</td>
-             	</tr>
-             	<tr>
-             		Longitude
-             	</tr>
-             	<td>degrees</td>
-            </table>
-			<!-------------------------------------------Data -------------------------------------------->
-=======
 			<!------------------------------------------- Carry Data -------------------------------------------->
 			<table id ="table" border="1">
 				<!-- Hogan Code -->
@@ -149,7 +124,7 @@
 
 			<!------------------------------------------- Carry Data END -------------------------------------------->
 			<div  id="dropdown_fleet_select">
-                <select id="fleet_select" onchange="choiceChanged()">
+                <select id="fleet_select" onchange="fleetchoiceChanged()">
                     <option>Select One</option>
                 </select>
 
@@ -159,7 +134,7 @@
 					&copy; Copyright  by Team SkyNet
 				</p>
 			</footer>
->>>>>>> origin/rgreen1207
+
 		</div>
 	</body>
 	<!----------------------------------------------- Body ------------------------------------------------->

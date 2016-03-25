@@ -3,7 +3,7 @@
  */
 
 var r = require("./rethink");
-var _ = require("lodash");
+//var _ = require("lodash");
 
 function setup(io){
 

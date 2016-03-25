@@ -15,7 +15,7 @@ socket.emit('carry:getFleet',function(err,data){
 //    console.log("Hello");
 //});
 
-function choiceChanged(){
+function fleetchoiceChanged(){
     console.log(document.getElementById('fleet_select').value);
     var fleet = document.getElementById('fleet_select').value;
     socket.emit('carry:findTripsByCarryID', fleet,function(err, data){
