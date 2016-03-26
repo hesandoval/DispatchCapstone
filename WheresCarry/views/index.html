@@ -12,13 +12,13 @@
 		<meta name="description" content="">
 		<meta name="author" content="FroZilla">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
-		<script src="javascript/client.js"></script>
+
 
 	</head>
 	<!----------------------------------------------- Head END ------------------------------------------------->
@@ -26,92 +26,43 @@
 	<!----------------------------------------------- Body ------------------------------------------------->
 	<body>
 		<div id="wrapper">
-			<header>
-				<h1 id="mainheader">Dispatch Robotics Inc</h1>
-			</header>
+            <div class="page-header">
+                <h1>Dispatch Robotics<small>CST 499 Capstone</small></h1>
+            </div>
 			
 			<!-- Page Navigation -->
 			<nav>
-				<a href="index.html">Dispatch</a>
-				<a href="statistics.html">Home</a>
-				<a href="">About</a>
-
+				<a href="/">Home</a>
 			</nav>
-			
 
+            <!--<ul class="nav nav-pills nav-justified">-->
+                <!--<li role="presentation" class="active"><a href="/">Dispatch</a></li>-->
+            <!--</ul>-->
+            <div class="panel panel-default" id="map_panel">
+                <div class="panel-body">
+                    <div  class="dropdown" id="dropdown_fleet_select">
+                        <button class="btn btn-default dropdown-toggle" type="button"
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">Select One<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="fleet_select"></ul>
+                    </div>
 
-            <!-------------------------------------------Google Maps Code http://embedgooglemaps.com/en/ -------------------------------------------->
+                    <div class="dropdown" id="dropdown_trip_select">
+                        <button class="btn btn-default dropdown-toggle" type="button"
+                                id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">
+                            Select One
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id="trip_select">
 
-            <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
-            <div style='overflow:hidden;height:440px;width:700px;'>
-            	<div id='gmap_canvas' style='height:440px;width:700px;'></div>
-            	<div>
-            		<small><a href="http://embedgooglemaps.com"> embed google map </a></small>
-            	</div>
-            	<div><small><a href="http://freedirectorysubmissionsites.com/">free web directories</a></small></div>
-            	<style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+                        </ul>
+                    </div>
+
+                    <div id="map"></div>
+                </div>
             </div>
-            <script type='text/javascript'>function init_map(){var myOptions = {zoom:16,center:new google.maps.LatLng(36.6544501,-121.80176360000002),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(36.6544501,-121.80176360000002)});infowindow = new google.maps.InfoWindow({content:'<strong>CSUMB Campus</strong><br>100 Campus Center Seaside CA 93955<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
-
-            <!-------------------------------------------Google Maps Code http://embedgooglemaps.com/en/ -------------------------------------------->
-
-			<!--<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>-->
-			<!--<div id="map"> </div>-->
-			<!--<input type="text" id="autocomplete">-->
-
-			<!--<script>-->
-				<!--var mapOptions = {-->
-					<!--center: new google.maps.LatLng(37.7831,-122.4039),-->
-					<!--zoom: 12,-->
-					<!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
-				<!--};-->
-				<!--&lt;!&ndash;creates map&ndash;&gt;-->
-				<!--new google.maps.Map(document.getElementById('map'), mapOptions);-->
-
-				<!--var map = new google.maps.Map(document.getElementById('map'), mapOptions);-->
-
-				<!--var markerOptions = {-->
-					<!--position: new google.maps.LatLng(37.7831, -122.4039)-->
-				<!--};-->
-				<!--var marker = new google.maps.Marker(markerOptions); &lt;!&ndash;creates marker object&ndash;&gt;-->
-				<!--marker.setMap(map); &lt;!&ndash;adds marker to map &ndash;&gt;-->
-
-				<!--var infoWindowOptions = {-->
-					<!--content: 'Moscone Is Here!'-->
-				<!--};-->
-
-				<!--var infoWindow = new google.maps.InfoWindow(infoWindowOptions); &lt;!&ndash;creates infowindow object &ndash;&gt;-->
-				<!--&lt;!&ndash;action listener for infowindow&ndash;&gt;-->
-				<!--google.maps.event.addListener(marker,'click',function(e)-->
-				<!--{-->
-					<!--infoWindow.open(map, marker);-->
-				<!--}-->
-
-				<!--var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),acOptions);-->
-				<!--autocomplete.bindTo('bounds',map);-->
-				<!--var infoWindow = new google.maps.InfoWindow();-->
-				<!--var marker = new google.maps.Marker({-->
-					<!--map: map-->
-				<!--});-->
-
-				<!--google.maps.event.addListener(autocomplete, 'place_changed', function() {-->
-					<!--infoWindow.close();-->
-					<!--var place = autocomplete.getPlace();-->
-						<!--if (place.geometry.viewport) {-->
-							<!--map.fitBounds(place.geometry.viewport);-->
-						<!--} else {-->
-							<!--map.setCenter(place.geometry.location);-->
-							<!--map.setZoom(17);-->
-						<!--}-->
-						<!--marker.setPosition(place.geometry.location);-->
-						<!--infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');-->
-						<!--infoWindow.open(map, marker);-->
-						<!--google.maps.event.addListener(marker,'click',function(e){-->
-
-							<!--infoWindow.open(map, marker);-->
-						<!--});-->
-				<!--});-->
-			<!--</script>-->
 
 			<!------------------------------------------- Carry Data -------------------------------------------->
 			<table id ="table" border="1">
@@ -123,13 +74,18 @@
 			</table>
 
 			<!------------------------------------------- Carry Data END -------------------------------------------->
-			<div  id="dropdown_fleet_select">
-                <select id="fleet_select" onchange="fleetchoiceChanged()">
-                    <option>Select One</option>
-                </select>
 
-			</div>
             <footer>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+                <script src="javascript/map.js"></script>
+                <script src="https://maps.googleapis.com/maps/api/js?key={{API}}&callback=setupMap"
+                        async defer></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+                        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+                        crossorigin="anonymous"></script>
+                <script src="/socket.io/socket.io.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+                <script src="javascript/client.js"></script>
 				<p>
 					&copy; Copyright  by Team SkyNet
 				</p>

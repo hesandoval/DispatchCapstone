@@ -5,20 +5,18 @@ socket.emit('carry:getFleet',function(err,data){
         console.log(err);
     }else{
         data = {'stuff' : data};
-        var template = '{{ #stuff }}<option value="{{ carry_data_current.sender }}">{{ carry_data_current.sender }}</option>{{ /stuff }}';
+        var template = '{{ #stuff }}<li class="carry_id"><a>{{ carry_data_current.sender }}</a></li>{{ /stuff }}';
         var html = Mustache.to_html(template, data);
         $('#fleet_select').append(html);
     }
 });
 
 //
-//$("#fleet_select").change(function(){
-//    console.log("Hello");
-//});
-
-function fleetchoiceChanged(){
-    console.log(document.getElementById('fleet_select').value);
-    var fleet = document.getElementById('fleet_select').value;
+$("#fleet_select").on("click",".carry_id", function(event){
+    var fleet = event.target.innerText;
+    var button = $("#dropdownMenu1")[0];
+    button.innerHTML = fleet + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
+    $("#dropdown_trip_select").css("visibility", "hidden");
     socket.emit('carry:findTripsByCarryID', fleet,function(err, data){
         if(err){
             console.log(JSON.stringify(err));
@@ -35,29 +33,43 @@ function fleetchoiceChanged(){
             for (var index in values){
                 view['values'].push({trip_id:index, finished:values[index]})
             }
-            console.log(view);
-
-            var template = "<select id='trip_select' onchange='tripSelectChanged()'> <option>Select One</option>" +
-                "{{ #values}}<option value='{{trip_id}}'>{{trip_id}}</option>{{ /values }} " +
-                "</select>";
+            var b2 = $("#dropdownMenu2")[0];
+            b2.innerHTML = "Select One <span class='caret'></span>";
+            $("#dropdown_trip_select").css("visibility", "visible");
+            var template = "{{ #values}}<li class='trip_id'><a>{{trip_id}}</a></li>{{ /values }}";
             var html = Mustache.to_html(template, view);
-            console.log(html);
-            $("#dropdown_fleet_select").append(html)
+            $("#trip_select").html(html);
+            button.innerHTML = fleet + "<span class='caret'></span>"
         }
 
     });
-}
-function tripSelectChanged() {
-    console.log(document.getElementById('trip_select').value);
-    var tripID = document.getElementById('trip_select').value;
+
+});
+$("#trip_select").on("click", ".trip_id", function(event){
+    var tripID = event.target.innerText;
+    var button = $("#dropdownMenu2")[0];
+    button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
         console.log(JSON.stringify(data));
+        console.log(window.map);
+        var startPoint = data[0]["carry_data_current"]["current_location"];
+        var endPoint = data[data.length-1]["carry_data_current"]["current_location"];
+        var startLatLng = new google.maps.LatLng(startPoint["latitude"], startPoint['longitude']);
+        var endLatLng = new google.maps.LatLng(endPoint["latitude"], endPoint['longitude']);
+
+        var startMarker = new google.maps.Marker({
+            position: startLatLng,
+            title:"Start"
+        });
+        var endMarker = new google.maps.Marker({
+            position: endLatLng,
+            title:"End"
+        });
+        startMarker.setMap(window.map);
+        endMarker.setMap(window.map);
+        window.map.panTo(startMarker.position);
+        button.innerHTML = tripID + "<span class='caret'></span>";
     });
-}
 
+});
 
-
-//socket.on('update-msg', function(msg){
-//    console.log(msg);
-//    $('#div').html(msg.data);
-//});
