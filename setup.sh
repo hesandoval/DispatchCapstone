@@ -1,24 +1,26 @@
 #!/bin/bash
-# run as super user
+
+#git setup
+sudo apt-get install -y git
 
 #kafka setup
-add-apt-repository -y ppa:webupd8team/java
-apt-get update
-apt-get -y install oracle-java8-installer
-apt-get install -y zookeeperd
+sudo add-apt-repository -y ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get -y install oracle-java8-installer
+sudo apt-get install -y zookeeperd
 mkdir ~/Downloads
 cd ~/Downloads
 wget "http://mirror.ox.ac.uk/sites/rsync.apache.org/kafka/0.9.0.0/kafka_2.11-0.9.0.0.tgz" -O kafka.tgz
-mkdir -p /opt/kafka
+sudo mkdir -p /opt/kafka
 cd /opt/kafka
-tar xvfz ~/Downloads/kafka.tgz --strip 1
+sudo tar xvfz ~/Downloads/kafka.tgz --strip 1
 cd /etc/init.d
-wget https://gist.githubusercontent.com/superscott/a1c67871cdd54b0c8693/raw/1a66fafd7fd39d8ba251e194ed123700dcd4d77b/kafka
-chmod 755 kafka
-update-rc.d kafka defaults
+sudo wget https://gist.githubusercontent.com/superscott/a1c67871cdd54b0c8693/raw/1a66fafd7fd39d8ba251e194ed123700dcd4d77b/kafka
+sudo chmod 755 kafka
+sudo update-rc.d kafka defaults
 
-service zookeeper start
-service kafka start
+sudo service zookeeper start
+sudo service kafka start
 
 #python setup
 cd ~/Downloads
@@ -37,3 +39,4 @@ source /etc/lsb-release && echo "deb http://download.rethinkdb.com/apt $DISTRIB_
 wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install rethinkdb
+sudo cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/instance.conf
