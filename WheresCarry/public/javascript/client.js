@@ -52,6 +52,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
+        console.log(JSON.stringify(data));
         var waypoints = data[0]["carry_data_current"]['waypoints'];
         var startColor = "33cc33";
         var startMarker = createMarker(startColor,"Start", waypoints[0]);
