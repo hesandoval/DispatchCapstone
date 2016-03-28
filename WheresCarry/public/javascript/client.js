@@ -15,7 +15,7 @@ socket.emit('carry:getFleet',function(err,data){
 $("#fleet_select").on("click",".carry_id", function(event){
     var fleet = event.target.innerText;
     var button = $("#dropdownMenu1")[0];
-    removeMarkers();
+    defaultMap();
     button.innerHTML = fleet + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     $("#dropdown_trip_select").css("visibility", "hidden");
     socket.emit('carry:findTripsByCarryID', fleet,function(err, data){
@@ -47,29 +47,23 @@ $("#fleet_select").on("click",".carry_id", function(event){
 
 });
 $("#trip_select").on("click", ".trip_id", function(event){
+    removeMarkers();
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
-        removeMarkers();
-        console.log(JSON.stringify(data));
-        var startPoint = data[0]["carry_data_current"]["current_location"];
-        var endPoint = data[data.length-1]["carry_data_current"]["current_location"];
-        var startLatLng = new google.maps.LatLng(startPoint["latitude"], startPoint['longitude']);
-        var endLatLng = new google.maps.LatLng(endPoint["latitude"], endPoint['longitude']);
+        var waypoints = data[0]["carry_data_current"]['waypoints'];
         var startColor = "33cc33";
-        var startMarker = createMarker(startColor,"Start", startLatLng);
+        var startMarker = createMarker(startColor,"Start", waypoints[0]);
         var endColor = "FE7569";
-        var endMarker = createMarker(endColor,"End", endLatLng);
-
-        var path = new google.maps.Polyline({
+        var endMarker = createMarker(endColor,"End", waypoints[waypoints.length-1]);
+        window.path = new google.maps.Polyline({
             path: data[0]["carry_data_current"]['waypoints'],
             geodesic: true,
             strokeColor: '#FF0000',
             strokeOpacity: 1.0,
             strokeWeight: 2
         });
-        //window.map.panTo(startMarker.position);
         path.setMap(window.map);
         setBounds();
         button.innerHTML = tripID + "<span class='caret'></span>";
@@ -93,6 +87,9 @@ function addMarker(marker){
     window.markers.push(marker);
 }
 function removeMarkers(){
+    if(window.path){
+        window.path.setMap(null);
+    }
     $.each(window.markers, function(index, marker){
         marker.setMap(null);
     });
@@ -118,4 +115,8 @@ function setBounds(){
     }
     window.map.fitBounds(bounds);
 }
-
+function defaultMap(){
+    window.map.setCenter(window.defaultCenter);
+    window.map.setZoom(18);
+    removeMarkers();
+}
