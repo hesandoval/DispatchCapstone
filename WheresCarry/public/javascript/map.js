@@ -7,4 +7,5 @@ function setupMap(){
         zoom: 18,
         zmapTypeId: google.maps.MapTypeId.ROADMAP
     });
+    window.markers = [];
 }

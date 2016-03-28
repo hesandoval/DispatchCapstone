@@ -1,5 +1,5 @@
 import json
-import  time
+import time
 import datetime
 import pytz
 import uuid
@@ -74,7 +74,7 @@ for i in xrange(0, num_samples):
     carry_data_current["light_status"] = light_status
     carry_data_current["waypoints"] = []
     for val in zip(latitude, longitude):
-    	obj = {"latitude":val[0], "longitude":val[1]}
+    	obj = {"lat":val[0], "lng":val[1]}
     	carry_data_current["waypoints"].append(obj)
     
     msg = {}
