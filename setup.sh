@@ -30,8 +30,8 @@ source ~/.bashrc
 
 #node setup
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install nodejs
-sudo apt-get install npm
+sudo apt-get install -y nodejs
+sudo apt-get install -y npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 #rethinkDB setup
@@ -40,3 +40,8 @@ wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install rethinkdb
 sudo cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/instance.conf
+sudo /etc/init.d/rethinkdb restart
+
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
