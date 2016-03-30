@@ -51,6 +51,15 @@ function setup(io){
                         first_long = first[1];
                         last_lat = last[0];
                         last_long = last[1];
+                        var fs = require('fs');
+                        var filename = '../SupportFiles/historicalDataSpecifications.json';
+                        var file = require(filename);
+                        file.key = " Starting Lat: " + first_lat + "\n Starting Long: " + first_long + "\n Ending Lat: " + last_lat + "\n Ending Long: " + last_long;
+                        fs.writeFile(fileName, JSON.stringify(file), function (err) {
+                            if (err) return console.log(err)
+                            console.log(JSON.stringify(file))
+                            console.log('writing to ' + fileName)
+                        });
                     };
                     callback(newData)
                 }
