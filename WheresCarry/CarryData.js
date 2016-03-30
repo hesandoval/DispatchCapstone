@@ -26,13 +26,14 @@ function setup(io){
                 .distinct()
                 .run(callback);
         });
-        //
+
         socket.on('carry:findTripsByCarryID', function(id, callback){
             r.table('wheres_carry').orderBy(r.desc('created'))
                 .filter({carry_data_current:{"sender":id}})
                 .pluck({carry_data_current: ["trip_id", "completed"]})
                 .distinct().run(callback);
         });
+
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
             r.db("dispatch").table('wheres_carry')
                 .filter({carry_data_current:{"trip_id":tripID}})
@@ -43,10 +44,19 @@ function setup(io){
                     var first = data[0];
                     var last = data[data.length-1];
                     var newData = [first, last];
+                    function historicalDataSpecs(first, last){
+                        first.toString().split(",");
+                        last.toString().split(",");
+                        first_lat = first[0];
+                        first_long = first[1];
+                        last_lat = last[0];
+                        last_long = last[1];
+                    };
                     callback(newData)
                 }
             });
         });
+
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};
             r.table('wheres_carry').orderBy({index: r.desc('created')})
