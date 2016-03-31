@@ -23,9 +23,8 @@ function setup(io){
                 .distinct().run(callback);
         });
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
-            r.db("dispatch").table('wheres_carry')
-                .filter({carry_data_current:{"trip_id":tripID}})
-                .orderBy(r.desc('created')).run(function(err, data){
+            r.table("wheres_carry")("carry_data_current")
+                .orderBy("created").run(function(err, data){
                 if(err){
                     console.log(err);
                 }else{

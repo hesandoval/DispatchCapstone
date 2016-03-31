@@ -4,6 +4,7 @@ import rethinkdb as r
 import argparse
 from rethinkdb.errors import RqlRuntimeError, RqlDriverError
 import msgpack
+import dateutil.parser
 import os
 import json
 
@@ -67,11 +68,11 @@ if __name__ == "__main__":
             if args.with_db:
             #run with database
                 data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
+                data['carry_data_current']['created'] = dateutil.parser.parse(data['carry_data_current']['created'])
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
 
-                #print(result) # Write this to file!
 
                 # Appending data and if file doesn't exist "a+" will create one
                 with open(DIRECTORY+"rethinkLog.txt", "a+") as fh:
