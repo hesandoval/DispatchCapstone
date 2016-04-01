@@ -1,4 +1,4 @@
-name: capstoneEnv1
+name: CapstoneEnv1
 dependencies:
 - appnope=0.1.0=py27_0
 - dateutil=2.4.1=py27_0
