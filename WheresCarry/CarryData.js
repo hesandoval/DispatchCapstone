@@ -44,11 +44,12 @@ function setup(io){
                         if (err) {
                             console.log(err);
                         } else {
-                            var first = data[0];
-                            var last = data[data.length - 1];
-                            var newData = [first, last];
-                            console.log("first test: " + first["carry_data_current"]["current_location"]["longitude"]);
-                            callback(newData);
+                            console.log("Live tracking.");
+                            // var first = data[0];
+                            // var last = data[data.length - 1];
+                            // var newData = [first, last];
+                            // console.log("first test: " + first["carry_data_current"]["current_location"]["longitude"]);
+                            // callback(newData);
                         }
                     });
                 });
