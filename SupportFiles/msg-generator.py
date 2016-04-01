@@ -1,5 +1,5 @@
 import json
-import  time
+import time
 import datetime
 import pytz
 import uuid
@@ -60,8 +60,8 @@ for i in xrange(0, num_samples):
     carry_data_current["sender"] = "Carry1"
     carry_data_current["created"] = str(time[i].isoformat())
     current_location = {}
-    current_location["latitude"] = latitude[i]
-    current_location["longitude"] = longitude[i]
+    current_location["lat"] = latitude[i]
+    current_location["lng"] = longitude[i]
     current_location["elevation"] = elevation[i]
     carry_data_current["current_location"] = current_location
     carry_data_current["battery_life"] = battery_percentage[i]

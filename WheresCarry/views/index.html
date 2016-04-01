@@ -1,95 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+	<!----------------------------------------------- Head ------------------------------------------------->
 	<head>
-		<link rel="stylesheet" href="css/index.css">
-		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/index.css"> <!-- include external css -->
 
+		<meta charset="utf-8">
 		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-		<title>index</title>
+		<title>Where's Carry</title>                <!--title-->
 		<meta name="description" content="">
 		<meta name="author" content="FroZilla">
-
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	</head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+        <link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+	</head>
+	<!----------------------------------------------- Head END ------------------------------------------------->
+
+	<!----------------------------------------------- Body ------------------------------------------------->
 	<body>
 		<div id="wrapper">
-			<header>
-				<h1 id="mainheader">Dispatch Robotics Inc</h1>
-			</header>
-			
-			<nav>
-				<a href="index.html">Dispatch</a>
-				<a href="statistics.html">Home</a>
-				<a href="">About</a>
-			</nav>
-			
-			<!-------------------------------------------Login Form -------------------------------------------->
-			 
-			<!--<form id ="login" action="login.php" method="post">
-				Username: <br>
-				<input type="text" name="username"><br>
-				Password: <br>
-				<input type="text" name="password"><br>
-				<input type="submit" value="Login"/>
-				<br> </br>
-			</form> -->
-			
-			<!-------------------------------------------Login Form -------------------------------------------->
-			 
-            <!-------------------------------------------Google Maps Code http://embedgooglemaps.com/en/ -------------------------------------------->
-            
-            <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
-            <div style='overflow:hidden;height:440px;width:700px;'>
-            	<div id='gmap_canvas' style='height:440px;width:700px;'></div>
-            	<div>
-            		<small><a href="http://embedgooglemaps.com"> embed google map </a></small>
-            	</div>
-            	<div><small><a href="http://freedirectorysubmissionsites.com/">free web directories</a></small></div>
-            	<style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+            <div class="page-header">
+                <h1>Dispatch Robotics<small>CST 499 Capstone</small></h1>
             </div>
-            <script type='text/javascript'>function init_map(){var myOptions = {zoom:16,center:new google.maps.LatLng(36.6544501,-121.80176360000002),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(36.6544501,-121.80176360000002)});infowindow = new google.maps.InfoWindow({content:'<strong>CSUMB Campus</strong><br>100 Campus Center Seaside CA 93955<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
-            
-            <!-------------------------------------------Google Maps Code http://embedgooglemaps.com/en/ -------------------------------------------->
-            
-            <!-------------------------------------------Data -------------------------------------------->
-            <table>
-             	<tr>
-             		Lattitude
-             		<td>degrees</td>
-             	</tr>
-             	
-             	<tr>
-             		Longitude
-             	</tr>
-             	<td>degrees</td>
-            </table>
-            
-            <table >
-  				<tr>
-    				<td>Jill</td>
-    				<td>Smith</td> 
-    				<td>50</td>
-  				</tr>
-  				<tr>
-   					<td>Eve</td>
-    				<td>Jackson</td> 
-    				<td>94</td>
-  					</tr>
+			
+			<!-- Page Navigation -->
+			<nav>
+				<a href="/">Home</a>
+			</nav>
+
+            <!--<ul class="nav nav-pills nav-justified">-->
+                <!--<li role="presentation" class="active"><a href="/">Dispatch</a></li>-->
+            <!--</ul>-->
+            <div class="panel panel-default" id="map_panel">
+                <div class="panel-body">
+                    <div  class="dropdown" id="dropdown_fleet_select">
+                        <button class="btn btn-default dropdown-toggle" type="button"
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">Select One<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="fleet_select"></ul>
+                    </div>
+
+                    <div class="dropdown" id="dropdown_trip_select">
+                        <button class="btn btn-default dropdown-toggle" type="button"
+                                id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">
+                            Select One
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id="trip_select">
+
+                        </ul>
+                    </div>
+
+                    <div id="map"></div>
+                </div>
+            </div>
+
+			<!------------------------------------------- Carry Data -------------------------------------------->
+			<div class="well well-lg">
+				<table id ="table" border="1">
+					<!-- Hogan Code -->
+					<tr><td>Latitude</td><td id = "latval">{{carry_data_current.current_location.lattitude}}</td></tr>
+					<tr><td>Longtitude</td><td id="longval">{{carry_data_current.current_location.longitude}}</td></tr>
+					<tr><td>Speed</td><td id="speedval">{{carry_data_current.speed}}</td></tr>
+					<tr><td>Elevation</td><td id="eleval">{{carry_data_current.current_location.elevation}}</td></tr>
 				</table>
-            
+                <span id="start_address"></span>
+                <span id="end_address"></span>
+			</div>
+			<!------------------------------------------- Carry Data END -------------------------------------------->
+
             <footer>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+                <script src="javascript/map.js"></script>
+                <script src="https://maps.googleapis.com/maps/api/js?key={{API}}&callback=setupMap"
+                        async defer></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+                        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+                        crossorigin="anonymous"></script>
+                <script src="/socket.io/socket.io.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+                <script src="javascript/client.js"></script>
 				<p>
 					&copy; Copyright  by Team SkyNet
 				</p>
 			</footer>
+
 		</div>
 	</body>
+	<!----------------------------------------------- Body ------------------------------------------------->
 </html>

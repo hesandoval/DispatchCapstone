@@ -11,6 +11,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "hogan-express": "^0.5.2",
+    "lodash": "^4.6.1",
     "morgan": "~1.6.1",
     "rethinkdb": "^2.2.2",
     "rethinkdbdash": "^2.2.18",

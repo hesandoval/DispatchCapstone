@@ -1,59 +1,85 @@
 #wrapper
 {
-    color: white;
-	width: 700px;
+	width: 80%;
 	margin: auto;
-	background: gray;
 	padding: 25px;
-	border-radius: 15px;
+
 }
 
-#mainheader 
-{
-	color:white;
-	background-color:#002f5d;
-	text-align:center;
+/*#mainheader */
+/*{*/
+	/*color:white;*/
+	/*background-color:#002f5d;*/
+	/*text-align:center;*/
+/*}*/
+
+/*nav a*/
+/*{*/
+	/*background:silver;*/
+	/*padding:10px;*/
+	/*padding-bottom:1px;*/
+	/*border-top-left-radius:20px;*/
+	/*border-top-right-radius:20px;*/
+/*}*/
+
+/*#login*/
+/*{*/
+	/*font-weight:bold;*/
+/*}*/
+
+/*p*/
+/*{*/
+	/*font-weight:bold;*/
+/*}*/
+
+/*body*/
+/*{*/
+	/*background-color:silver;*/
+/*}*/
+
+/*tr*/
+/*{*/
+	/*color:black;*/
+	/*font-weight:bold;*/
+/*}*/
+
+/*#map*/
+/*{*/
+	/*height:440px;*/
+ 	/*width:700px*/
+/*}*/
+
+/*#autocomplete*/
+/*{*/
+	/*width:700px;*/
+/*}*/
+
+
+#dropdown_trip_select{
+	visibility: hidden;
+	display: inline;
+}
+#dropdown_fleet_select{
+	display: inline;
 }
 
-nav a
-{
-	background:silver;
-	padding:10px;
-	padding-bottom:1px;
-	border-top-left-radius:20px;
-	border-top-right-radius:20px;
+#map {
+	height: 450px;
+}
+#dropdownMenu1, #dropdownMenu2{
+	margin-bottom: 10px;
+}
+.glyphicon-refresh-animate {
+	-animation: spin .7s infinite linear;
+	-webkit-animation: spin2 .7s infinite linear;
 }
 
-#login
-{
-	font-weight:bold;
+@-webkit-keyframes spin2 {
+	from { -webkit-transform: rotate(0deg);}
+	to { -webkit-transform: rotate(360deg);}
 }
 
-p
-{
-	font-weight:bold;
+@keyframes spin {
+	from { transform: scale(1) rotate(0deg);}
+	to { transform: scale(1) rotate(360deg);}
 }
-
-body
-{
-	background-color:silver;
-}
-
-tr
-{
-	color:black;
-	font-weight:bold;
-}
-
-#map
-{
-	height:440px;
- 	width:700px
-}
-
-#autocomplete
-{
-	width:700px;
-}
-
-
