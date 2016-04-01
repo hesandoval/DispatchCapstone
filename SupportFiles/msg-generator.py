@@ -3,6 +3,7 @@ import time
 import datetime
 import pytz
 import uuid
+import argparse
 
 def linspace(a, b, num):
     if num < 2:
@@ -11,11 +12,20 @@ def linspace(a, b, num):
     return [diff * i + a  for i in range(num)]
 
 num_samples = 100
-latitude_start = 37.642714 #degrees
-longitude_start = -122.417522
 
-latitude_end = 37.643067 #degrees
-longitude_end = -122.417366
+parser = argparse.ArgumentParser(description='User store latitude/longitude _start, _end')
+parser.add_argument("latitude_start", type=float, help="latitude starting degree")
+parser.add_argument("longitude_start", type=float, help="longitude starting degree")
+parser.add_argument("latitude_end", type=float, help="latitude ending degree")
+parser.add_argument("longitude_end", type=float, help="longitude ending degree")
+args = parser.parse_args()
+
+latitude_start=args.latitude_start
+longitude_start=args.longitude_start
+latitude_end=args.latitude_end
+longitude_end=args.longitude_end
+
+
 
 elevation_start = .15 #meters
 elevation_end = .1
