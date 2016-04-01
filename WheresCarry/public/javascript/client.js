@@ -53,13 +53,13 @@ $("#trip_select").on("click", ".trip_id", function(event){
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
         console.log(JSON.stringify(data));
-        var waypoints = data[0]['waypoints'];
+        var waypoints = data['waypoints'];
         var startColor = "33cc33";
-        var startMarker = createMarker(startColor,"Start", waypoints[0]);
+        var startMarker = createMarker(startColor,"Start", data['starting_location']);
         var endColor = "FE7569";
-        var endMarker = createMarker(endColor,"End", waypoints[waypoints.length-1]);
+        var endMarker = createMarker(endColor,"End", data['ending_location']);
         window.path = new google.maps.Polyline({
-            path: data[0]['waypoints'],
+            path: waypoints,
             geodesic: true,
             strokeColor: '#FF0000',
             strokeOpacity: 1.0,
@@ -68,16 +68,16 @@ $("#trip_select").on("click", ".trip_id", function(event){
         path.setMap(window.map);
         setBounds();
         button.innerHTML = tripID + "<span class='caret'></span>";
-        getAddress(waypoints[0]["lat"],waypoints[0]["lng"], "start_address" );
-        getAddress(waypoints[waypoints.length-1]["lat"],waypoints[waypoints.length-1]["lng"], "end_address");
+        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" );
+        getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
 
     });
 
 });
 function getAddress(lat, lng, tagID){
-    $.get(getReverseGeocodeLink(lat,lng), function(data){
-        if(data['results'][0]["formatted_address"]){
-            var startingAddress = data['results'][0]["formatted_address"];
+    $.get(getReverseGeocodeLink(lat,lng), function(result){
+        if(result['results'][0]["formatted_address"]){
+            var startingAddress = result['results'][0]["formatted_address"];
             console.log(startingAddress);
             $("#"+tagID).html(startingAddress);
         }

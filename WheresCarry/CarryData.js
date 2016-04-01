@@ -23,11 +23,12 @@ function setup(io){
                 .distinct().run(callback);
         });
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
-            r.table("wheres_carry")("carry_data_current")
+            r.table("wheres_carry")("carry_data_current").filter({"trip_id":tripID})
                 .orderBy("created").run(function(err, data){
                 if(err){
                     console.log(err);
                 }else{
+
                     var first = data[0];
                     var last = data[data.length-1];
                     var newData = [first, last];
