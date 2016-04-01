@@ -34,27 +34,27 @@ function setup(io){
                 .distinct().run(callback);
         });
 
-        function SelectionChange(tripID) {
-            if(tripID == "LIVE")
-            {
-                socket.on("carry:tripDetailsByTripID", function (tripID, callback) {
-                    r.db("dispatch").table('wheres_carry')
-                        .filter({carry_data_current: {"trip_id": tripID}})
-                        .changes().run(function (err, data) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log("Live tracking.");
-                            // var first = data[0];
-                            // var last = data[data.length - 1];
-                            // var newData = [first, last];
-                            // console.log("first test: " + first["carry_data_current"]["current_location"]["longitude"]);
-                            // callback(newData);
-                        }
-                    });
-                });
-            }
-            else {
+        // function SelectionChange(tripID) {
+        //     if(tripID == "LIVE")
+        //     {
+        //         socket.on("carry:tripDetailsByTripID", function (tripID, callback) {
+        //             r.db("dispatch").table('wheres_carry')
+        //                 .filter({carry_data_current: {"trip_id": tripID}})
+        //                 .changes().run(function (err, data) {
+        //                 if (err) {
+        //                     console.log(err);
+        //                 } else {
+        //                     console.log("Live tracking.");
+        //                     // var first = data[0];
+        //                     // var last = data[data.length - 1];
+        //                     // var newData = [first, last];
+        //                     // console.log("first test: " + first["carry_data_current"]["current_location"]["longitude"]);
+        //                     // callback(newData);
+        //                 }
+        //             });
+        //         });
+        //     }
+        //     else {
                 socket.on("carry:tripDetailsByTripID", function (tripID, callback) {
                     r.db("dispatch").table('wheres_carry')
                         .filter({carry_data_current: {"trip_id": tripID}})
@@ -70,8 +70,8 @@ function setup(io){
                         }
                     });
                 });
-            }
-        };
+        //    }
+        //};
 
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};
