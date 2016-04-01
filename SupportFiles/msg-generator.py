@@ -84,11 +84,22 @@ for i in xrange(0, num_samples):
     light_status["back_on"] = True
     carry_data_current["light_status"] = light_status
 
+    # carry_data_current["waypoints"] = []
+    # for val in zip(latitude, longitude):
+    #     obj = {"latitude":val[0], "longitude":val[1]}
+    #     carry_data_current["waypoints"].append(obj)
+
     # This is created to put into the seperate file for the waypoints
     carry_trip = {}
     carry_trip["sender"] = carry_data_current["sender"]
     carry_trip["created"] = carry_data_current["created"]
     carry_trip["trip_id"] = carry_data_current["trip_id"]
+
+
+    # msg = {}
+    # msg["carry_data_current"] = carry_data_current
+    # msg_list.append(msg)
+
 
     # So forevery tenth iteration the code will dump waypoints into a waypoints.json 
     if i%10 == 0:
@@ -101,12 +112,43 @@ for i in xrange(0, num_samples):
     	trip["carry_trip"] = carry_trip
     	trip_list.append(trip)
 
+    	trip["carry_trip"] = carry_trip
+    	trip_list.append(trip)
+
+    	# carry_data_current["waypoints"] = []
+    	# for val in zip(latitude, longitude):
+    	# 	obj = {"latitude":val[0], "longitude":val[1]}
+    	# 	carry_data_current["waypoints"].append(obj)
+
+    	with open("messages.json", 'w') as fp:
+			json.dump(trip_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+
         with open("waypoints.json", 'w') as fp:
     		json.dump(trip_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+
+		# carry_data_current["waypoints"] = []
+		# for val in zip(latitude, longitude):
+		# 	obj = {"latitude":val[0], "longitude":val[1]}
+		# 	carry_data_current["waypoints"].append(obj)
 
     msg = {}
     msg["carry_data_current"] = carry_data_current
     msg_list.append(msg)
+    msg["carry_trip"] = carry_trip
+    trip_list.append(msg)
+    # msg["carry_trip"] 
+    # trip_list.append(msg)
+
+    # with open("messages.json", 'w') as fp:
+    # 	if i % 10 == 0:
+    # 		json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+    # 		json.dump(trip_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+    # 	else:
+    # 		json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
 
 with open("messages.json", 'w') as fp:
-    json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+	json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+
+# with open("messages.json", 'w') as fp:
+# 	json.dump(trip_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+
