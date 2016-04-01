@@ -34,37 +34,43 @@ function setup(io){
                 .distinct().run(callback);
         });
 
-        socket.on("carry:tripDetailsByTripID", function(tripID, callback){
-            r.db("dispatch").table('wheres_carry')
-                .filter({carry_data_current:{"trip_id":tripID}})
-                .orderBy(r.desc('created')).run(function(err, data){
-                if(err){
-                    console.log(err);
-                }else{
-                    var first = data[0];
-                    var last = data[data.length-1];
-                    var newData = [first, last];
-                    function historicalDataSpecs(first, last){
-                        first.toString().split(",");
-                        last.toString().split(",");
-                        first_lat = first[0];
-                        first_long = first[1];
-                        last_lat = last[0];
-                        last_long = last[1];
-                        var fs = require('fs');
-                        var filename = '../SupportFiles/historicalDataSpecifications.json';
-                        var file = require(filename);
-                        file.key = " Starting Lat: " + first_lat + "\n Starting Long: " + first_long + "\n Ending Lat: " + last_lat + "\n Ending Long: " + last_long;
-                        fs.writeFile(fileName, JSON.stringify(file), function (err) {
-                            if (err) return console.log(err)
-                            console.log(JSON.stringify(file))
-                            console.log('writing to ' + fileName)
-                        });
-                    };
-                    callback(newData)
-                }
-            });
-        });
+        function SelectionChange(tripID) {
+            if(tripID == "LIVE")
+            {
+                socket.on("carry:tripDetailsByTripID", function (tripID, callback) {
+                    r.db("dispatch").table('wheres_carry')
+                        .filter({carry_data_current: {"trip_id": tripID}})
+                        .changes().run(function (err, data) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            var first = data[0];
+                            var last = data[data.length - 1];
+                            var newData = [first, last];
+                            console.log("first test: " + first["carry_data_current"]["current_location"]["longitude"]);
+                            callback(newData);
+                        }
+                    });
+                });
+            }
+            else {
+                socket.on("carry:tripDetailsByTripID", function (tripID, callback) {
+                    r.db("dispatch").table('wheres_carry')
+                        .filter({carry_data_current: {"trip_id": tripID}})
+                        .orderBy(r.desc('created')).run(function (err, data) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            var first = data[0];
+                            var last = data[data.length - 1];
+                            var newData = [first, last];
+                            console.log("first test: " + first["carry_data_current"]["current_location"]["longitude"]);
+                            callback(newData);
+                        }
+                    });
+                });
+            }
+        };
 
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};

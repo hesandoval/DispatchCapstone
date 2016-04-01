@@ -52,6 +52,7 @@ function tripSelectChanged() {
     var tripID = document.getElementById('trip_select').value;
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
         console.log(JSON.stringify(data));
+        
     });
 }
 
