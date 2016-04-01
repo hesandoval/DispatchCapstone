@@ -54,6 +54,7 @@ time_additions_seconds = linspace(0, total_time_seconds, num=num_samples)
 time = [utc_datetime_start + datetime.timedelta(seconds = t) for t in time_additions_seconds]
 
 msg_list = []
+trip_list = []
 for i in xrange(0, num_samples):
     carry_data_current = {}
     carry_data_current["sender"] = "Carry1"
@@ -69,7 +70,7 @@ for i in xrange(0, num_samples):
     carry_data_current["trip_id"] = trip_id
 
     if i == num_samples-1:
-    	carry_data_current["completed"] = True#false if less than or eqaul to num_samples - 1
+        carry_data_current["completed"] = True#false if less than or eqaul to num_samples - 1
     else:
     	carry_data_current["completed"] = False    
 
@@ -82,14 +83,30 @@ for i in xrange(0, num_samples):
     light_status["front_on"] = True
     light_status["back_on"] = True
     carry_data_current["light_status"] = light_status
-    carry_data_current["waypoints"] = []
-    for val in zip(latitude, longitude):
-    	obj = {"latitude":val[0], "longitude":val[1]}
-    	carry_data_current["waypoints"].append(obj)
-    
+
+    # This is created to put into the seperate file for the waypoints
+    carry_trip = {}
+    carry_trip["sender"] = carry_data_current["sender"]
+    carry_trip["created"] = carry_data_current["created"]
+    carry_trip["trip_id"] = carry_data_current["trip_id"]
+
+    # So forevery tenth iteration the code will dump waypoints into a waypoints.json 
+    if i%10 == 0:
+    	carry_trip["waypoints"] = []
+        for val in zip(latitude, longitude):
+            obj = {"latitude":val[0], "longitude":val[1]}
+            carry_trip["waypoints"].append(obj)
+
+        trip = {}
+    	trip["carry_trip"] = carry_trip
+    	trip_list.append(trip)
+
+        with open("waypoints.json", 'w') as fp:
+    		json.dump(trip_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+
     msg = {}
     msg["carry_data_current"] = carry_data_current
     msg_list.append(msg)
 
 with open("messages.json", 'w') as fp:
-  json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+    json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))

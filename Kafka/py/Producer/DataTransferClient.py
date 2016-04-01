@@ -12,6 +12,7 @@ import os
 __author__ = 'Edgar Sandoval'
 
 #Environment Variables
+#make a directory
 MESSAGESDIRECTORY = "SupportFiles/messages.json"
 PHOTOSDIRECTORY = "SupportFiles/photos/"
 SERVER_PORT = os.environ.get('SERVER_PORT') or 9999
@@ -34,6 +35,9 @@ if __name__ == "__main__":
     data = []
 
     pictureFiles = glob.glob(PHOTOSDIRECTORY + "/*")
+    #Open code to directory and loop files
+    #For loop 
+    #for files in directory instead of MESSAGESDIRECTORY pass files
     with open(MESSAGESDIRECTORY) as f:
         for line in f:
             data.append(line)
