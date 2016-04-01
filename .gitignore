@@ -42,3 +42,5 @@ KafkaTransfers/
 
 SupportFiles/messages.json
 Kafka/py/SupportFiles/messages.json
+SupportFiles/messages*
+SupportFiles/Waypoints.json
