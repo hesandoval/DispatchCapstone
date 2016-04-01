@@ -36,11 +36,8 @@ function setup(io){
                     g2j["ending_location"] = {"lat" : last['current_location']['latitude'], "lng": last['current_location']['longitude']};
                     g2j["sender"] = {"sender": first['sender']};
                     g2j["waypoints"] = first['waypoints'];
-                    console.log("first battery " + JSON.stringify(first['battery_life']));
-                    console.log("last battery " + JSON.stringify(last['battery_life']));
                     var batt  = first['battery_life']-last['battery_life'];
                     g2j["battery_consumption"] = {"battery_consumption": batt + "%"};
-                    console.log("setting g2j" + JSON.stringify(g2j));
                     callback(g2j);
                 }
             });
