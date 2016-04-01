@@ -70,7 +70,6 @@ $("#trip_select").on("click", ".trip_id", function(event){
         button.innerHTML = tripID + "<span class='caret'></span>";
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" );
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
-
     });
 
 });

@@ -15,7 +15,7 @@ function setup(io){
                 .distinct()
                 .run(callback);
         });
-        //
+
         socket.on('carry:findTripsByCarryID', function(id, callback){
             r.table('wheres_carry').orderBy(r.desc('created'))
                 .filter({carry_data_current:{"sender":id}})
@@ -30,9 +30,18 @@ function setup(io){
                 }else{
 
                     var first = data[0];
-                    var last = data[data.length-1];
-                    var newData = [first, last];
-                    callback(newData)
+                    var last = data[data.length - 1];
+                    var g2j = {};
+                    g2j["starting_location"] = {"lat" : first['current_location']['latitude'], "lng": first['current_location']['longitude']};
+                    g2j["ending_location"] = {"lat" : last['current_location']['latitude'], "lng": last['current_location']['longitude']};
+                    g2j["sender"] = {"sender": first['sender']};
+                    g2j["waypoints"] = first['waypoints'];
+                    console.log("first battery " + JSON.stringify(first['battery_life']));
+                    console.log("last battery " + JSON.stringify(last['battery_life']));
+                    var batt  = first['battery_life']-last['battery_life'];
+                    g2j["battery_consumption"] = {"battery_consumption": batt + "%"};
+                    console.log("setting g2j" + JSON.stringify(g2j));
+                    callback(g2j);
                 }
             });
         });
