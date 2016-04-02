@@ -1,5 +1,12 @@
 # DispatchCapstone
-Downloading rethinkDB
+
+## Project Setup
+To install all Dependencies:
+```bash
+$ bash setup.sh
+```
+
+## Downloading rethinkDB
 ----
 [logo]: https://platzi.com/blog/content/images/2015/03/rethinkdb.png
 ![alt text][logo]
