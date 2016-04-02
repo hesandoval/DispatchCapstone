@@ -62,6 +62,15 @@
 #dropdown_fleet_select{
 	display: inline;
 }
+#start_address{
+	visibility: hidden;
+}
+#end_address{
+	visibility: hidden;
+}
+.col-sm-4{
+	visibility: hidden;
+}
 
 #map {
 	height: 450px;

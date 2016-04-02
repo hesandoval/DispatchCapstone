@@ -70,6 +70,8 @@ $("#trip_select").on("click", ".trip_id", function(event){
         button.innerHTML = tripID + "<span class='caret'></span>";
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" );
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
+        $(".col-sm-4").css("visibility", "visible");
+
     });
 
 });
@@ -79,6 +81,8 @@ function getAddress(lat, lng, tagID){
             var startingAddress = result['results'][0]["formatted_address"];
             console.log(startingAddress);
             $("#"+tagID).html(startingAddress);
+            $("#"+tagID).css("visibility", "visible");
+
         }
     });
 }
@@ -130,8 +134,15 @@ function defaultMap(){
     window.map.setCenter(window.defaultCenter);
     window.map.setZoom(18);
     removeMarkers();
+    removeTags("start_address");
+    removeTags("end_address");
+    $(".col-sm-4").css("visibility", "hidden");
 }
 function getReverseGeocodeLink(lat, lng){
     return "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng
         +"&key=AIzaSyDLUq8w6E3L-X6P_KrPcbvGW23AL3s_XW0"
+}
+function removeTags(tagID){
+    $("#"+tagID).html("");
+    $("#"+tagID).css("visibility", "hidden");
 }
