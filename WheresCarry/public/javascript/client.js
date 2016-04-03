@@ -70,11 +70,28 @@ $("#trip_select").on("click", ".trip_id", function(event){
         button.innerHTML = tripID + "<span class='caret'></span>";
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" );
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
-        $(".col-sm-4").css("visibility", "visible");
+        fillTable(data);
+        $("#information_container").css("visibility", "visible");
+
 
     });
 
 });
+function fillTable(data){
+    var tableHeader = $("#table_header");
+    var header = "<tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
+        "<th>Battery Consumption</th></tr>";
+    tableHeader.append(header);
+    var tableBody = $("#table_body");
+    var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{duration}}</td><td>{{average_speed}}</td>" +
+        "<td>{{battery_consumption}}</td></tr>";
+    var html = Mustache.to_html(body, data);
+    tableBody.append(html);
+
+
+
+}
+
 function getAddress(lat, lng, tagID){
     $.get(getReverseGeocodeLink(lat,lng), function(result){
         if(result['results'][0]["formatted_address"]){
@@ -97,6 +114,7 @@ function createMarker(color, title, latlng){
     addMarker(marker);
     return marker;
 }
+
 function addMarker(marker){
     marker.setMap(window.map);
     window.markers.push(marker);
@@ -136,7 +154,7 @@ function defaultMap(){
     removeMarkers();
     removeTags("start_address");
     removeTags("end_address");
-    $(".col-sm-4").css("visibility", "hidden");
+    $("#information_container").css("visibility", "hidden");
 }
 function getReverseGeocodeLink(lat, lng){
     return "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng
