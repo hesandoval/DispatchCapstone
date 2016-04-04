@@ -4,6 +4,7 @@ import rethinkdb as r
 import argparse
 from rethinkdb.errors import RqlRuntimeError, RqlDriverError
 import msgpack
+import dateutil.parser
 import os
 import json
 
@@ -18,6 +19,13 @@ DISPATCH_DB = 'dispatch'
 TABLE = 'wheres_carry'
 
 def dbSetup():
+    """
+    This is used to setup the database connection between the kafka consumer
+    and rethinkdb. Setup should only run once but if setup is to be called
+    again, an error message should appear prompting a already existing database
+    @return: message either database being created or existing
+    """
+
     #code here
     connection = r.connect(host=RDB_HOST, port=RDB_PORT)
     try:
@@ -30,6 +38,10 @@ def dbSetup():
         connection.close()
 
 def dbGetConnection():
+    """
+    Connects kafka to the database. Establish a database connection
+    @return: the connection and table listed within the specific database
+    """
     connection = r.connect(host=RDB_HOST, port=RDB_PORT)
     table = r.db(DISPATCH_DB).table(TABLE)
     return (connection, table)
@@ -56,38 +68,15 @@ if __name__ == "__main__":
             if args.with_db:
             #run with database
                 data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
+                data['carry_data_current']['created'] = dateutil.parser.parse(data['carry_data_current']['created'])
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
 
-            #TODO check result for valid parameters
-
-                print(result) # Write this to file!
-                # All logs and error log output files
-                # with open(DIRECTORY+outfile, "wb") as fh:
-                #         fh.write(photographData)\
-
-                # outfile = "log.txt"
-                # file = open(DIRECTORY+"log.txt", "w")
-                # file.write(result)
-                # file.close()
-
-                # open(DIRECTORY+"log.txt", "wb") as fh:
-                #     fh.write()
-                
-                # outfile = "result.txt"
 
                 # Appending data and if file doesn't exist "a+" will create one
                 with open(DIRECTORY+"rethinkLog.txt", "a+") as fh:
                     fh.write(json.dumps(result))
-
-
-                # Checking for update changes
-                # cursor = r.table(TABLE).run(connection)
-                # for document in cursor:
-                #     print(document)
-
-                #         fh.write(photographData)\
 
                 connection.close()
                 #TODO check result for valid parameters

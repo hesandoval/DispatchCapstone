@@ -3,31 +3,66 @@
  */
 
 var r = require("./rethink");
-var _ = require("lodash");
+//var _ = require("lodash");
 
 function setup(io){
 
     io.on("connection", function(socket) {
         console.log("User connected to the page");
-        //r.connect({host: 'localhost', port: 28015}, function (err, conn) {
-        //    if (err) throw err;
-        //    connection = conn;
-        //    r.table('wheres_carry').filter(r.row('sender').eq('Carry1')).run(connection, function(err, cursor){
-        //        if (err) throw err;
-        //        cursor.toArray(function(err, result){
-        //            if (err) throw err;
-        //            console.log(JSON.stringify(result, null, 2));
-        //        });
-        //    });
-        //});
         socket.on("carry:getFleet", function(callback){
             r.table("wheres_carry")
                 .pluck({carry_data_current: "sender"})
                 .distinct()
                 .run(callback);
         });
+
         socket.on('carry:findTripsByCarryID', function(id, callback){
-            r.table('wheres_carry').filter(id).run(callback);
+            r.table('wheres_carry').orderBy(r.desc('created'))
+                .filter({carry_data_current:{"sender":id}})
+                .pluck({carry_data_current: ["trip_id", "completed"]})
+                .distinct().run(callback);
+        });
+        socket.on("carry:tripDetailsByTripID", function(tripID, callback){
+            r.table("wheres_carry")("carry_data_current").filter({"trip_id":tripID})
+                .orderBy("created").run(function(err, data){
+                if(err){
+                    console.log(err);
+                }else{
+
+                    var first = data[0];
+                    var last = data[data.length - 1];
+                    var g2j = {};
+                    g2j["starting_location"] = {"lat" : first['current_location']['latitude'], "lng": first['current_location']['longitude']};
+                    g2j["ending_location"] = {"lat" : last['current_location']['latitude'], "lng": last['current_location']['longitude']};
+                    g2j["sender"] = {"sender": first['sender']};
+                    g2j["waypoints"] = first['waypoints'];
+                    //console.log("first battery " + JSON.stringify(first['battery_life']));
+                    //console.log("last battery " + JSON.stringify(last['battery_life']));
+                    var batt  = first['battery_life']-last['battery_life'];
+                    var totaltime = last['created'] - first ['created'];
+                    console.log("Last created: " + last['created']);
+                    console.log("First created:" + first['created']);
+                    console.log("The time of the trip is: "+ totaltime/1000 + " seconds");
+                    //g2j["timetotal"] = {"timetotal:" totaltime};
+                    g2j["battery_consumption"] = {"battery_consumption": batt + "%"};
+                    var s = 0;
+                    var count = 0;
+                    for(var i=0; i<data.length; i++)
+                    {
+                        s+=data[i]['speed'];
+                        count++;
+                    }
+                    s= s/count;
+                    g2j["speed"] = s;
+                    var date = first['created'].toString().slice(0, 15);
+                    console.log("Date: " + date);
+                    g2j["date"] = date;
+                    console.log("Count: " + count);
+                    console.log("Avg speed: " + s);
+                    //console.log("setting g2j" + JSON.stringify(g2j));
+                    callback(g2j);
+                }
+            });
         });
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};
