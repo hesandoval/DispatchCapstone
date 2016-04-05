@@ -45,17 +45,18 @@ function setup(io){
                     console.log("The time of the trip is: "+ totaltime/1000 + " seconds");
                     //g2j["timetotal"] = {"timetotal:" totaltime};
                     g2j["battery_consumption"] = {"battery_consumption": batt + "%"};
-                    /*var s = 0;
+                    var s = 0;
                     var count = 0;
-                    var each_speed = data['carry_data_current']['speed'];
-                    for each (var sp in each_speed)
+                    for(var i=0; i<data.length; i++)
                     {
-                        s+=sp;
+                        s+=data[i]['speed'];
                         count++;
                     }
                     s= s/count;
                     g2j["speed"] = s;
-                    console.log(s);*/
+                    //console.log("Data speed: " + data['carry_data_current']['speed']);
+                    console.log("Count: " + count);
+                    console.log("Avg speed: " + s);
                     //console.log("setting g2j" + JSON.stringify(g2j));
                     callback(g2j);
                 }
