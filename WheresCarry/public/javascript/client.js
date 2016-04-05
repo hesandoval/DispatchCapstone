@@ -4,6 +4,7 @@ socket.emit('carry:getFleet',function(err,data){
     if(err){
         console.log(err);
     }else{
+
         data = {'stuff' : data};
         var template = '{{ #stuff }}<li class="carry_id"><a>{{ carry_data_current.sender }}</a></li>{{ /stuff }}';
         var html = Mustache.to_html(template, data);
@@ -22,18 +23,8 @@ $("#fleet_select").on("click",".carry_id", function(event){
         if(err){
             console.log(JSON.stringify(err));
         }else{
-            var values = {};
-            for (var index in data){
-                if(data[index]["carry_data_current"]["trip_id"] in values){
-                    values[data[index]["carry_data_current"]["trip_id"]] = true;
-                }else {
-                    values[data[index]["carry_data_current"]["trip_id"]] = false;
-                }
-            }
-            var view = {values:[]};
-            for (var index in values){
-                view['values'].push({trip_id:index, finished:values[index]})
-            }
+
+            var view = {values:data};
             var b2 = $("#dropdownMenu2")[0];
             b2.innerHTML = "Select One <span class='caret'></span>";
             $("#dropdown_trip_select").css("visibility", "visible");
@@ -41,6 +32,20 @@ $("#fleet_select").on("click",".carry_id", function(event){
             var html = Mustache.to_html(template, view);
             $("#trip_select").html(html);
             button.innerHTML = fleet + "<span class='caret'></span>"
+        }
+    });
+    socket.emit('carry:findLiveTripsByCarryID', fleet, function(err, data){
+        if(err){
+            console.log(err);
+        }else{
+            if(data.length > 0){
+                var view = {values: data};
+                var template = "<li role=\"separator\" class=\"divider\"></li>" +
+                    "{{ #values }}<li><a>{{trip_id}}</a></li> {{/values}}"
+                var html = html = Mustache.to_html(template, view);
+                $("#trip_select").append(html);
+            }
+
         }
 
     });
@@ -72,21 +77,18 @@ $("#trip_select").on("click", ".trip_id", function(event){
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
         $("#information_container").css("visibility", "visible");
-
-
     });
 
 });
 function fillTable(data){
-    var tableHeader = $("#table_header");
-    var header = "<tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
-        "<th>Battery Consumption</th></tr>";
-    tableHeader.append(header);
-    var tableBody = $("#table_body");
+    var table = $("#table_body");
+    var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
+        "<th>Battery Consumption</th></tr></thead>";
+    table.html(header);
     var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{duration}}</td><td>{{average_speed}}</td>" +
         "<td>{{battery_consumption}}</td></tr>";
     var html = Mustache.to_html(body, data);
-    tableBody.append(html);
+    table.append(html);
 
 
 

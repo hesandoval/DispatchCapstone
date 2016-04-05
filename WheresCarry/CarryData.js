@@ -16,11 +16,23 @@ function setup(io){
                 .run(callback);
         });
 
-        socket.on('carry:findTripsByCarryID', function(id, callback){
-            r.table('wheres_carry').orderBy(r.desc('created'))
-                .filter({carry_data_current:{"sender":id}})
-                .pluck({carry_data_current: ["trip_id", "completed"]})
-                .distinct().run(callback);
+        socket.on('carry:findTripsByCarryID', function(sender, callback){
+            r.table('wheres_carry')("carry_data_current")
+                .orderBy(r.desc('created'))
+                .filter({"sender": sender, "completed":true})
+                .pluck(["trip_id"])
+                .distinct()
+                .run(callback);
+        });
+        socket.on('carry:findLiveTripsByCarryID', function(sender, callback){
+            r.table('wheres_carry')("carry_data_current")
+                .orderBy(r.desc('created'))
+                .filter({"sender":sender, "completed":false})
+                .pluck(["trip_id"]).distinct()
+                .filter(function (doc){
+                 return r.table("wheres_carry")("carry_data_current")
+                         .filter({"sender": sender, "completed":true})
+                         .pluck(["trip_id"]).contains(doc).not();}).run(callback)
         });
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
             r.table("wheres_carry")("carry_data_current").filter({"trip_id":tripID})
