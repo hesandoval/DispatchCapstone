@@ -39,7 +39,22 @@ function setup(io){
                     //console.log("first battery " + JSON.stringify(first['battery_life']));
                     //console.log("last battery " + JSON.stringify(last['battery_life']));
                     var batt  = first['battery_life']-last['battery_life'];
+                    var totaltime = last['created'] - first ['created'];
+                    console.log("Last created: " + last['created']);
+                    console.log("First created:" + first['created']);
+                    console.log("The time of the trip is: "+ totaltime/1000 + " seconds");
+                    //g2j["timetotal"] = {"timetotal:" totaltime};
                     g2j["battery_consumption"] = {"battery_consumption": batt + "%"};
+                    /*var s = 0;
+                    var count = 0;
+                    for each (var sp in data{"speed"})
+                    {
+                        s+=sp;
+                        count++;
+                    }
+                    s= s/count;
+                    g2j["speed"] = s;
+                    console.log(s);*/
                     //console.log("setting g2j" + JSON.stringify(g2j));
                     callback(g2j);
                 }

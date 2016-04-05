@@ -10,6 +10,8 @@
 	"sender": "Carry1",
     "trip_id": "de305d54-75b4-431b-adb2-eb6b9e546014",
     "created": "2015-05-22T14:56:29.000Z",
+    "timetotal": "",
+    "speed": "2.0",
     "battery_consumption": 0.00,
                 "waypoints": [
                 {

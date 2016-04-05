@@ -68,7 +68,9 @@ $("#trip_select").on("click", ".trip_id", function(event){
         path.setMap(window.map);
         setBounds();
         button.innerHTML = tripID + "<span class='caret'></span>";
-        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" );
+        //"<table><tr><td>"+getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" )+"</td></tr>";
+        //"<tr><td>" + getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address")+"</td></tr></table>";
+        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
     });
 
