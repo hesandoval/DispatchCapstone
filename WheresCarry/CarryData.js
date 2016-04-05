@@ -54,6 +54,9 @@ function setup(io){
                     }
                     s= s/count;
                     g2j["speed"] = s;
+                    var date = first['created'].toString().slice(0, 15);
+                    console.log("Date: " + date);
+                    g2j["date"] = date;
                     //console.log("Data speed: " + data['carry_data_current']['speed']);
                     console.log("Count: " + count);
                     console.log("Avg speed: " + s);
