@@ -47,7 +47,8 @@ function setup(io){
                     g2j["battery_consumption"] = {"battery_consumption": batt + "%"};
                     /*var s = 0;
                     var count = 0;
-                    for each (var sp in data{"speed"})
+                    var each_speed = data['carry_data_current']['speed'];
+                    for each (var sp in each_speed)
                     {
                         s+=sp;
                         count++;
