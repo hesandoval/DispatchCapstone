@@ -72,9 +72,18 @@ $("#trip_select").on("click", ".trip_id", function(event){
         //"<tr><td>" + getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address")+"</td></tr></table>";
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
+        updateTable(data['speed'],"speedval");
+        updateTable(data['date'], "Date");
+        updateTable(data['timetotal'], "Time");
+        updateTable(data['battery_consumption'], "batteryval");
     });
 
 });
+
+function updateTable(info, tagID){
+    $("#"+tagID).html(info);
+}
+
 function getAddress(lat, lng, tagID){
     $.get(getReverseGeocodeLink(lat,lng), function(result){
         if(result['results'][0]["formatted_address"]){
