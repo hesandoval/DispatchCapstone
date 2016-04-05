@@ -43,8 +43,8 @@ function setup(io){
                     console.log("Last created: " + last['created']);
                     console.log("First created:" + first['created']);
                     console.log("The time of the trip is: "+ totaltime/1000 + " seconds");
-                    //g2j["timetotal"] = {"timetotal:" totaltime};
-                    g2j["battery_consumption"] = {"battery_consumption": batt + "%"};
+                    g2j["timetotal"] = totaltime/1000 + " seconds";
+                    g2j["battery_consumption"] = batt + "%";
                     var s = 0;
                     var count = 0;
                     for(var i=0; i<data.length; i++)
@@ -53,7 +53,7 @@ function setup(io){
                         count++;
                     }
                     s= s/count;
-                    g2j["speed"] = s;
+                    g2j["speed"] = s+"mph";
                     var date = first['created'].toString().slice(0, 15);
                     console.log("Date: " + date);
                     g2j["date"] = date;
