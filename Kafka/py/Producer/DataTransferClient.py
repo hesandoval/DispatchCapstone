@@ -32,20 +32,20 @@ def addPhoto(dispatchDict, pictureFiles):
 
 
 if __name__ == "__main__":
-    data = []
 
     pictureFiles = glob.glob(PHOTOSDIRECTORY + "/*")
     #Open code to directory and loop files
     #For loop 
     #for files in directory instead of MESSAGESDIRECTORY pass files
     for filename in glob.glob(MESSAGESDIRECTORY):
-	    with open(filename) as f:
+    	data = []
+    	with open(filename) as f:
 	        for line in f:
 	            data.append(line)
 	        data = json.loads("".join(data))
-	    connectionCredentials = socket.gethostname(), SERVER_PORT
+	        connectionCredentials = socket.gethostname(), SERVER_PORT
 	    for message in data:
-	        try:
+	    	try:
 	            clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	            clientSocket.connect(connectionCredentials)
 	        except socket.error, (v, message):
