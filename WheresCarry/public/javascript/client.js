@@ -79,7 +79,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
     });
 
 });
-
+    
 function updateTable(info, tagID){
     $("#"+tagID).html(info);
 }

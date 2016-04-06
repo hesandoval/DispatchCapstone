@@ -40,7 +40,7 @@ function setup(io){
                     var batt  = first['battery_life']-last['battery_life'];
                     var totaltime = last['created'] - first ['created'];
 
-                    g2j["timetotal"] = totaltime/1000 + " seconds";
+                    g2j["timetotal"] = thetime(totaltime);
                     g2j["battery_consumption"] = batt + "%";
 
                     g2j["speed"] = getAverageSpeed(data)+" mph";
@@ -91,6 +91,17 @@ function setup(io){
 
 }
 
+
+function thetime(s){
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var secs = s % 60;
+        s = (s - secs) / 60;
+        var mins = s % 60;
+        var hrs = (s - mins) / 60;
+
+        return hrs + ':' + mins + ':' + secs + '.' + ms;
+}
 
 function getAverageSpeed(dataobj){
     var s = 0;
