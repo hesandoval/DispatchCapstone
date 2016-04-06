@@ -54,7 +54,9 @@ if __name__ == "__main__":
 	                sys.exit(1)
 	            print("Could not open socket {}".format(message))
 	        if (random.uniform(0,1) < .25):
-	            message = addPhoto(message, pictureFiles)
+	        	if("carry_data_current" in message.keys()):
+	        		message = addPhoto(message, pictureFiles)
+
 	        clientSocket.send(msgpack.packb(message))
 	        clientSocket.close()
 	        time.sleep(random.randint(0, 5))
