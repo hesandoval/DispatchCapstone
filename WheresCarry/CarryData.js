@@ -51,7 +51,7 @@ function setup(io){
 
                     var batt  = first['battery_life']-last['battery_life'];
                     var totaltime = last['created'] - first ['created'];
-
+                    g2j["start"] = first['created'].toTimeString();
                     g2j["timetotal"] = thetime(totaltime);
                     g2j["battery_consumption"] = batt + "%";
 
