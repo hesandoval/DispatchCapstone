@@ -143,7 +143,6 @@ for i in xrange(0, num_samples):
     # 	else:
     # 		json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
 
-# 
 with open("messages" + trip_id + ".json", 'w') as fp:
 	json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
 
