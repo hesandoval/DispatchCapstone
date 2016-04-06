@@ -36,34 +36,24 @@ function setup(io){
                     g2j["ending_location"] = {"lat" : last['current_location']['latitude'], "lng": last['current_location']['longitude']};
                     g2j["sender"] = {"sender": first['sender']};
                     g2j["waypoints"] = first['waypoints'];
-                    //console.log("first battery " + JSON.stringify(first['battery_life']));
-                    //console.log("last battery " + JSON.stringify(last['battery_life']));
+
                     var batt  = first['battery_life']-last['battery_life'];
                     var totaltime = last['created'] - first ['created'];
-                    console.log("Last created: " + last['created']);
-                    console.log("First created:" + first['created']);
-                    console.log("The time of the trip is: "+ totaltime/1000 + " seconds");
+
                     g2j["timetotal"] = totaltime/1000 + " seconds";
                     g2j["battery_consumption"] = batt + "%";
-                    var s = 0;
-                    var count = 0;
-                    for(var i=0; i<data.length; i++)
-                    {
-                        s+=data[i]['speed'];
-                        count++;
-                    }
-                    s= s/count;
-                    g2j["speed"] = s+"mph";
-                    var date = first['created'].toString().slice(0, 15);
-                    console.log("Date: " + date);
-                    g2j["date"] = date;
-                    console.log("Count: " + count);
-                    console.log("Avg speed: " + s);
-                    //console.log("setting g2j" + JSON.stringify(g2j));
+
+                    g2j["speed"] = getAverageSpeed(data)+" mph";
+                    var newDate = first['created'].toDateString();
+                    g2j["date"] = newDate;
+
+
+
                     callback(g2j);
                 }
             });
         });
+
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};
             r.table('wheres_carry').orderBy({index: r.desc('created')})
@@ -99,6 +89,19 @@ function setup(io){
         });
     });
 
+}
+
+
+function getAverageSpeed(dataobj){
+    var s = 0;
+    var count = 0;
+    for(var i=0; i<dataobj.length; i++)
+    {
+        s+=dataobj[i]['speed'];
+        count++;
+    }
+    s= s/count;
+    return s;
 }
 
 module.exports = {
