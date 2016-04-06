@@ -44,8 +44,10 @@ function setup(io){
                     var first = data[0];
                     var last = data[data.length - 1];
                     var g2j = {};
-                    g2j["starting_location"] = {"lat" : first['current_location']['latitude'], "lng": first['current_location']['longitude']};
-                    g2j["ending_location"] = {"lat" : last['current_location']['latitude'], "lng": last['current_location']['longitude']};
+                    g2j["starting_location"] = {"lat" : first['current_location']['latitude'],
+                                                "lng": first['current_location']['longitude']};
+                    g2j["ending_location"] = {"lat" : last['current_location']['latitude'],
+                                              "lng": last['current_location']['longitude']};
                     g2j["sender"] = first['sender'];
                     g2j["waypoints"] = first['waypoints'];
                     var batt  = first['battery_life']-last['battery_life'];
