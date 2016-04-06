@@ -32,8 +32,6 @@ def addPhoto(dispatchDict, pictureFiles):
 
 
 if __name__ == "__main__":
-
-
     pictureFiles = glob.glob(PHOTOSDIRECTORY + "/*")
     #Open code to directory and loop files
     #For loop

@@ -105,11 +105,15 @@ for i in xrange(0, num_samples):
     	trip["carry_trip"] = carry_trip
     	trip_list.append(trip)
 
+    	trip["carry_trip"] = carry_trip
+    	msg_list.append(trip)
+
     msg = {}
     msg["carry_data_current"] = carry_data_current
     msg_list.append(msg)
-    msg["carry_trip"] = carry_trip
-    trip_list.append(msg)
+
+    # trip["carry_trip"] = carry_trip
+    # msg_list.append(trip)
 
     # Run start and end points of a trip with python ../../SupportFiles/msg-generator.py within the py directory
 
