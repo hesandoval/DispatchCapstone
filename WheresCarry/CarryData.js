@@ -48,12 +48,21 @@ function setup(io){
                     g2j["ending_location"] = {"lat" : last['current_location']['latitude'], "lng": last['current_location']['longitude']};
                     g2j["sender"] = first['sender'];
                     g2j["waypoints"] = first['waypoints'];
+
                     var batt  = first['battery_life']-last['battery_life'];
-                    g2j["battery_consumption"] =  batt + "%";
+                    var totaltime = last['created'] - first ['created'];
+
+                    g2j["timetotal"] = thetime(totaltime);
+                    g2j["battery_consumption"] = batt + "%";
+
+                    g2j["speed"] = getAverageSpeed(data)+" mph";
+                    var newDate = first['created'].toDateString();
+                    g2j["date"] = newDate;
                     callback(g2j);
                 }
             });
         });
+
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};
             r.table('wheres_carry').orderBy({index: r.desc('created')})
@@ -89,6 +98,30 @@ function setup(io){
         });
     });
 
+}
+
+
+function thetime(s){
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var secs = s % 60;
+        s = (s - secs) / 60;
+        var mins = s % 60;
+        var hrs = (s - mins) / 60;
+
+        return hrs + ':' + mins + ':' + secs + '.' + ms;
+}
+
+function getAverageSpeed(dataobj){
+    var s = 0;
+    var count = 0;
+    for(var i=0; i<dataobj.length; i++)
+    {
+        s+=dataobj[i]['speed'];
+        count++;
+    }
+    s= s/count;
+    return s;
 }
 
 module.exports = {

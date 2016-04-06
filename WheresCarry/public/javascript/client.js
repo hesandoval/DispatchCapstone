@@ -73,7 +73,9 @@ $("#trip_select").on("click", ".trip_id", function(event){
         path.setMap(window.map);
         setBounds();
         button.innerHTML = tripID + "<span class='caret'></span>";
-        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" );
+        //"<table><tr><td>"+getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" )+"</td></tr>";
+        //"<tr><td>" + getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address")+"</td></tr></table>";
+        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
         $("#information_container").css("visibility", "visible");
@@ -85,13 +87,10 @@ function fillTable(data){
     var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
         "<th>Battery Consumption</th></tr></thead>";
     table.html(header);
-    var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{duration}}</td><td>{{average_speed}}</td>" +
+    var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
         "<td>{{battery_consumption}}</td></tr>";
     var html = Mustache.to_html(body, data);
     table.append(html);
-
-
-
 }
 
 function getAddress(lat, lng, tagID){
