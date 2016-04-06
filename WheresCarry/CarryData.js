@@ -16,11 +16,23 @@ function setup(io){
                 .run(callback);
         });
 
-        socket.on('carry:findTripsByCarryID', function(id, callback){
-            r.table('wheres_carry').orderBy(r.desc('created'))
-                .filter({carry_data_current:{"sender":id}})
-                .pluck({carry_data_current: ["trip_id", "completed"]})
-                .distinct().run(callback);
+        socket.on('carry:findTripsByCarryID', function(sender, callback){
+            r.table('wheres_carry')("carry_data_current")
+                .orderBy(r.desc('created'))
+                .filter({"sender": sender, "completed":true})
+                .pluck(["trip_id"])
+                .distinct()
+                .run(callback);
+        });
+        socket.on('carry:findLiveTripsByCarryID', function(sender, callback){
+            r.table('wheres_carry')("carry_data_current")
+                .orderBy(r.desc('created'))
+                .filter({"sender":sender, "completed":false})
+                .pluck(["trip_id"]).distinct()
+                .filter(function (doc){
+                 return r.table("wheres_carry")("carry_data_current")
+                         .filter({"sender": sender, "completed":true})
+                         .pluck(["trip_id"]).contains(doc).not();}).run(callback)
         });
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
             r.table("wheres_carry")("carry_data_current").filter({"trip_id":tripID})
@@ -34,14 +46,23 @@ function setup(io){
                     var g2j = {};
                     g2j["starting_location"] = {"lat" : first['current_location']['latitude'], "lng": first['current_location']['longitude']};
                     g2j["ending_location"] = {"lat" : last['current_location']['latitude'], "lng": last['current_location']['longitude']};
-                    g2j["sender"] = {"sender": first['sender']};
+                    g2j["sender"] = first['sender'];
                     g2j["waypoints"] = first['waypoints'];
+
                     var batt  = first['battery_life']-last['battery_life'];
-                    g2j["battery_consumption"] = {"battery_consumption": batt + "%"};
+                    var totaltime = last['created'] - first ['created'];
+
+                    g2j["timetotal"] = thetime(totaltime);
+                    g2j["battery_consumption"] = batt + "%";
+
+                    g2j["speed"] = getAverageSpeed(data)+" mph";
+                    var newDate = first['created'].toDateString();
+                    g2j["date"] = newDate;
                     callback(g2j);
                 }
             });
         });
+
         socket.on('carry:chages:start', function(data){
             var filter = data.filter || {};
             r.table('wheres_carry').orderBy({index: r.desc('created')})
@@ -77,6 +98,30 @@ function setup(io){
         });
     });
 
+}
+
+
+function thetime(s){
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var secs = s % 60;
+        s = (s - secs) / 60;
+        var mins = s % 60;
+        var hrs = (s - mins) / 60;
+
+        return hrs + ':' + mins + ':' + secs + '.' + ms;
+}
+
+function getAverageSpeed(dataobj){
+    var s = 0;
+    var count = 0;
+    for(var i=0; i<dataobj.length; i++)
+    {
+        s+=dataobj[i]['speed'];
+        count++;
+    }
+    s= s/count;
+    return s;
 }
 
 module.exports = {

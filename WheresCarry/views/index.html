@@ -11,7 +11,7 @@
 		<title>Where's Carry</title>                <!--title-->
 		<meta name="description" content="">
 		<meta name="author" content="FroZilla">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="viewport" content="width=device-width initial-scale=1.0">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
               integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -65,17 +65,43 @@
             </div>
 
 			<!------------------------------------------- Carry Data -------------------------------------------->
-			<div class="well well-lg">
-				<table id ="table" border="1">
-					<!-- Hogan Code -->
-					<tr><td>Latitude</td><td id = "latval">{{carry_data_current.current_location.lattitude}}</td></tr>
-					<tr><td>Longtitude</td><td id="longval">{{carry_data_current.current_location.longitude}}</td></tr>
-					<tr><td>Speed</td><td id="speedval">{{carry_data_current.speed}}</td></tr>
-					<tr><td>Elevation</td><td id="eleval">{{carry_data_current.current_location.elevation}}</td></tr>
-				</table>
-                <span id="start_address"></span>
-                <span id="end_address"></span>
-			</div>
+            <div class="row" id="information_container">
+                <div class="col-xs-6 col-md-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Starting Location</h3>
+                        </div>
+                        <div class="panel-body">
+                            <span id="start_address"></span>
+                        </div>
+                    </div>
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">End Location</h3>
+                        </div>
+                        <div class="panel-body">
+                            <span id="end_address"></span>
+                        </div>
+                    </div>
+                </div><!-- /.col-sm-4 -->
+                <!-- Table -->
+                <div class="col-xs-12 col-sm-6 col-md-8">
+                    <table class="table table-bordered table-hover" id="table_body">
+
+                    </table>
+                </div>
+            </div>
+			<!--<div class="well well-lg">-->
+				<!--<table id ="table" border="1">-->
+					<!--&lt;!&ndash; Hogan Code &ndash;&gt;-->
+					<!--<tr><td>Latitude</td><td id = "latval">{{carry_data_current.current_location.lattitude}}</td></tr>-->
+					<!--<tr><td>Longtitude</td><td id="longval">{{carry_data_current.current_location.longitude}}</td></tr>-->
+					<!--<tr><td>Speed</td><td id="speedval">{{carry_data_current.speed}}</td></tr>-->
+					<!--<tr><td>Elevation</td><td id="eleval">{{carry_data_current.current_location.elevation}}</td></tr>-->
+				<!--</table>-->
+                <!--<span id="start_address"></span>-->
+                <!--<span id="end_address"></span>-->
+			<!--</div>-->
 			<!------------------------------------------- Carry Data END -------------------------------------------->
 
             <footer>

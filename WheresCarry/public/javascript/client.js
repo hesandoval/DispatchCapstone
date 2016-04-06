@@ -4,6 +4,7 @@ socket.emit('carry:getFleet',function(err,data){
     if(err){
         console.log(err);
     }else{
+
         data = {'stuff' : data};
         var template = '{{ #stuff }}<li class="carry_id"><a>{{ carry_data_current.sender }}</a></li>{{ /stuff }}';
         var html = Mustache.to_html(template, data);
@@ -22,18 +23,8 @@ $("#fleet_select").on("click",".carry_id", function(event){
         if(err){
             console.log(JSON.stringify(err));
         }else{
-            var values = {};
-            for (var index in data){
-                if(data[index]["carry_data_current"]["trip_id"] in values){
-                    values[data[index]["carry_data_current"]["trip_id"]] = true;
-                }else {
-                    values[data[index]["carry_data_current"]["trip_id"]] = false;
-                }
-            }
-            var view = {values:[]};
-            for (var index in values){
-                view['values'].push({trip_id:index, finished:values[index]})
-            }
+
+            var view = {values:data};
             var b2 = $("#dropdownMenu2")[0];
             b2.innerHTML = "Select One <span class='caret'></span>";
             $("#dropdown_trip_select").css("visibility", "visible");
@@ -41,6 +32,20 @@ $("#fleet_select").on("click",".carry_id", function(event){
             var html = Mustache.to_html(template, view);
             $("#trip_select").html(html);
             button.innerHTML = fleet + "<span class='caret'></span>"
+        }
+    });
+    socket.emit('carry:findLiveTripsByCarryID', fleet, function(err, data){
+        if(err){
+            console.log(err);
+        }else{
+            if(data.length > 0){
+                var view = {values: data};
+                var template = "<li role=\"separator\" class=\"divider\"></li>" +
+                    "{{ #values }}<li><a>{{trip_id}}</a></li> {{/values}}"
+                var html = html = Mustache.to_html(template, view);
+                $("#trip_select").append(html);
+            }
+
         }
 
     });
@@ -68,17 +73,34 @@ $("#trip_select").on("click", ".trip_id", function(event){
         path.setMap(window.map);
         setBounds();
         button.innerHTML = tripID + "<span class='caret'></span>";
-        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" );
+        //"<table><tr><td>"+getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address" )+"</td></tr>";
+        //"<tr><td>" + getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address")+"</td></tr></table>";
+        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
+        fillTable(data);
+        $("#information_container").css("visibility", "visible");
     });
 
 });
+function fillTable(data){
+    var table = $("#table_body");
+    var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
+        "<th>Battery Consumption</th></tr></thead>";
+    table.html(header);
+    var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
+        "<td>{{battery_consumption}}</td></tr>";
+    var html = Mustache.to_html(body, data);
+    table.append(html);
+}
+
 function getAddress(lat, lng, tagID){
     $.get(getReverseGeocodeLink(lat,lng), function(result){
         if(result['results'][0]["formatted_address"]){
             var startingAddress = result['results'][0]["formatted_address"];
             console.log(startingAddress);
             $("#"+tagID).html(startingAddress);
+            $("#"+tagID).css("visibility", "visible");
+
         }
     });
 }
@@ -93,6 +115,7 @@ function createMarker(color, title, latlng){
     addMarker(marker);
     return marker;
 }
+
 function addMarker(marker){
     marker.setMap(window.map);
     window.markers.push(marker);
@@ -130,8 +153,15 @@ function defaultMap(){
     window.map.setCenter(window.defaultCenter);
     window.map.setZoom(18);
     removeMarkers();
+    removeTags("start_address");
+    removeTags("end_address");
+    $("#information_container").css("visibility", "hidden");
 }
 function getReverseGeocodeLink(lat, lng){
     return "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng
         +"&key=AIzaSyDLUq8w6E3L-X6P_KrPcbvGW23AL3s_XW0"
+}
+function removeTags(tagID){
+    $("#"+tagID).html("");
+    $("#"+tagID).css("visibility", "hidden");
 }

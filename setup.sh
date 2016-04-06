@@ -33,6 +33,7 @@ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo apt-get install -y npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
+sudo npm install forever -g
 
 #rethinkDB setup
 source /etc/lsb-release && echo "deb http://download.rethinkdb.com/apt $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
