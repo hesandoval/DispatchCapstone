@@ -67,8 +67,9 @@ if __name__ == "__main__":
             data = message.value
             if args.with_db:
             #run with database
-                data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
-                data['carry_data_current']['created'] = dateutil.parser.parse(data['carry_data_current']['created'])
+                if("carry_data_current" in data.keys()):
+                    data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
+                    data['carry_data_current']['created'] = dateutil.parser.parse(data['carry_data_current']['created'])
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
