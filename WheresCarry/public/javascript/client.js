@@ -74,6 +74,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
                 path.setMap(window.map);
             }
         });
+        socket.emit('carry:getPhotographsByTripID', tripID, function(err, data){});
         setBounds();
         button.innerHTML = tripID + "<span class='caret'></span>";
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");

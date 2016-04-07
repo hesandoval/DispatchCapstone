@@ -41,6 +41,17 @@ function setup(io){
                 .distinct()
                 .run(callback)
         });
+        socket.on('carry:getPhotographsByTripID', function(tripID, callback){
+            r.table('wheres_carry')("carry_data_current")
+                .filter({'trip_id':tripID})
+                .pluck(["photograph",'current_location', 'created'])
+                .filter(function(doc){
+                    return doc('photograph').count().gt(0);
+                })
+                .run(function(err, data){
+                    
+                });
+        });
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
             r.table("wheres_carry")("carry_data_current").filter({"trip_id":tripID})
                 .orderBy("created").run(function(err, data){
