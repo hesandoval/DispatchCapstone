@@ -3,6 +3,7 @@ var r = require("./rethink");
 
 function setup(io){
 
+    //
     io.on("connection", function(socket) {
         console.log("User connected to the page");
         socket.on("carry:getFleet", function(callback){
@@ -55,7 +56,7 @@ function setup(io){
         });
 
         /*
-        Once a user specifies which tripID they would like to serach,
+        Once a user specifies which tripID they would like to search,
         this fetches all the details for that trip.
          */
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
@@ -74,14 +75,17 @@ function setup(io){
 
                     var batt  = first['battery_life']-last['battery_life']; //takes the starting battery life % and the ending %,
                                                                             // subtracts ending from start to show how much battery life was used over the course of the trip
-                    var totaltime = last['created'] - first ['created'];
-                    g2j["start"] = first['created'].toTimeString(); //creates a time object for when the trip started. time should default to user's time zone
-                    g2j["timetotal"] = thetime(totaltime);
                     g2j["battery_consumption"] =batt + "%";
                     g2j["battery_remaining"] = last['battery_life']+"%";
 
+                    g2j["start"] = first['created'].toTimeString(); //creates a time object for when the trip started. time should default to user's time zone
+
+                    var totaltime = last['created'] - first ['created']; //takes the ending time and subtracts the beginning time to get totaltime in milliseconds
+                    g2j["timetotal"] = thetime(totaltime); //send the totaltime variable (in milliseconds) to a function to return it in hours, minutes, seconds, and ms
+
                     g2j["speed"] = getAverageSpeed(data)+" mph";
-                    var newDate = first['created'].toDateString();
+
+                    var newDate = first['created'].toDateString(); //creates a date object to retrieve the day in which the trip was started
                     g2j["date"] = newDate;
                     callback(g2j);
                 }
@@ -126,7 +130,7 @@ function setup(io){
 
 }
 
-//takes a milisecond input and converts it into to hours, minutes, seconds, and ms.
+//takes a millisecond input and converts it into to hours, minutes, seconds, and ms.
 function thetime(s){
         var ms = s % 1000;
         s = (s - ms) / 1000;
