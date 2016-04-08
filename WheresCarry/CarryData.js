@@ -1,5 +1,5 @@
 var r = require("./rethink");
-
+//set to require rethinkdb to connect to our database
 
 function setup(io){
 
