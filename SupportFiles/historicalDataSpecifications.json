@@ -15,6 +15,7 @@
     "speed": "2.0",
     "date": "",
     "battery_consumption": 0.00,
+    "battery_remaining": 0.00,
                 "waypoints": [
                 {
                     "latitude": 37.642714,

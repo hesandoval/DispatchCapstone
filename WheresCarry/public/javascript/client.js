@@ -99,10 +99,11 @@ $("#trip_select").on("click", ".trip_id", function(event){
 function fillTable(data){
     var table = $("#table_body");
     var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Date</th><th>Start Time</th><th>Duration</th><th>Average Speed</th>" +
-        "<th>Battery Consumption</th></tr></thead>";
+        "<th>Battery Consumption</th><th>Battery Remaining</th></tr></thead>";
     table.html(header);
     var body = "<tr><td>{{date}}</td><td>{{start}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
-        "<td>{{battery_consumption}}</td></tr>";
+        "<td>{{battery_consumption}}</td>" +
+        "<td>{{battery_remaining}}</td></tr>";
     var html = Mustache.to_html(body, data);
     table.append(html);
 }
