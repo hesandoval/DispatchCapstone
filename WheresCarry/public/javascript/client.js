@@ -38,8 +38,8 @@ $("#fleet_select").on("click",".carry_id", function(event){
         }else{
             if(data.length > 0){
                 var view = {values: data};
-                var template = "<li role=\"separator\" class=\"divider\"></li>" +
-                    "{{ #values }}<li><a>{{trip_id}}</a></li> {{/values}}";
+                var template = "<ul id=\"light_slider\"><li role=\"separator\" class=\"divider\"></li>" +
+                    "{{ #values }}<li><a>{{trip_id}}</a></li> {{/values}}</ul>";
                 var html = html = Mustache.to_html(template, view);
                 $("#trip_select").append(html);
             }
@@ -84,16 +84,20 @@ $("#trip_select").on("click", ".trip_id", function(event){
                     data[index]['url'] = urlCreator.createObjectURL( blob );
                 }
                 data = {values : data};
-                var view = "{{#values}}<li data-thumb=\"{{url}}\"><img src=\"{{url}}\"/></li>{{/values}}";
+                var view = "{{#values}}<li data-thumb=\"{{url}}\" class=\"slideshow_li\">" +
+                    "<img class=\"slideshow_img\" src=\"{{url}}\"/>" +
+                    "</li>{{/values}}";
                 var html = Mustache.to_html(view, data);
-                var lightslider = $("#light_slider");
+                var lightslider = $("#slideshow_container");
                 lightslider.html(html);
                 lightslider.lightSlider({
-                    gallery: true,
-                    item: 1,
-                    loop: true,
-                    slideMargin: 0,
-                    thumbItem: 9
+                    gallery:true,
+                    item:1,
+                    vertical:true,
+                    verticalHeight:295,
+                    vThumbWidth:50,
+                    thumbMargin:4,
+                    slideMargin:0
                 });
 
                 //var img = $("#some_image");
@@ -148,6 +152,7 @@ function addMarker(marker){
     window.markers.push(marker);
 }
 function removeMarkers(){
+    $("#slidshow_container").html("");
     if(window.path){
         window.path.setMap(null);
     }
