@@ -3,7 +3,7 @@ var r = require("./rethink");
 
 function setup(io){
 
-    //
+    //retrieve a list of all distinct Carry bots
     io.on("connection", function(socket) {
         console.log("User connected to the page");
         socket.on("carry:getFleet", function(callback){
@@ -13,7 +13,7 @@ function setup(io){
                 .run(callback)
         });
 
-        //
+        //checks to see if a specific trip is completed
         socket.on('carry:findTripsByCarryID', function(sender, callback){
             r.table('wheres_carry')("carry_data_current")
                 .orderBy(r.desc('created'))
@@ -23,7 +23,7 @@ function setup(io){
                 .run(callback);
         });
 
-        //
+        //checks to make sure that a specific trip has yet to complete and is still in progress
         socket.on('carry:findLiveTripsByCarryID', function(sender, callback){
             r.table('wheres_carry')("carry_data_current")
                 .orderBy(r.desc('created'))
@@ -35,7 +35,7 @@ function setup(io){
                          .pluck(["trip_id"]).contains(doc).not();}).run(callback)
         });
 
-        //
+        //retrieves only DISTINCT waypoints from databse to draw the line in which Carry is travelling
         socket.on("carry:getWaypointsByTripID", function(tripID, callback){
             r.table('wheres_carry')("carry_trip")
                 .filter({'trip_id':tripID})
@@ -44,7 +44,7 @@ function setup(io){
                 .run(callback)
         });
 
-        //
+        //retrieves the photo from the database to send to the frontend
         socket.on('carry:getPhotographsByTripID', function(tripID, callback){
             r.table('wheres_carry')("carry_data_current")
                 .filter({'trip_id':tripID})
@@ -92,8 +92,8 @@ function setup(io){
             });
         });
 
-        //
-        socket.on('carry:chages:start', function(data){
+        //intended to be live route tracking
+        socket.on('carry:changes:start', function(data){
             var filter = data.filter || {};
             r.table('wheres_carry').orderBy({index: r.desc('created')})
                 .filter(filter).changes().run({cursor: true}, handleChange);
