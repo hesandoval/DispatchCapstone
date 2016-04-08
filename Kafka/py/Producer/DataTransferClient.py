@@ -1,12 +1,16 @@
+"""
+Module data transfer client used to transfer the consumed
+messages to and from the database
+"""
 from __future__ import print_function
 import time
 import socket as socket
 import json
 import random
 import sys
-import msgpack
 import glob
 import os
+import msgpack
 
 
 __author__ = 'Edgar Sandoval'
@@ -17,7 +21,7 @@ MESSAGESDIRECTORY = "SupportFiles/messages/*.json"
 PHOTOSDIRECTORY = "SupportFiles/photos/"
 SERVER_PORT = os.environ.get('SERVER_PORT') or 9999
 
-def addPhoto(dispatchDict, pictureFiles):
+def add_photo(dispatchDict, pictureFiles):
     """
     Adds a random folder to the python dictionary
     @param dispatchDict: - json object representation of a single Carry message
@@ -32,12 +36,6 @@ def addPhoto(dispatchDict, pictureFiles):
 
 
 if __name__ == "__main__":
-    """
-    Pattern matching -- glob is used to match list of files that match a certain pattern
-    This is how data is transfered using the DataTransferClient.py
-    Photos -> PHOTOSDIRECTORY
-    Json data -> MESSAGESDIRECTORY
-    """
     pictureFiles = glob.glob(PHOTOSDIRECTORY + "/*")
     for filename in glob.glob(MESSAGESDIRECTORY):
         data = []
@@ -55,9 +53,9 @@ if __name__ == "__main__":
                     clientSocket.close()
                     sys.exit(1)
                 print("Could not open socket {}".format(message))
-            if (random.uniform(0,1) < .25):
-                if("carry_data_current" in message.keys()):
-                    message = addPhoto(message, pictureFiles)
+            if random.uniform(0, 1) < .25:
+                if "carry_data_current" in message.keys():
+                    message = add_photo(message, pictureFiles)
 
             clientSocket.send(msgpack.packb(message))
             clientSocket.close()
