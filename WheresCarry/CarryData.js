@@ -48,9 +48,7 @@ function setup(io){
                 .filter(function(doc){
                     return doc('photograph').count().gt(0);
                 })
-                .run(function(err, data){
-                    
-                });
+                .run(callback);
         });
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
             r.table("wheres_carry")("carry_data_current").filter({"trip_id":tripID})

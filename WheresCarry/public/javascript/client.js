@@ -74,7 +74,19 @@ $("#trip_select").on("click", ".trip_id", function(event){
                 path.setMap(window.map);
             }
         });
-        socket.emit('carry:getPhotographsByTripID', tripID, function(err, data){});
+        socket.emit('carry:getPhotographsByTripID', tripID, function(err, data){
+            if(err){
+                console.log(err);
+            }else{
+                console.log(data[0]['photograph']);
+                var blob = new Blob( data[0]['photograph'], { type: "image/jpeg" } );
+                console.log(blob);
+                var urlCreator = window.URL || window.webkitURL;
+                var img = $("#some_image");
+                var url = urlCreator.createObjectURL( blob );
+                img[0].src = url;
+            }
+        });
         setBounds();
         button.innerHTML = tripID + "<span class='caret'></span>";
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
