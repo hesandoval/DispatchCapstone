@@ -9,6 +9,9 @@ class DispatchKafkaProducer:
     instance = None
     #TODO add functionality to pass parameters to the producer constructor
     def __init__(self):
+        """
+        Passes DispatchKafkaProducers into a KafkaProducer constructor
+        """
         if not DispatchKafkaProducer.instance:
             DispatchKafkaProducer.instance = KafkaProducer(bootstrap_servers=['localhost:9092'],
                                                            client_id='Producer1',
@@ -16,4 +19,9 @@ class DispatchKafkaProducer:
                                                            acks=1, key_serializer=None,
                                                           compression_type='gzip')
     def __getattr__(self, name):
+        """
+        Debugging use
+        @param name:
+        @return:
+        """
         return getattr(self.instance, name)
