@@ -78,13 +78,26 @@ $("#trip_select").on("click", ".trip_id", function(event){
             if(err){
                 console.log(err);
             }else{
-                console.log(data[0]['photograph']);
-                var blob = new Blob( data[0]['photograph'], { type: "image/jpeg" } );
-                console.log(blob);
                 var urlCreator = window.URL || window.webkitURL;
-                var img = $("#some_image");
-                var url = urlCreator.createObjectURL( blob );
-                img[0].src = url;
+                for (var index in data){
+                    var blob = new Blob( data[index]['photograph'], { type: "image/jpeg" } );
+                    data[index]['url'] = urlCreator.createObjectURL( blob );
+                }
+                data = {values : data};
+                var view = "{{#values}}<li data-thumb=\"{{url}}\"><img src=\"{{url}}\"/></li>{{/values}}";
+                var html = Mustache.to_html(view, data);
+                var lightslider = $("#light_slider");
+                lightslider.html(html);
+                lightslider.lightSlider({
+                    gallery: true,
+                    item: 1,
+                    loop: true,
+                    slideMargin: 0,
+                    thumbItem: 9
+                });
+
+                //var img = $("#some_image");
+                //img[0].src = url;
             }
         });
         setBounds();
@@ -92,6 +105,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
+
         $("#information_container").css("visibility", "visible");
     });
 
