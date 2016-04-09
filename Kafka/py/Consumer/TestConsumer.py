@@ -26,7 +26,6 @@ def dbSetup():
     @return: message either database being created or existing
     """
 
-    #code here
     connection = r.connect(host=RDB_HOST, port=RDB_PORT)
     try:
         r.db_create(DISPATCH_DB).run(connection)
@@ -48,14 +47,20 @@ def dbGetConnection():
 
 
 if __name__ == "__main__":
-
+    """
+    Argument parser when running TestConsumer.py
+    @param --setup (If a database isn't setup, use this argument to create one in rethinkDB)
+    @param --database (Run this argument to start consuming messages into rethinkDB
+    """
     parser = argparse.ArgumentParser(description='Run test consumer')
     parser.add_argument('--setup', dest='run_setup', action='store_true')
     parser.add_argument('--database', dest='with_db', action='store_true')
     args = parser.parse_args()
+    # Setup database
     if args.run_setup:
         dbSetup()
     else:
+        # Start creating and consuming data
         if not os.path.exists(DIRECTORY):
             os.makedirs(DIRECTORY)
 
@@ -66,7 +71,7 @@ if __name__ == "__main__":
 
             data = message.value
             if args.with_db:
-            #run with database
+                # This will run within the rethinkDB
                 if("carry_data_current" in data.keys()):
                     data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
                     data['carry_data_current']['created'] = dateutil.parser.parse(data['carry_data_current']['created'])
@@ -74,19 +79,23 @@ if __name__ == "__main__":
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
 
-
                 # Appending data and if file doesn't exist "a+" will create one
                 with open(DIRECTORY+"rethinkLog.txt", "a+") as fh:
                     fh.write(json.dumps(result))
 
                 connection.close()
-                #TODO check result for valid parameters
-                # Data logging all the data into a file called log.txt
+                # TODO check result for valid parameters
+                """
+                Data logging all the data into a file called rethinkLog.txt within Kafka/py/SupportFiles/KafkaTransfers
+                """
 
 
 
             else:
-                #run with no database
+                """
+                photoData is passed through using data[] a separate photo directory is created from this and
+                jpg's are stored here at Kafka/py/SupportFiles/photos
+                """
                 if len(data['carry_data_current']['photograph']) != 0:
                     photographData = data['carry_data_current']['photograph'][0]
                     outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
