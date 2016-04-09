@@ -68,13 +68,13 @@ for i in xrange(0, num_samples):
     carry_data_current["speed"] = speed[i]
     carry_data_current["photograph"] = []
     carry_data_current["trip_id"] = trip_id
-
+    
     if i == num_samples-1:
         carry_data_current["completed"] = True#false if less than or eqaul to num_samples - 1
     else:
-    	carry_data_current["completed"] = False    
+        carry_data_current["completed"] = False
 
-    door_status = {}
+door_status = {}
     door_status["left_open"] = False
     door_status["right_open"] = False
     carry_data_current["door_status"] = door_status
@@ -83,39 +83,36 @@ for i in xrange(0, num_samples):
     light_status["front_on"] = True
     light_status["back_on"] = True
     carry_data_current["light_status"] = light_status
-
+    
     # This is created to put into the seperate file for the waypoints
     carry_trip = {}
     carry_trip["sender"] = carry_data_current["sender"]
     carry_trip["created"] = carry_data_current["created"]
     carry_trip["trip_id"] = carry_data_current["trip_id"]
-
-
-    # So forevery tenth iteration the code will dump waypoints into a waypoints.json 
+    
+    
+    # So forevery tenth iteration the code will dump waypoints into a waypoints.json
     if i%10 == 0:
-    	carry_trip["waypoints"] = []
+        carry_trip["waypoints"] = []
         for val in zip(latitude, longitude):
             obj = {"lat":val[0], "lng":val[1]}
             carry_trip["waypoints"].append(obj)
-
+    
         trip = {}
-    	trip["carry_trip"] = carry_trip
-    	trip_list.append(trip)
+        trip["carry_trip"] = carry_trip
+        trip_list.append(trip)
+        
+        trip["carry_trip"] = carry_trip
+        trip_list.append(trip)
+        
+        trip["carry_trip"] = carry_trip
+    msg_list.append(trip)
 
-    	trip["carry_trip"] = carry_trip
-    	trip_list.append(trip)
-
-    	trip["carry_trip"] = carry_trip
-    	msg_list.append(trip)
-
-    msg = {}
+msg = {}
     msg["carry_data_current"] = carry_data_current
     msg_list.append(msg)
 
-    # trip["carry_trip"] = carry_trip
-    # msg_list.append(trip)
-
-    # Run start and end points of a trip with python ../../SupportFiles/msg-generator.py within the py directory
+# Run start and end points of a trip with python ../../SupportFiles/msg-generator.py within the py directory
 
 with open("SupportFiles/messages/messages" + trip_id + ".json", 'w') as fp:
-	json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
+    json.dump(msg_list, fp, sort_keys=True, indent=4, separators=(',', ': '))
