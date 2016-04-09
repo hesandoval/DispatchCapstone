@@ -11,9 +11,11 @@
     "trip_id": "de305d54-75b4-431b-adb2-eb6b9e546014",
     "created": "2015-05-22T14:56:29.000Z",
     "timetotal": "",
+    "start": "",
     "speed": "2.0",
     "date": "",
     "battery_consumption": 0.00,
+    "battery_remaining": 0.00,
                 "waypoints": [
                 {
                     "latitude": 37.642714,

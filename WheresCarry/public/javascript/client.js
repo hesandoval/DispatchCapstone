@@ -115,12 +115,13 @@ function fillTable(data){
     var container = $("#carry_info_container");
     var t = "<table class=\"table table-bordered table-hover\" id=\"table_body\"> </table>";
     var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
-        "<th>Battery Consumption</th></tr></thead>";
+        "<th>Battery Consumption</th><th>Battery Remaining</th></tr></thead>";
     container.html(t);
     var table = $("#table_body");
     table.html(header);
-    var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
-        "<td>{{battery_consumption}}</td></tr>";
+    var body = "<tr><td>{{date}}</td><td>{{start}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
+        "<td>{{battery_consumption}}</td>" +
+        "<td>{{battery_remaining}}</td></tr>";
     var html = Mustache.to_html(body, data);
     table.append(html);
     container.append("<div id=\"slideshow_container\"></div>");

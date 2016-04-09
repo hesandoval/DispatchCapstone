@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var http = require('http');
 var logger = require('morgan');
-var socketio =require('socket.io');
+var socketio = require('socket.io');
 var hogan = require('hogan-express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -28,6 +28,7 @@ app.use('/', routes);
 
 
 var server = http.createServer(app);
+//creates  server on specified port using html as the 'view engine'
 
 var io = socketio(server);
 
