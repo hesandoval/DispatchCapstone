@@ -1,12 +1,15 @@
+"""
+Consumer code used to consume the messages into the kafka cluster
+"""
 from __future__ import print_function
-from kafka import KafkaConsumer
-import rethinkdb as r
-import argparse
-from rethinkdb.errors import RqlRuntimeError, RqlDriverError
-import msgpack
-import dateutil.parser
 import os
 import json
+import argparse
+from kafka import KafkaConsumer
+import rethinkdb as r
+from rethinkdb.errors import RqlRuntimeError
+import msgpack
+import dateutil.parser
 
 __author__ = 'Edgar Sandoval'
 
@@ -19,7 +22,7 @@ DISPATCH_DB = 'dispatch'
 TABLE = 'wheres_carry'
 PICTURESDIRECTORY = '../../WheresCarry/public/img/'
 
-def dbSetup():
+def db_setup():
     """
     This is used to setup the database connection between the kafka consumer
     and rethinkdb. Setup should only run once but if setup is to be called
@@ -37,7 +40,7 @@ def dbSetup():
     finally:
         connection.close()
 
-def dbGetConnection():
+def db_get_connection():
     """
     Connects kafka to the database. Establish a database connection
     @return: the connection and table listed within the specific database
@@ -54,23 +57,21 @@ if __name__ == "__main__":
     parser.add_argument('--database', dest='with_db', action='store_true')
     args = parser.parse_args()
     if args.run_setup:
-        dbSetup()
+        db_setup()
     else:
         if not os.path.exists(DIRECTORY):
             os.makedirs(DIRECTORY)
 
-        myConsumer = KafkaConsumer('test_topic', value_deserializer=msgpack.unpackb,
-                                    bootstrap_servers=['localhost:9092'])
+        myConsumer = KafkaConsumer('test_topic',
+                                   value_deserializer=msgpack.unpackb,
+                                   bootstrap_servers=['localhost:9092'])
 
         for message in myConsumer:
 
             data = message.value
             if args.with_db:
             #run with database
-                if("carry_data_current" in data.keys()):
-
-                    ##Delete ~ Push the photo data into the rethinkDB as a string and not as a binary
-
+                if "carry_data_current" in data.keys():
                     data['carry_data_current']['created'] = dateutil.parser.parse\
                         (data['carry_data_current']['created'])
 
@@ -92,7 +93,7 @@ if __name__ == "__main__":
                         photolist.append(outfile)
                     data['carry_data_current']['photograph'] = photolist
                 # This will now insert the data into the rethinkdb
-                connection, table = dbGetConnection()
+                connection, table = db_get_connection()
                 result = table.insert(data).run(connection)
 
 
