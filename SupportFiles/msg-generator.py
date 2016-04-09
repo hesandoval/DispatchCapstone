@@ -20,10 +20,10 @@ parser.add_argument("latitude_end", type=float, help="latitude ending degree")
 parser.add_argument("longitude_end", type=float, help="longitude ending degree")
 args = parser.parse_args()
 
-latitude_start=args.latitude_start
-longitude_start=args.longitude_start
-latitude_end=args.latitude_end
-longitude_end=args.longitude_end
+latitude_start = args.latitude_start
+longitude_start = args.longitude_start
+latitude_end = args.latitude_end
+longitude_end = args.longitude_end
 
 
 
@@ -72,13 +72,13 @@ for i in xrange(0, num_samples):
     if i == num_samples-1:
         carry_data_current["completed"] = True#false if less than or eqaul to num_samples - 1
     else:
-    	carry_data_current["completed"] = False    
+    	carry_data_current["completed"] = False
 
     door_status = {}
     door_status["left_open"] = False
     door_status["right_open"] = False
     carry_data_current["door_status"] = door_status
-    
+
     light_status = {}
     light_status["front_on"] = True
     light_status["back_on"] = True
@@ -89,9 +89,9 @@ for i in xrange(0, num_samples):
     carry_trip["sender"] = carry_data_current["sender"]
     carry_trip["created"] = carry_data_current["created"]
     carry_trip["trip_id"] = carry_data_current["trip_id"]
+    #
 
-
-    # So forevery tenth iteration the code will dump waypoints into a waypoints.json 
+    # So forevery tenth iteration the code will dump waypoints into a waypoints.json
     if i%10 == 0:
     	carry_trip["waypoints"] = []
         for val in zip(latitude, longitude):
@@ -99,11 +99,6 @@ for i in xrange(0, num_samples):
             carry_trip["waypoints"].append(obj)
 
         trip = {}
-    	trip["carry_trip"] = carry_trip
-    	trip_list.append(trip)
-
-    	trip["carry_trip"] = carry_trip
-    	trip_list.append(trip)
 
     	trip["carry_trip"] = carry_trip
     	msg_list.append(trip)
