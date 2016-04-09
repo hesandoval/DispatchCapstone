@@ -20,10 +20,10 @@ parser.add_argument("latitude_end", type=float, help="latitude ending degree")
 parser.add_argument("longitude_end", type=float, help="longitude ending degree")
 args = parser.parse_args()
 
-latitude_start=args.latitude_start
-longitude_start=args.longitude_start
-latitude_end=args.latitude_end
-longitude_end=args.longitude_end
+latitude_start = args.latitude_start
+longitude_start = args.longitude_start
+latitude_end = args.latitude_end
+longitude_end = args.longitude_end
 
 
 
