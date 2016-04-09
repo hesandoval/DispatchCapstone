@@ -17,6 +17,7 @@ RDB_HOST = os.environ.get('RDB_HOST') or 'localhost'
 RDB_PORT = os.environ.get('RDB_PORT') or 28015
 DISPATCH_DB = 'dispatch'
 TABLE = 'wheres_carry'
+PICTURESDIRECTORY = '../../WheresCarry/public/img/'
 
 def dbSetup():
     """
@@ -67,8 +68,29 @@ if __name__ == "__main__":
             if args.with_db:
             #run with database
                 if("carry_data_current" in data.keys()):
-                    data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
-                    data['carry_data_current']['created'] = dateutil.parser.parse(data['carry_data_current']['created'])
+
+                    ##Delete ~ Push the photo data into the rethinkDB as a string and not as a binary
+
+                    data['carry_data_current']['created'] = dateutil.parser.parse\
+                        (data['carry_data_current']['created'])
+
+                    # Getting the trip ID for the photo here
+                    trip_id = data['carry_data_current']['trip_id']
+                    timestamp = str(data['carry_data_current']['created'])
+
+                    # Appending photodata into a file where trip_id will be the title of photo
+                    photoData = data['carry_data_current']['photograph']
+                    if not os.path.exists(PICTURESDIRECTORY + trip_id):
+                        os.makedirs(PICTURESDIRECTORY + trip_id + "/")
+
+                    photolist = []
+                    for i, d in enumerate(data['carry_data_current']['photograph']):
+                        outfile = trip_id + "/" + timestamp + "_" + str(i) + ".jpg"
+                        with open(PICTURESDIRECTORY + outfile, "wb") as fh:
+                            fh.write(d)
+                        outfile = "/img/" + outfile
+                        photolist.append(outfile)
+                    data['carry_data_current']['photograph'] = photolist
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
                 result = table.insert(data).run(connection)
@@ -79,16 +101,13 @@ if __name__ == "__main__":
                     fh.write(json.dumps(result))
 
                 connection.close()
-                #TODO check result for valid parameters
-                # Data logging all the data into a file called log.txt
-
 
 
             else:
                 #run with no database
                 if len(data['carry_data_current']['photograph']) != 0:
                     photographData = data['carry_data_current']['photograph'][0]
-                    outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
+                    outfile = "%s_%d_%d.jpg" % (message.topic, message.partition, message.offset)
                     with open(DIRECTORY+outfile, "wb") as fh:
                         fh.write(photographData)
                 else:
