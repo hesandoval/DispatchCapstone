@@ -88,6 +88,10 @@ $("#trip_select").on("click", ".trip_id", function(event){
                     var blob = new Blob( data[index]['photograph'], { type: "image/jpeg" } );
                     data[index]['url'] = urlCreator.createObjectURL( blob );
                 }
+                $.each(data, function(index, value){
+                    delete value["current_location"]['elevation'];
+                    createMarker(null, "camera", value["current_location"]);
+                });
                 data = {values : data};
                 var view = "{{#values}}<li data-thumb=\"{{url}}\" class=\"slideshow_li\">" +
                     "<img class=\"slideshow_img\" src=\"{{url}}\"/>" +
@@ -104,6 +108,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
                     thumbMargin:4,
                     slideMargin:0
                 });
+
             }
         });
         button.innerHTML = tripID + "<span class='caret'></span>";
@@ -137,17 +142,6 @@ function getAddress(lat, lng, tagID){
         }
     });
 }
-function createMarker(color, title, latlng){
-    var options = getMarkerOptions(color);
-    var marker = new google.maps.Marker({
-        position: latlng,
-        title: title,
-        icon: options['image'],
-        shadow: options['shadow']
-    });
-    addMarker(marker);
-    return marker;
-}
 
 function addMarker(marker){
     marker.setMap(window.map);
@@ -162,7 +156,21 @@ function removeMarkers(){
     });
     window.markers = [];
 }
+function createMarker(color, title, latlng){
+
+    var options = getMarkerOptions(color);
+    var marker = new google.maps.Marker({
+        position: latlng,
+        title: title,
+        icon: (color === null) ? "http://twemoji.maxcdn.com/16x16/1f4f7.png" : options['image'],
+        shadow: options['shadow']
+    });
+    addMarker(marker);
+    return marker;
+}
 function getMarkerOptions(color) {
+
+
     var pinColor = color;
     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
         new google.maps.Size(21, 34),
