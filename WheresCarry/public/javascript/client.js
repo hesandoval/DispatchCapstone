@@ -38,8 +38,8 @@ $("#fleet_select").on("click",".carry_id", function(event){
         }else{
             if(data.length > 0){
                 var view = {values: data};
-                var template = "<ul id=\"light_slider\"><li role=\"separator\" class=\"divider\"></li>" +
-                    "{{ #values }}<li><a>{{trip_id}}</a></li> {{/values}}</ul>";
+                var template = "<li role=\"separator\" class=\"divider\"></li>" +
+                    "{{ #values }}<li><a>{{trip_id}}</a></li> {{/values}}";
                 var html = html = Mustache.to_html(template, view);
                 $("#trip_select").append(html);
             }
@@ -74,6 +74,11 @@ $("#trip_select").on("click", ".trip_id", function(event){
                 path.setMap(window.map);
             }
         });
+        setBounds();
+
+        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
+        getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
+        fillTable(data);
         socket.emit('carry:getPhotographsByTripID', tripID, function(err, data){
             if(err){
                 console.log(err);
@@ -99,30 +104,26 @@ $("#trip_select").on("click", ".trip_id", function(event){
                     thumbMargin:4,
                     slideMargin:0
                 });
-
-                //var img = $("#some_image");
-                //img[0].src = url;
             }
         });
-        setBounds();
         button.innerHTML = tripID + "<span class='caret'></span>";
-        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
-        getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
-        fillTable(data);
-
         $("#information_container").css("visibility", "visible");
     });
 
 });
 function fillTable(data){
-    var table = $("#table_body");
+    var container = $("#carry_info_container");
+    var t = "<table class=\"table table-bordered table-hover\" id=\"table_body\"> </table>";
     var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
         "<th>Battery Consumption</th></tr></thead>";
+    container.html(t);
+    var table = $("#table_body");
     table.html(header);
     var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
         "<td>{{battery_consumption}}</td></tr>";
     var html = Mustache.to_html(body, data);
     table.append(html);
+    container.append("<div id=\"slideshow_container\"></div>");
 }
 
 function getAddress(lat, lng, tagID){
@@ -152,7 +153,6 @@ function addMarker(marker){
     window.markers.push(marker);
 }
 function removeMarkers(){
-    $("#slidshow_container").html("");
     if(window.path){
         window.path.setMap(null);
     }
