@@ -10,10 +10,10 @@ function setup(io){
     io.on("connection", function(socket) {
         console.log("User connected to the page");
         socket.on("carry:getFleet", function(callback){
-            r.table("wheres_carry")
-                .pluck({carry_data_current: "sender"})
+            r.table("wheres_carry")("carry_data_current")
+                .pluck("sender")
                 .distinct()
-                .run(callback);
+                .run(callback)
         });
 
         socket.on('carry:findTripsByCarryID', function(sender, callback){
@@ -34,6 +34,22 @@ function setup(io){
                          .filter({"sender": sender, "completed":true})
                          .pluck(["trip_id"]).contains(doc).not();}).run(callback)
         });
+        socket.on("carry:getWaypointsByTripID", function(tripID, callback){
+            r.table('wheres_carry')("carry_trip")
+                .filter({'trip_id':tripID})
+                .pluck('waypoints')
+                .distinct()
+                .run(callback)
+        });
+        socket.on('carry:getPhotographsByTripID', function(tripID, callback){
+            r.table('wheres_carry')("carry_data_current")
+                .filter({'trip_id':tripID})
+                .pluck(["photograph",'current_location', 'created'])
+                .filter(function(doc){
+                    return doc('photograph').count().gt(0);
+                })
+                .run(callback);
+        });
         socket.on("carry:tripDetailsByTripID", function(tripID, callback){
             r.table("wheres_carry")("carry_data_current").filter({"trip_id":tripID})
                 .orderBy("created").run(function(err, data){
@@ -44,10 +60,9 @@ function setup(io){
                     var first = data[0];
                     var last = data[data.length - 1];
                     var g2j = {};
-                    g2j["starting_location"] = {"lat" : first['current_location']['latitude'], "lng": first['current_location']['longitude']};
-                    g2j["ending_location"] = {"lat" : last['current_location']['latitude'], "lng": last['current_location']['longitude']};
+                    g2j["starting_location"] = {"lat" : first['current_location']['lat'], "lng": first['current_location']['lng']};
+                    g2j["ending_location"] = {"lat" : last['current_location']['lat'], "lng": last['current_location']['lng']};
                     g2j["sender"] = first['sender'];
-                    g2j["waypoints"] = first['waypoints'];
 
                     var batt  = first['battery_life']-last['battery_life'];
                     var totaltime = last['created'] - first ['created'];
