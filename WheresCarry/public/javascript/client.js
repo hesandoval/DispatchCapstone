@@ -75,23 +75,56 @@ $("#trip_select").on("click", ".trip_id", function(event){
             }
         });
         setBounds();
-        button.innerHTML = tripID + "<span class='caret'></span>";
+
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
+        socket.emit('carry:getPhotographsByTripID', tripID, function(err, data){
+            if(err){
+                console.log(err);
+            }else{
+                var urlCreator = window.URL || window.webkitURL;
+                for (var index in data){
+                    var blob = new Blob( data[index]['photograph'], { type: "image/jpeg" } );
+                    data[index]['url'] = urlCreator.createObjectURL( blob );
+                }
+                data = {values : data};
+                var view = "{{#values}}<li data-thumb=\"{{url}}\" class=\"slideshow_li\">" +
+                    "<img class=\"slideshow_img\" src=\"{{url}}\"/>" +
+                    "</li>{{/values}}";
+                var html = Mustache.to_html(view, data);
+                var lightslider = $("#slideshow_container");
+                lightslider.html(html);
+                lightslider.lightSlider({
+                    gallery:true,
+                    item:1,
+                    vertical:true,
+                    verticalHeight:295,
+                    vThumbWidth:50,
+                    thumbMargin:4,
+                    slideMargin:0
+                });
+            }
+        });
+        button.innerHTML = tripID + "<span class='caret'></span>";
         $("#information_container").css("visibility", "visible");
     });
 
 });
 function fillTable(data){
-    var table = $("#table_body");
+    var container = $("#carry_info_container");
+    var t = "<table class=\"table table-bordered table-hover\" id=\"table_body\"> </table>";
     var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
-        "<th>Battery Consumption</th></tr></thead>";
+        "<th>Battery Consumption</th><th>Battery Remaining</th></tr></thead>";
+    container.html(t);
+    var table = $("#table_body");
     table.html(header);
-    var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
-        "<td>{{battery_consumption}}</td></tr>";
+    var body = "<tr><td>{{date}}</td><td>{{start}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
+        "<td>{{battery_consumption}}</td>" +
+        "<td>{{battery_remaining}}</td></tr>";
     var html = Mustache.to_html(body, data);
     table.append(html);
+    container.append("<div id=\"slideshow_container\"></div>");
 }
 
 function getAddress(lat, lng, tagID){
