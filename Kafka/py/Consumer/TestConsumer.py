@@ -47,11 +47,6 @@ def dbGetConnection():
 
 
 if __name__ == "__main__":
-    """
-    Argument parser when running TestConsumer.py
-    @param --setup (If a database isn't setup, use this argument to create one in rethinkDB)
-    @param --database (Run this argument to start consuming messages into rethinkDB
-    """
     parser = argparse.ArgumentParser(description='Run test consumer')
     parser.add_argument('--setup', dest='run_setup', action='store_true')
     parser.add_argument('--database', dest='with_db', action='store_true')
@@ -73,7 +68,9 @@ if __name__ == "__main__":
             if args.with_db:
                 # This will run within the rethinkDB
                 if("carry_data_current" in data.keys()):
-                    data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
+                    # data['carry_data_current']['photograph'] = [r.binary(d) for d in data['carry_data_current']['photograph']]
+                    data['carry_data_current']['photograph'] = [r.binary(d) for d in
+                                                                data['carry_data_current']['photograph']]
                     data['carry_data_current']['created'] = dateutil.parser.parse(data['carry_data_current']['created'])
                 # This will now insert the data into the rethinkdb
                 connection, table = dbGetConnection()
@@ -84,18 +81,8 @@ if __name__ == "__main__":
                     fh.write(json.dumps(result))
 
                 connection.close()
-                # TODO check result for valid parameters
-                """
-                Data logging all the data into a file called rethinkLog.txt within Kafka/py/SupportFiles/KafkaTransfers
-                """
-
-
 
             else:
-                """
-                photoData is passed through using data[] a separate photo directory is created from this and
-                jpg's are stored here at Kafka/py/SupportFiles/photos
-                """
                 if len(data['carry_data_current']['photograph']) != 0:
                     photographData = data['carry_data_current']['photograph'][0]
                     outfile = "%s_%d_%d.jpg" % (message.topic, message.partition,message.offset)
