@@ -115,7 +115,7 @@ function fillTable(data){
     var container = $("#carry_info_container");
     var t = "<table class=\"table table-bordered table-hover\" id=\"table_body\"> </table>";
     var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
-        "<th>Battery Consumption</th></tr></thead>";
+        "<th>Battery Consumption</th><th>Battery Remaining</th></tr></thead>";
     container.html(t);
     var table = $("#table_body");
     table.html(header);
