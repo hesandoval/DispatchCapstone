@@ -90,7 +90,7 @@ if __name__ == "__main__":
                         with open(PICTURESDIRECTORY + outfile, "wb") as fh:
                             fh.write(d)
                         outfile = "/img/" + outfile
-                        photolist.append(outfile)
+                        photolist.append({'url': outfile})
                     data['carry_data_current']['photograph'] = photolist
                 # This will now insert the data into the rethinkdb
                 connection, table = db_get_connection()

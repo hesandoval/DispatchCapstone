@@ -39,7 +39,7 @@ $("#fleet_select").on("click",".carry_id", function(event){
             if(data.length > 0){
                 var view = {values: data};
                 var template = "<li role=\"separator\" class=\"divider\"></li>" +
-                    "{{ #values }}<li><a>{{trip_id}}</a></li> {{/values}}";
+                    "{{ #values }}<li class='trip_id_live'><a>{{trip_id}}<span class='glyphicon glyphicon-play'></span></a></li> {{/values}}";
                 var html = html = Mustache.to_html(template, view);
                 $("#trip_select").append(html);
             }
@@ -60,62 +60,69 @@ $("#trip_select").on("click", ".trip_id", function(event){
         var startMarker = createMarker(startColor,"Start", data['starting_location']);
         var endColor = "FE7569";
         var endMarker = createMarker(endColor,"End", data['ending_location']);
-        socket.emit("carry:getWaypointsByTripID", tripID, function(err, data){
-            if(err){
-                console.log(err)
-            }else{
-                window.path = new google.maps.Polyline({
-                    path: data[0]['waypoints'],
-                    geodesic: true,
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 1.0,
-                    strokeWeight: 2
-                });
-                path.setMap(window.map);
-            }
-        });
+        socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
         setBounds();
 
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
-        socket.emit('carry:getPhotographsByTripID', tripID, function(err, data){
-            if(err){
-                console.log(err);
-            }else{
-                var urlCreator = window.URL || window.webkitURL;
-                for (var index in data){
-                    var blob = new Blob( data[index]['photograph'], { type: "image/jpeg" } );
-                    data[index]['url'] = urlCreator.createObjectURL( blob );
-                }
-                $.each(data, function(index, value){
-                    delete value["current_location"]['elevation'];
-                    createMarker(null, "camera", value["current_location"]);
-                });
-                data = {values : data};
-                var view = "{{#values}}<li data-thumb=\"{{url}}\" class=\"slideshow_li\">" +
-                    "<img class=\"slideshow_img\" src=\"{{url}}\"/>" +
-                    "</li>{{/values}}";
-                var html = Mustache.to_html(view, data);
-                var lightslider = $("#slideshow_container");
-                lightslider.html(html);
-                lightslider.lightSlider({
-                    gallery:true,
-                    item:1,
-                    vertical:true,
-                    verticalHeight:295,
-                    vThumbWidth:50,
-                    thumbMargin:4,
-                    slideMargin:0
-                });
-
-            }
-        });
+        socket.emit('carry:getPhotographsByTripID', tripID, displayPictureData);
         button.innerHTML = tripID + "<span class='caret'></span>";
         $("#information_container").css("visibility", "visible");
     });
 
 });
+$("#trip_select").on("click", ".trip_id_live", function(event){
+    removeMarkers();
+    var tripID = event.target.innerText;
+    var button = $("#dropdownMenu2")[0];
+    button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
+    socket.emit("carry:changes:start", tripID)
+
+});
+
+function plotPathline(err, data){
+    if(err){
+        console.log(err)
+    }else{
+        window.path = new google.maps.Polyline({
+            path: data[0]['waypoints'],
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        path.setMap(window.map);
+    }
+}
+function displayPictureData(err, data){
+    if(err){
+        console.log(err);
+    }else{
+        $.each(data, function(index, value){
+            delete value["current_location"]['elevation'];
+            createMarker(null, "camera", value["current_location"]);
+
+        });
+        data = {values : data};
+        var view = "{{#values}}{{#photograph}}<li data-thumb=\"{{url}}\" class=\"slideshow_li\">" +
+            "<img class=\"slideshow_img\" src=\"{{url}}\"/>" +
+            "</li>{{/photograph}}{{/values}}";
+        var html = Mustache.to_html(view, data);
+        var lightslider = $("#slideshow_container");
+        lightslider.html(html);
+        lightslider.lightSlider({
+            gallery:true,
+            item:1,
+            vertical:true,
+            verticalHeight:295,
+            vThumbWidth:50,
+            thumbMargin:4,
+            slideMargin:0
+        });
+
+    }
+}
 function fillTable(data){
     var container = $("#carry_info_container");
     var t = "<table class=\"table table-bordered table-hover\" id=\"table_body\"> </table>";
