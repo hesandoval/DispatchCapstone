@@ -93,10 +93,14 @@ function setup(io){
         });
 
         //intended to be live route tracking
-        socket.on('carry:changes:start', function(data){
-            var filter = data.filter || {};
-            r.table('wheres_carry').orderBy({index: r.desc('created')})
-                .filter(filter).changes().run({cursor: true}, handleChange);
+        socket.on('carry:changes:start', function(tripID){
+            var filter = {trip_id: tripID};
+
+            r.table('wheres_carry')("carry_data_current")
+                .table("wheres_carry")("carry_data_current")
+                .filter(filter)
+                .changes()
+                .run({cursor: true}, handleChange);
 
             function handleChange(error, cursor){
                 if (error){

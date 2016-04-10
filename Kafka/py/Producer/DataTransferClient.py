@@ -32,12 +32,6 @@ def addPhoto(dispatchDict, pictureFiles):
 
 
 if __name__ == "__main__":
-    """
-    Pattern matching -- glob is used to match list of files that match a certain pattern
-    This is how data is transfered using the DataTransferClient.py
-    Photos -> PHOTOSDIRECTORY
-    Json data -> MESSAGESDIRECTORY
-    """
     pictureFiles = glob.glob(PHOTOSDIRECTORY + "/*")
     for filename in glob.glob(MESSAGESDIRECTORY):
         data = []
