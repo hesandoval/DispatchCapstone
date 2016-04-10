@@ -7,6 +7,10 @@ __author__ = 'Edgar Sandoval'
 
 class TCPSocketHandler(SocketServer.BaseRequestHandler):
     def handle(self):
+        """
+        TCP socket handler function that handles request received to pass through data
+        @return: data
+        """
         kafkaProducer = DispatchSingletonProducer.DispatchKafkaProducer()
         totalData = []
         print("{} wrote:".format(self.client_address[0]))

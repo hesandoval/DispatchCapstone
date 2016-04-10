@@ -39,7 +39,7 @@ $("#fleet_select").on("click",".carry_id", function(event){
             if(data.length > 0){
                 var view = {values: data};
                 var template = "<li role=\"separator\" class=\"divider\"></li>" +
-                    "{{ #values }}<li><a>{{trip_id}}</a></li> {{/values}}";
+                    "{{ #values }}<li class='trip_id_live'><a>{{trip_id}}<span class='glyphicon glyphicon-play'></span></a></li> {{/values}}";
                 var html = html = Mustache.to_html(template, view);
                 $("#trip_select").append(html);
             }
@@ -60,38 +60,83 @@ $("#trip_select").on("click", ".trip_id", function(event){
         var startMarker = createMarker(startColor,"Start", data['starting_location']);
         var endColor = "FE7569";
         var endMarker = createMarker(endColor,"End", data['ending_location']);
-        socket.emit("carry:getWaypointsByTripID", tripID, function(err, data){
-            if(err){
-                console.log(err)
-            }else{
-                window.path = new google.maps.Polyline({
-                    path: data[0]['waypoints'],
-                    geodesic: true,
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 1.0,
-                    strokeWeight: 2
-                });
-                path.setMap(window.map);
-            }
-        });
+        socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
         setBounds();
-        button.innerHTML = tripID + "<span class='caret'></span>";
+
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
+        socket.emit('carry:getPhotographsByTripID', tripID, displayPictureData);
+        button.innerHTML = tripID + "<span class='caret'></span>";
         $("#information_container").css("visibility", "visible");
     });
 
 });
+$("#trip_select").on("click", ".trip_id_live", function(event){
+    removeMarkers();
+    var tripID = event.target.innerText;
+    var button = $("#dropdownMenu2")[0];
+    button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
+    socket.emit("carry:changes:start", tripID)
+
+});
+
+function plotPathline(err, data){
+    if(err){
+        console.log(err)
+    }else{
+        window.path = new google.maps.Polyline({
+            path: data[0]['waypoints'],
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        path.setMap(window.map);
+    }
+}
+function displayPictureData(err, data){
+    if(err){
+        console.log(err);
+    }else{
+        $.each(data, function(index, value){
+            delete value["current_location"]['elevation'];
+            createMarker(null, "camera", value["current_location"]);
+
+        });
+        data = {values : data};
+        var view = "{{#values}}{{#photograph}}<li data-thumb=\"{{url}}\" class=\"slideshow_li\">" +
+            "<img class=\"slideshow_img\" src=\"{{url}}\"/>" +
+            "</li>{{/photograph}}{{/values}}";
+        var html = Mustache.to_html(view, data);
+        var lightslider = $("#slideshow_container");
+        lightslider.html(html);
+        lightslider.lightSlider({
+            gallery:true,
+            item:1,
+            vertical:true,
+            verticalHeight:295,
+            vThumbWidth:50,
+            thumbMargin:4,
+            slideMargin:0
+        });
+
+    }
+}
 function fillTable(data){
-    var table = $("#table_body");
+    var container = $("#carry_info_container");
+    var t = "<table class=\"table table-bordered table-hover\" id=\"table_body\"> </table>";
     var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
-        "<th>Battery Consumption</th></tr></thead>";
+        "<th>Battery Consumption</th><th>Battery Remaining</th></tr></thead>";
+    container.html(t);
+    var table = $("#table_body");
     table.html(header);
-    var body = "<tr><td>{{sender}}</td><td>{{date}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
-        "<td>{{battery_consumption}}</td></tr>";
+    var body = "<tr><td>{{date}}</td><td>{{start}}</td><td>{{timetotal}}</td><td>{{speed}}</td>" +
+        "<td>{{battery_consumption}}</td>" +
+        "<td>{{battery_remaining}}</td></tr>";
     var html = Mustache.to_html(body, data);
     table.append(html);
+    container.append("<div id=\"slideshow_container\"></div>");
 }
 
 function getAddress(lat, lng, tagID){
@@ -103,17 +148,6 @@ function getAddress(lat, lng, tagID){
 
         }
     });
-}
-function createMarker(color, title, latlng){
-    var options = getMarkerOptions(color);
-    var marker = new google.maps.Marker({
-        position: latlng,
-        title: title,
-        icon: options['image'],
-        shadow: options['shadow']
-    });
-    addMarker(marker);
-    return marker;
 }
 
 function addMarker(marker){
@@ -129,7 +163,21 @@ function removeMarkers(){
     });
     window.markers = [];
 }
+function createMarker(color, title, latlng){
+
+    var options = getMarkerOptions(color);
+    var marker = new google.maps.Marker({
+        position: latlng,
+        title: title,
+        icon: (color === null) ? "http://twemoji.maxcdn.com/16x16/1f4f7.png" : options['image'],
+        shadow: options['shadow']
+    });
+    addMarker(marker);
+    return marker;
+}
 function getMarkerOptions(color) {
+
+
     var pinColor = color;
     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
         new google.maps.Size(21, 34),

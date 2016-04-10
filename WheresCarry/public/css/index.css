@@ -92,3 +92,22 @@
 	from { transform: scale(1) rotate(0deg);}
 	to { transform: scale(1) rotate(360deg);}
 }
+#light_slider {
+	list-style: none outside none;
+	padding-left: 0;
+	margin-bottom:0;
+}
+.slideshow_li {
+	display: block;
+	float: left;
+	margin-right: 6px;
+	cursor:pointer;
+}
+.slideshow_img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+.glyphicon-play{
+	color: forestgreen;
+}
