@@ -94,11 +94,10 @@ function setup(io){
 
         //intended to be live route tracking
         socket.on('carry:changes:start', function(tripID){
-            var filter = {trip_id: tripID};
+            //var filter = {trip_id: tripID};
 
             r.table('wheres_carry')("carry_data_current")
-                .table("wheres_carry")("carry_data_current")
-                .filter(filter)
+                .filter(r.row("trip_id").eq(tripID))
                 .changes()
                 .run({cursor: true}, handleChange);
 
@@ -111,6 +110,7 @@ function setup(io){
                             if(err){
                                 console.log(err);
                             }else{
+                                console.log(record);
                                 socket.emit("carry:changes", record);
                             }
                         });
