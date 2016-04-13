@@ -81,8 +81,12 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
 });
 
 socket.on("carry:changes", function (record) {
-  console.log(JSON.stringify(record));
-    //getAddress(record['current_location']["lat"],record['current_location']['long'], "current_location");
+    console.log(JSON.stringify(record));
+    var elevation = record["new_val"]["current_location"]["elevation"];
+    delete record["new_val"]["current_location"]["elevation"];
+    removeMarkers();
+    createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
+
 });
 
 function plotPathline(err, data){
