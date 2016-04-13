@@ -62,7 +62,6 @@ $("#trip_select").on("click", ".trip_id", function(event){
         var endMarker = createMarker(endColor,"End", data['ending_location']);
         socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
         setBounds();
-
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
@@ -106,7 +105,18 @@ function displayPictureData(err, data){
     }else{
         $.each(data, function(index, value){
             delete value["current_location"]['elevation'];
-            createMarker(null, "camera", value["current_location"]);
+            var marker = createMarker(null, "camera", value["current_location"]);
+            var infoWindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var contentString = '<div id="content"><img src='+ data['url']+'></div>';
+            google.maps.event.addListener(marker,'click', (function(marker,contentString,infoWindow){
+                return function() {
+                    infoWindow.setContent(contentString);
+                    infoWindow.open(map,marker);
+                };
+            })(marker,contentString,infoWindow));
 
         });
         data = {values : data};
