@@ -69,24 +69,8 @@ function setup(io){
                     var first = data[0];
                     var last = data[data.length - 1];
                     var g2j = {}; //setups empty JSON object for the historicalDataSpecifications.json
-                    g2j["starting_location"] = {"lat" : first['current_location']['lat'], "lng": first['current_location']['lng']};
-                    g2j["ending_location"] = {"lat" : last['current_location']['lat'], "lng": last['current_location']['lng']};
-                    g2j["sender"] = first['sender'];
 
-                    var batt  = first['battery_life']-last['battery_life']; //takes the starting battery life % and the ending %,
-                                                                            // subtracts ending from start to show how much battery life was used over the course of the trip
-                    g2j["battery_consumption"] =batt + "%";
-                    g2j["battery_remaining"] = last['battery_life']+"%";
-
-                    g2j["start"] = first['created'].toTimeString(); //creates a time object for when the trip started. time should default to user's time zone
-
-                    var totaltime = last['created'] - first ['created']; //takes the ending time and subtracts the beginning time to get totaltime in milliseconds
-                    g2j["timetotal"] = thetime(totaltime); //send the totaltime variable (in milliseconds) to a function to return it in hours, minutes, seconds, and ms
-
-                    g2j["speed"] = getAverageSpeed(data)+" mph";
-
-                    var newDate = first['created'].toDateString(); //creates a date object to retrieve the day in which the trip was started
-                    g2j["date"] = newDate;
+                    g2j=Setup(first,last,data);
                     callback(g2j);
                 }
             });
@@ -147,6 +131,29 @@ function thetime(s){
 }
 
 
+function Setup(first, last, data)
+{
+    var g2j = {};
+    g2j["starting_location"] = {"lat" : first['current_location']['lat'], "lng": first['current_location']['lng']};
+    g2j["ending_location"] = {"lat" : last['current_location']['lat'], "lng": last['current_location']['lng']};
+    g2j["sender"] = first['sender'];
+
+    var batt  = first['battery_life']-last['battery_life']; //takes the starting battery life % and the ending %,
+                                                            // subtracts ending from start to show how much battery life was used over the course of the trip
+    g2j["battery_consumption"] =batt + "%";
+    g2j["battery_remaining"] = last['battery_life']+"%";
+
+    g2j["start"] = first['created'].toTimeString(); //creates a time object for when the trip started. time should default to user's time zone
+
+    var totaltime = last['created'] - first ['created']; //takes the ending time and subtracts the beginning time to get totaltime in milliseconds
+    g2j["timetotal"] = thetime(totaltime); //send the totaltime variable (in milliseconds) to a function to return it in hours, minutes, seconds, and ms
+
+    g2j["speed"] = getAverageSpeed(data)+" mph";
+
+    var newDate = first['created'].toDateString(); //creates a date object to retrieve the day in which the trip was started
+    g2j["date"] = newDate;
+    return g2j;
+};
 
 //fetches every speed value of a trip and computes the average
 function getAverageSpeed(dataobj){

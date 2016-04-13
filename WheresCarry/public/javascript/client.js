@@ -81,6 +81,11 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
 
 });
 
+socket.on("carry:changes", function (record) {
+  console.log(JSON.stringify(record));
+    //getAddress(record['current_location']["lat"],record['current_location']['long'], "current_location");
+});
+
 function plotPathline(err, data){
     if(err){
         console.log(err)
