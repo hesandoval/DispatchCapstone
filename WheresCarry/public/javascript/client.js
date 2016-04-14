@@ -76,15 +76,21 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
+    socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
     socket.emit("carry:changes:start", tripID)
 
 });
 
+
 socket.on("carry:changes", function (record) {
     console.log(JSON.stringify(record));
+    setBounds();
+
     var elevation = record["new_val"]["current_location"]["elevation"];
     delete record["new_val"]["current_location"]["elevation"];
     removeMarkers();
+    var startColor = "33cc33";
+    var startMarker = createMarker(startColor,"Start", record[0]["new_val"]["current_location"]["elevation"]);
     createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
 });
