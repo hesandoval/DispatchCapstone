@@ -11,7 +11,6 @@ socket.emit('carry:getFleet',function(err,data){
     }
 });
 
-
 $("#fleet_select").on("click",".carry_id", function(event){
     var fleet = event.target.innerText;
     var button = $("#dropdownMenu1")[0];
@@ -50,6 +49,9 @@ $("#fleet_select").on("click",".carry_id", function(event){
     });
 
 });
+
+$("#trip_select").on("click", function(event){});
+
 $("#trip_select").on("click", ".trip_id", function(event){
     removeMarkers();
     socket.emit('carry:changes:stop');
