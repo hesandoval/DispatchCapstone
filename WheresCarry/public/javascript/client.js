@@ -50,8 +50,6 @@ $("#fleet_select").on("click",".carry_id", function(event){
 
 });
 
-$("#trip_select").on("click", function(event){});
-
 $("#trip_select").on("click", ".trip_id", function(event){
     removeMarkers();
     socket.emit('carry:changes:stop');
@@ -90,6 +88,7 @@ socket.on("carry:changes", function (record) {
     delete record["new_val"]["current_location"]["elevation"];
     $("#battery_bar").html(record['new_val']['battery_life'].toFixed(2)+"%");
     $("#battery_bar").css("width", record['new_val']['battery_life'].toFixed(2)+"%");
+
     if(window.markers.length > 2)
     {
         var lastMarker = window.markers.pop();
