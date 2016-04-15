@@ -11,11 +11,11 @@ socket.emit('carry:getFleet',function(err,data){
     }
 });
 
+
 $("#fleet_select").on("click",".carry_id", function(event){
     var fleet = event.target.innerText;
     var button = $("#dropdownMenu1")[0];
     defaultMap();
-    socket.emit('carry:changes:stop');
     button.innerHTML = fleet + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     $("#dropdown_trip_select").css("visibility", "hidden");
     socket.emit('carry:findTripsByCarryID', fleet, function(err, data){
@@ -51,15 +51,15 @@ $("#fleet_select").on("click",".carry_id", function(event){
 
 });
 $("#trip_select").on("click", ".trip_id", function(event){
-    removeMarkers(true);
+    removeMarkers();
+    socket.emit('carry:changes:stop');
+
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
         var waypoints = data['waypoints'];
         socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
-        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
-        getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
         socket.emit('carry:getPhotographsByTripID', tripID, displayPictureData);
         button.innerHTML = tripID + "<span class='caret'></span>";
@@ -68,12 +68,17 @@ $("#trip_select").on("click", ".trip_id", function(event){
 
 });
 $("#trip_select").on("click", ".trip_id_live", function(event){
-    removeMarkers(false);
+    defaultMap();
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
+    $("#carry_info_container").html('<div class="progress">' +
+        '<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" style="width: 100%;"' +
+        'aria-valuemin="0" aria-valuemax="100" id="battery_bar"> 100%' +
+        '</div>' +
+        '</div>');
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
-    socket.emit("carry:changes:start", tripID)
+    socket.emit("carry:changes:start", tripID);
 
 });
 
@@ -81,12 +86,14 @@ socket.on("carry:changes", function (record) {
     console.log(JSON.stringify(record));
     var elevation = record["new_val"]["current_location"]["elevation"];
     delete record["new_val"]["current_location"]["elevation"];
+    $("#battery_bar").html(record['new_val']['battery_life'].toFixed(2)+"%");
+    $("#battery_bar").css("width", record['new_val']['battery_life'].toFixed(2)+"%");
     if(window.markers.length > 2)
     {
         var lastMarker = window.markers.pop();
         lastMarker.setMap(null);
     }
-    if(record['new_val']['completed'] == true)
+    if(record['new_val']['completed'])
     {
         socket.emit('carry:changes:stop');
         socket.emit('carry:findTripsByCarryID', record['new_val']['sender'], function(err, data){
@@ -126,11 +133,12 @@ function plotPathline(err, data){
     }else{
         var startColor = "33cc33";
         var endColor = "FE7569";
-        var l = data[0]['waypoints'].length - 1;
-        var startMarker = createMarker(startColor,"Start", data[0]['waypoints'][0]);
-        var endMarker = createMarker(endColor,"End", data[0]['waypoints'][l]);
+        var waypoints = data[0]['waypoints'];
+        var l = waypoints.length - 1;
+        var startMarker = createMarker(startColor,"Start", waypoints[0]);
+        var endMarker = createMarker(endColor,"End", waypoints[l]);
         window.path = new google.maps.Polyline({
-            path: data[0]['waypoints'],
+            path: waypoints,
             geodesic: true,
             strokeColor: '#FF0000',
             strokeOpacity: 1.0,
@@ -138,6 +146,9 @@ function plotPathline(err, data){
         });
         path.setMap(window.map);
         setBounds();
+        getAddress(waypoints[0]["lat"],waypoints[0]["lng"], "start_address");
+        getAddress(waypoints[l]["lat"],waypoints[l]["lng"], "end_address");
+        $("#information_container").css("visibility", "visible");
     }
 }
 function displayPictureData(err, data){
@@ -145,13 +156,13 @@ function displayPictureData(err, data){
         console.log(err);
     }else{
         $.each(data, function(index, value){
+            var photog = value['photograph'][0]['url'];
             delete value["current_location"]['elevation'];
             var marker = createMarker(null, "camera", value["current_location"]);
+            var contentString = '<div id="content"><img src="'+photog+'" style="width: 10%"></div>';
             var infoWindow = new google.maps.InfoWindow({
                 content: contentString
             });
-
-            var contentString = '<div id="content"><img src='+ data['url']+'></div>';
             google.maps.event.addListener(marker,'click', (function(marker,contentString,infoWindow){
                 return function() {
                     infoWindow.setContent(contentString);
@@ -232,8 +243,6 @@ function createMarker(color, title, latlng){
     return marker;
 }
 function getMarkerOptions(color) {
-
-
     var pinColor = color;
     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
         new google.maps.Size(21, 34),
@@ -256,7 +265,7 @@ function setBounds(){
 function defaultMap(){
     window.map.setCenter(window.defaultCenter);
     window.map.setZoom(18);
-    removeMarkers(true);
+    removeMarkers();
     removeTags("start_address");
     removeTags("end_address");
     $("#information_container").css("visibility", "hidden");
@@ -285,3 +294,4 @@ function loadLiveTrips(err, data){
     }
 
 }
+
