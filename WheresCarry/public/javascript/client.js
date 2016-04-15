@@ -11,6 +11,7 @@ socket.emit('carry:getFleet',function(err,data){
     }
 });
 
+
 $("#fleet_select").on("click",".carry_id", function(event){
     var fleet = event.target.innerText;
     var button = $("#dropdownMenu1")[0];
@@ -70,7 +71,11 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
     defaultMap();
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
-    $("#carry_info_container").html("");
+    $("#carry_info_container").html('<div class="progress">' +
+        '<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" style="width: 100%;"' +
+        'aria-valuemin="0" aria-valuemax="100" id="battery_bar"> 100%' +
+        '</div>' +
+        '</div>');
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
     socket.emit("carry:changes:start", tripID);
@@ -82,6 +87,8 @@ socket.on("carry:changes", function (record) {
     console.log(JSON.stringify(record));
     var elevation = record["new_val"]["current_location"]["elevation"];
     delete record["new_val"]["current_location"]["elevation"];
+    $("#battery_bar").html(record['new_val']['battery_life'].toFixed(2)+"%");
+    $("#battery_bar").css("width", record['new_val']['battery_life'].toFixed(2)+"%");
     if(window.markers.length > 2)
     {
         var lastMarker = window.markers.pop();
@@ -143,13 +150,13 @@ function displayPictureData(err, data){
         console.log(err);
     }else{
         $.each(data, function(index, value){
+            var photog = value['photograph'][0]['url'];
             delete value["current_location"]['elevation'];
             var marker = createMarker(null, "camera", value["current_location"]);
+            var contentString = '<div id="content"><img src="'+photog+'" style="width: 10%"></div>';
             var infoWindow = new google.maps.InfoWindow({
                 content: contentString
             });
-
-            var contentString = '<div id="content"><img src='+ data['url']+'></div>';
             google.maps.event.addListener(marker,'click', (function(marker,contentString,infoWindow){
                 return function() {
                     infoWindow.setContent(contentString);
@@ -281,3 +288,4 @@ function loadLiveTrips(err, data){
     }
 
 }
+
