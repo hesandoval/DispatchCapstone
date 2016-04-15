@@ -17,7 +17,7 @@ $("#fleet_select").on("click",".carry_id", function(event){
     defaultMap();
     button.innerHTML = fleet + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     $("#dropdown_trip_select").css("visibility", "hidden");
-    socket.emit('carry:findTripsByCarryID', fleet,function(err, data){
+    socket.emit('carry:findTripsByCarryID', fleet, function(err, data){
         if(err){
             console.log(JSON.stringify(err));
         }else{
@@ -59,8 +59,6 @@ $("#trip_select").on("click", ".trip_id", function(event){
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
         var waypoints = data['waypoints'];
         socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
-        getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
-        getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
         socket.emit('carry:getPhotographsByTripID', tripID, displayPictureData);
         button.innerHTML = tripID + "<span class='caret'></span>";
@@ -72,9 +70,10 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
     defaultMap();
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
+    $("#carry_info_container").html("");
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
-    socket.emit("carry:changes:start", tripID)
+    socket.emit("carry:changes:start", tripID);
 
 });
 
@@ -88,7 +87,42 @@ socket.on("carry:changes", function (record) {
         var lastMarker = window.markers.pop();
         lastMarker.setMap(null);
     }
+    if(record['new_val']['completed'])
+    {
+        socket.emit('carry:changes:stop');
+        socket.emit('carry:findTripsByCarryID', record['new_val']['sender'], function(err, data){
+            if(err){
+                console.log(JSON.stringify(err));
+            }else{
 
+                var view = {values:data};
+                var b2 = $("#dropdownMenu2")[0];
+                b2.innerHTML = record['new_val']['trip_id']+" <span class='caret'></span>";
+                $("#dropdown_trip_select").css("visibility", "visible");
+                var template = "{{ #values}}<li class='trip_id'><a>{{trip_id}}</a></li>{{ /values }}";
+                var html = Mustache.to_html(template, view);
+                $("#trip_select").html(html);
+                $("#dropdownMenu1")[0].innerHTML = record['new_val']['sender'] + "<span class='caret'></span>"
+                
+            }
+        });
+        socket.emit('carry:findLiveTripsByCarryID', record['new_val']['sender'],  function(err, data){
+            if(err){
+                console.log(err);
+            }else{
+                if(data.length > 0){
+                    var view = {values: data};
+                    var template = "<li role=\"separator\" class=\"divider\"></li>" +
+                        "{{ #values }}<li class='trip_id_live'><a>{{trip_id}}<span class='glyphicon glyphicon-play'></span></a></li> {{/values}}";
+                    var html = html = Mustache.to_html(template, view);
+                    $("#trip_select").append(html);
+                }
+
+            }
+
+        });
+
+    }
     createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
 });
@@ -99,11 +133,12 @@ function plotPathline(err, data){
     }else{
         var startColor = "33cc33";
         var endColor = "FE7569";
-        var l = data[0]['waypoints'].length - 1;
-        var startMarker = createMarker(startColor,"Start", data[0]['waypoints'][0]);
-        var endMarker = createMarker(endColor,"End", data[0]['waypoints'][l]);
+        var waypoints = data[0]['waypoints'];
+        var l = waypoints.length - 1;
+        var startMarker = createMarker(startColor,"Start", waypoints[0]);
+        var endMarker = createMarker(endColor,"End", waypoints[l]);
         window.path = new google.maps.Polyline({
-            path: data[0]['waypoints'],
+            path: waypoints,
             geodesic: true,
             strokeColor: '#FF0000',
             strokeOpacity: 1.0,
@@ -111,6 +146,9 @@ function plotPathline(err, data){
         });
         path.setMap(window.map);
         setBounds();
+        getAddress(waypoints[0]["lat"],waypoints[0]["lng"], "start_address");
+        getAddress(waypoints[l]["lat"],waypoints[l]["lng"], "end_address");
+        $("#information_container").css("visibility", "visible");
     }
 }
 function displayPictureData(err, data){
