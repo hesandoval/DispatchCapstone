@@ -69,6 +69,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
     });
 
 });
+
 $("#trip_select").on("click", ".trip_id_live", function(event){
     defaultMap();
     var tripID = event.target.innerText;
@@ -160,16 +161,22 @@ function displayPictureData(err, data){
             var photog = value['photograph'][0]['url'];
             delete value["current_location"]['elevation'];
             var marker = createMarker(null, "camera", value["current_location"]);
-            var contentString = '<div id="content"><img src="'+photog+'" style="width: 10%"></div>';
+            var contentString = '<div style="width:150px" align="center"><img  src="'+photog+'" style="width: 100%"></div>';
             var infoWindow = new google.maps.InfoWindow({
                 content: contentString
             });
-            google.maps.event.addListener(marker,'click', (function(marker,contentString,infoWindow){
+            google.maps.event.addListener(marker,'mouseover', (function(marker,contentString,infoWindow){
                 return function() {
                     infoWindow.setContent(contentString);
                     infoWindow.open(map,marker);
                 };
             })(marker,contentString,infoWindow));
+            google.maps.event.addListener(marker,'mouseout', (function(marker,contentString,infoWindow){
+                return function() {
+                    infoWindow.close();
+                };
+            })(marker,contentString,infoWindow));
+
 
         });
         data = {values : data};
