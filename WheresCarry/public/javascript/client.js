@@ -102,26 +102,13 @@ socket.on("carry:changes", function (record) {
                 var template = "{{ #values}}<li class='trip_id'><a>{{trip_id}}</a></li>{{ /values }}";
                 var html = Mustache.to_html(template, view);
                 $("#trip_select").html(html);
-                $("#dropdownMenu1")[0].innerHTML = record['new_val']['sender'] + "<span class='caret'></span>"
-                
+                $("#dropdownMenu1")[0].innerHTML = record["new_val"]["sender"] + "<span class='caret'></span>"
+                //console.log("Bottom of else statement after trip completes.");
             }
         });
-        socket.emit('carry:findLiveTripsByCarryID', record['new_val']['sender'],  function(err, data){
-            if(err){
-                console.log(err);
-            }else{
-                if(data.length > 0){
-                    var view = {values: data};
-                    var template = "<li role=\"separator\" class=\"divider\"></li>" +
-                        "{{ #values }}<li class='trip_id_live'><a>{{trip_id}}<span class='glyphicon glyphicon-play'></span></a></li> {{/values}}";
-                    var html = html = Mustache.to_html(template, view);
-                    $("#trip_select").append(html);
-                }
-
-            }
-
-        });
-
+        socket.emit('carry:findLiveTripsByCarryID', record['new_val']['sender'], loadLiveTrips);
+        //console.log("Trip is completed. Attempting to click trip_select");
+        $("#trip_select").trigger("click",[record['new_val']['trip_id']]);
     }
     createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
@@ -277,4 +264,20 @@ function getReverseGeocodeLink(lat, lng){
 function removeTags(tagID){
     $("#"+tagID).html("");
     $("#"+tagID).css("visibility", "hidden");
+}
+
+function loadLiveTrips(err, data){
+    if(err){
+        console.log(err);
+    }else{
+        if(data.length > 0){
+            var view = {values: data};
+            var template = "<li role=\"separator\" class=\"divider\"></li>" +
+                "{{ #values }}<li class='trip_id_live'><a>{{trip_id}}<span class='glyphicon glyphicon-play'></span></a></li> {{/values}}";
+            var html = html = Mustache.to_html(template, view);
+            $("#trip_select").append(html);
+        }
+
+    }
+
 }
