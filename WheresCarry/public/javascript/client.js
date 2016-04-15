@@ -84,7 +84,6 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
 
 });
 
-
 socket.on("carry:changes", function (record) {
     console.log(JSON.stringify(record));
     var elevation = record["new_val"]["current_location"]["elevation"];
@@ -117,7 +116,14 @@ socket.on("carry:changes", function (record) {
         });
         socket.emit('carry:findLiveTripsByCarryID', record['new_val']['sender'], loadLiveTrips);
         //console.log("Trip is completed. Attempting to click trip_select");
-        $("#trip_select").trigger("click",[record['new_val']['trip_id']]);
+        socket.emit('carry:tripDetailsByTripID', record["new_val"]["trip_id"], function (data) {
+
+            fillTable(data);
+            socket.emit('carry:getPhotographsByTripID', record["new_val"]["trip_id"], displayPictureData);
+
+            $("#information_container").css("visibility", "visible");
+        });
+
     }
     createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
