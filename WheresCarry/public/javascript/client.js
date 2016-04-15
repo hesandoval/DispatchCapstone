@@ -61,7 +61,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
         var endColor = "FE7569";
         var endMarker = createMarker(endColor,"End", data['ending_location']);
         socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
-        setBounds();
+        //setBounds();
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
@@ -77,7 +77,6 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
-    setBounds();
     socket.emit("carry:changes:start", tripID)
 
 });
@@ -85,7 +84,6 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
 
 socket.on("carry:changes", function (record) {
     console.log(JSON.stringify(record));
-
     var elevation = record["new_val"]["current_location"]["elevation"];
     delete record["new_val"]["current_location"]["elevation"];
     //removeMarkers();
@@ -107,6 +105,7 @@ function plotPathline(err, data){
             strokeWeight: 2
         });
         path.setMap(window.map);
+        setBounds();
     }
 }
 function displayPictureData(err, data){
