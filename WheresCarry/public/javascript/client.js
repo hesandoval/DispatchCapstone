@@ -1,5 +1,5 @@
 var socket = io();
-
+google.charts.load('current', {'packages':['gauge']});
 socket.emit('carry:getFleet',function(err,data){
     if(err){
         console.log(err);
@@ -81,8 +81,9 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
 });
 
 socket.on("carry:changes", function (record) {
-  console.log(JSON.stringify(record));
+    console.log(JSON.stringify(record));
     //getAddress(record['current_location']["lat"],record['current_location']['long'], "current_location");
+
 });
 
 function plotPathline(err, data){
@@ -141,7 +142,7 @@ function displayPictureData(err, data){
 function fillTable(data){
     var container = $("#carry_info_container");
     var t = "<table class=\"table table-bordered table-hover\" id=\"table_body\"> </table>";
-    var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Sender</th><th>Date</th><th>Duration</th><th>Average Speed</th>" +
+    var header = "<thead id=\"table_header\"><tr class=\"info\"><th>Date</th><th>Time</th><th>Duration</th><th>Average Speed</th>" +
         "<th>Battery Consumption</th><th>Battery Remaining</th></tr></thead>";
     container.html(t);
     var table = $("#table_body");

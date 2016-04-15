@@ -151,7 +151,7 @@ function Setup(first, last, data)
     var newDate = first['created'].toDateString(); //creates a date object to retrieve the day in which the trip was started
     g2j["date"] = newDate;
     return g2j;
-};
+}
 
 //fetches every speed value of a trip and computes the average
 function getAverageSpeed(dataobj){
