@@ -89,7 +89,7 @@ socket.on("carry:changes", function (record) {
     delete record["new_val"]["current_location"]["elevation"];
     removeMarkers();
     var startColor = "33cc33";
-    var startMarker = createMarker(startColor,"Start", record[0]["new_val"]["current_location"]["elevation"]);
+    var startMarker = createMarker(startColor,"Start", record["new_val"]["current_location"]);
     createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
 });
