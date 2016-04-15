@@ -92,7 +92,6 @@ function setup(io){
                             if(err){
                                 console.log(err);
                             }else{
-                                console.log(record);
                                 socket.emit("carry:changes", record);
                             }
                         });

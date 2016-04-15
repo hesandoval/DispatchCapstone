@@ -50,7 +50,7 @@ $("#fleet_select").on("click",".carry_id", function(event){
 
 });
 $("#trip_select").on("click", ".trip_id", function(event){
-    removeMarkers();
+    removeMarkers(true);
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
@@ -72,11 +72,12 @@ $("#trip_select").on("click", ".trip_id", function(event){
 
 });
 $("#trip_select").on("click", ".trip_id_live", function(event){
-    removeMarkers();
+    removeMarkers(false);
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
+    setBounds();
     socket.emit("carry:changes:start", tripID)
 
 });
@@ -84,12 +85,12 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
 
 socket.on("carry:changes", function (record) {
     console.log(JSON.stringify(record));
-    setBounds();
+
     var elevation = record["new_val"]["current_location"]["elevation"];
     delete record["new_val"]["current_location"]["elevation"];
-    removeMarkers();
+    //removeMarkers();
     var startColor = "33cc33";
-    var startMarker = createMarker(startColor,"Start", record["new_val"]["current_location"]);
+    //var startMarker = createMarker(startColor,"Start", record["new_val"]["current_location"]);
     createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
 });
@@ -178,9 +179,11 @@ function addMarker(marker){
     marker.setMap(window.map);
     window.markers.push(marker);
 }
-function removeMarkers(){
-    if(window.path){
-        window.path.setMap(null);
+function removeMarkers(removePath){
+    if(removePath){
+        if(window.path){
+            window.path.setMap(null);
+        }
     }
     $.each(window.markers, function(index, marker){
         marker.setMap(null);
@@ -224,7 +227,7 @@ function setBounds(){
 function defaultMap(){
     window.map.setCenter(window.defaultCenter);
     window.map.setZoom(18);
-    removeMarkers();
+    removeMarkers(true);
     removeTags("start_address");
     removeTags("end_address");
     $("#information_container").css("visibility", "hidden");
