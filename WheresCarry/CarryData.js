@@ -106,8 +106,8 @@ function setup(io){
                     if(cursor){
                         cursor.close();
                     }
-                    socket.removeListener("carry:changes:stop", stopCursor)
-                    socket.removeListener("disconnect", stopCursor)
+                    socket.removeListener("carry:changes:stop", stopCursor);
+                    socket.removeListener("disconnect", stopCursor);
                 }
             }
         });

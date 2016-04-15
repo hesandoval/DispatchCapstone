@@ -180,11 +180,9 @@ function addMarker(marker){
     marker.setMap(window.map);
     window.markers.push(marker);
 }
-function removeMarkers(removePath){
-    if(removePath){
-        if(window.path){
-            window.path.setMap(null);
-        }
+function removeMarkers(){
+    if(window.path){
+        window.path.setMap(null);
     }
     $.each(window.markers, function(index, marker){
         marker.setMap(null);
