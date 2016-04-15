@@ -15,7 +15,6 @@ $("#fleet_select").on("click",".carry_id", function(event){
     var fleet = event.target.innerText;
     var button = $("#dropdownMenu1")[0];
     defaultMap();
-    socket.emit('carry:changes:stop');
     button.innerHTML = fleet + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     $("#dropdown_trip_select").css("visibility", "hidden");
     socket.emit('carry:findTripsByCarryID', fleet,function(err, data){
@@ -51,7 +50,9 @@ $("#fleet_select").on("click",".carry_id", function(event){
 
 });
 $("#trip_select").on("click", ".trip_id", function(event){
-    removeMarkers(true);
+    removeMarkers();
+    socket.emit('carry:changes:stop');
+
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
@@ -68,7 +69,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
 
 });
 $("#trip_select").on("click", ".trip_id_live", function(event){
-    removeMarkers(false);
+    defaultMap();
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
@@ -84,10 +85,10 @@ socket.on("carry:changes", function (record) {
     delete record["new_val"]["current_location"]["elevation"];
     if(window.markers.length > 2)
     {
-        console.log(window.markers);
         var lastMarker = window.markers.pop();
         lastMarker.setMap(null);
     }
+
     createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
 });
@@ -204,8 +205,6 @@ function createMarker(color, title, latlng){
     return marker;
 }
 function getMarkerOptions(color) {
-
-
     var pinColor = color;
     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
         new google.maps.Size(21, 34),
@@ -228,7 +227,7 @@ function setBounds(){
 function defaultMap(){
     window.map.setCenter(window.defaultCenter);
     window.map.setZoom(18);
-    removeMarkers(true);
+    removeMarkers();
     removeTags("start_address");
     removeTags("end_address");
     $("#information_container").css("visibility", "hidden");
