@@ -72,6 +72,7 @@ if __name__ == "__main__":
             if args.with_db:
             #run with database
                 if "carry_data_current" in data.keys():
+                    print(data)
                     data['carry_data_current']['created'] = dateutil.parser.parse\
                         (data['carry_data_current']['created'])
 
