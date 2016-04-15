@@ -115,10 +115,9 @@ socket.on("carry:changes", function (record) {
         socket.emit('carry:findLiveTripsByCarryID', record['new_val']['sender'], loadLiveTrips);
         //console.log("Trip is completed. Attempting to click trip_select");
         socket.emit('carry:tripDetailsByTripID', record["new_val"]["trip_id"], function (data) {
-
+            
             fillTable(data);
             socket.emit('carry:getPhotographsByTripID', record["new_val"]["trip_id"], displayPictureData);
-
             $("#information_container").css("visibility", "visible");
         });
 
