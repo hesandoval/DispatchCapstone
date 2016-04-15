@@ -18,7 +18,7 @@ $("#fleet_select").on("click",".carry_id", function(event){
     socket.emit('carry:changes:stop');
     button.innerHTML = fleet + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     $("#dropdown_trip_select").css("visibility", "hidden");
-    socket.emit('carry:findTripsByCarryID', fleet,function(err, data){
+    socket.emit('carry:findTripsByCarryID', fleet, function(err, data){
         if(err){
             console.log(JSON.stringify(err));
         }else{
@@ -84,9 +84,44 @@ socket.on("carry:changes", function (record) {
     delete record["new_val"]["current_location"]["elevation"];
     if(window.markers.length > 2)
     {
-        console.log(window.markers);
         var lastMarker = window.markers.pop();
         lastMarker.setMap(null);
+    }
+    if(record['new_val']['completed'] == true)
+    {
+        socket.emit('carry:changes:stop');
+        socket.emit('carry:findTripsByCarryID', record['new_val']['sender'], function(err, data){
+            if(err){
+                console.log(JSON.stringify(err));
+            }else{
+
+                var view = {values:data};
+                var b2 = $("#dropdownMenu2")[0];
+                b2.innerHTML = record['new_val']['trip_id']+" <span class='caret'></span>";
+                $("#dropdown_trip_select").css("visibility", "visible");
+                var template = "{{ #values}}<li class='trip_id'><a>{{trip_id}}</a></li>{{ /values }}";
+                var html = Mustache.to_html(template, view);
+                $("#trip_select").html(html);
+                $("#dropdownMenu1")[0].innerHTML = record['new_val']['sender'] + "<span class='caret'></span>"
+                
+            }
+        });
+        socket.emit('carry:findLiveTripsByCarryID', record['new_val']['sender'],  function(err, data){
+            if(err){
+                console.log(err);
+            }else{
+                if(data.length > 0){
+                    var view = {values: data};
+                    var template = "<li role=\"separator\" class=\"divider\"></li>" +
+                        "{{ #values }}<li class='trip_id_live'><a>{{trip_id}}<span class='glyphicon glyphicon-play'></span></a></li> {{/values}}";
+                    var html = html = Mustache.to_html(template, view);
+                    $("#trip_select").append(html);
+                }
+
+            }
+
+        });
+
     }
     createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
