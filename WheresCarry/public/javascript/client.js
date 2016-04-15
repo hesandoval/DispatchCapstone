@@ -15,6 +15,7 @@ $("#fleet_select").on("click",".carry_id", function(event){
     var fleet = event.target.innerText;
     var button = $("#dropdownMenu1")[0];
     defaultMap();
+    socket.emit('carry:changes:stop');
     button.innerHTML = fleet + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     $("#dropdown_trip_select").css("visibility", "hidden");
     socket.emit('carry:findTripsByCarryID', fleet,function(err, data){
@@ -56,10 +57,6 @@ $("#trip_select").on("click", ".trip_id", function(event){
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
         var waypoints = data['waypoints'];
-        var startColor = "33cc33";
-        var startMarker = createMarker(startColor,"Start", data['starting_location']);
-        var endColor = "FE7569";
-        var endMarker = createMarker(endColor,"End", data['ending_location']);
         socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
         setBounds();
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
@@ -77,7 +74,6 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
     var button = $("#dropdownMenu2")[0];
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
-    setBounds();
     socket.emit("carry:changes:start", tripID)
 
 });
@@ -99,6 +95,11 @@ function plotPathline(err, data){
     if(err){
         console.log(err)
     }else{
+        var startColor = "33cc33";
+        var endColor = "FE7569";
+        var l = data[0]['waypoints'].length - 1;
+        var startMarker = createMarker(startColor,"Start", data[0]['waypoints'][0]);
+        var endMarker = createMarker(endColor,"End", data[0]['waypoints'][l]);
         window.path = new google.maps.Polyline({
             path: data[0]['waypoints'],
             geodesic: true,
