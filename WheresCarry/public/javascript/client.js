@@ -58,7 +58,7 @@ $("#trip_select").on("click", ".trip_id", function(event){
     socket.emit('carry:tripDetailsByTripID', tripID, function (data) {
         var waypoints = data['waypoints'];
         socket.emit("carry:getWaypointsByTripID", tripID, plotPathline);
-        setBounds();
+        //setBounds();
         getAddress(data['starting_location']["lat"],data['starting_location']["lng"], "start_address");
         getAddress(data['ending_location']["lat"],data['ending_location']["lng"], "end_address");
         fillTable(data);
@@ -81,7 +81,6 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
 
 socket.on("carry:changes", function (record) {
     console.log(JSON.stringify(record));
-
     var elevation = record["new_val"]["current_location"]["elevation"];
     delete record["new_val"]["current_location"]["elevation"];
     //removeMarkers();
@@ -108,6 +107,7 @@ function plotPathline(err, data){
             strokeWeight: 2
         });
         path.setMap(window.map);
+        setBounds();
     }
 }
 function displayPictureData(err, data){
