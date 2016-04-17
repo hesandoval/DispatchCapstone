@@ -72,10 +72,13 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
     defaultMap();
     var tripID = event.target.innerText;
     var button = $("#dropdownMenu2")[0];
-    $("#carry_info_container").html('<div class="progress">' +
+    $("#carry_info_container").html('<div class="panel panel-info"><div class="panel-heading">' +
+        '<h3 class="panel-title">Status</h3></div>' +
+        '<div class="panel-body"><div class="progress">' +
         '<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" style="width: 100%;"' +
         'aria-valuemin="0" aria-valuemax="100" id="battery_bar"> 100%</div>' +
-        '</div> <div id="chart_div"></div><div id="live_picture_container"></div>');
+        '</div><div class="row"><div id="chart_div" class="col-xs-8 col-sm-6"></div>' +
+        '<div id="live_picture_container" class="col-xs-8 col-sm-6"></div></div></div></div>');
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     window.guages = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
