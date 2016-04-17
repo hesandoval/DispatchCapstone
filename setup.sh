@@ -46,3 +46,4 @@ sudo /etc/init.d/rethinkdb restart
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
+

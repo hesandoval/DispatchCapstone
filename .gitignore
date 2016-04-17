@@ -41,6 +41,5 @@ rethinkdb_data/
 KafkaTransfers/
 
 SupportFiles/messages.json
-Kafka/py/SupportFiles/messages/
 SupportFiles/messages*
 SupportFiles/Waypoints.json
