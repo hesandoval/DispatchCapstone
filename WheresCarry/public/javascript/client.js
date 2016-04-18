@@ -159,7 +159,7 @@ function displayPictureData(err, data){
         $.each(data, function(index, value){
             var photog = value['photograph'][0]['url'];
             delete value["current_location"]['elevation'];
-            var marker = createMarker(null, "camera", value["current_location"]);
+            var marker = createMarker(null, "camera", svalue["current_location"]);
             var contentString = '<div style="width:150px" align="center"><img  src="'+photog+'" style="width: 100%"></div>';
             var infoWindow = new google.maps.InfoWindow({
                 content: contentString
