@@ -108,7 +108,14 @@ socket.on("carry:changes", function (record) {
     if(window.markers.length > 2)
     {
         var lastMarker = window.markers.pop();
-        lastMarker.setMap(null);
+        lastMarker.setPosition(new google.maps.LatLng(record['new_val']['current_location']['lat'], record['new_val']['current_location']['lng']));
+        window.markers.push(lastMarker);
+        //var lastMarker = window.markers.pop();
+        //lastMarker.setMap(null);
+    }
+    else
+    {
+        createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
     }
     if(photog.length != 0){
         $("#live_picture_container").html('<img src="'+photog[0]['url']+'" width="30%">');
@@ -142,7 +149,6 @@ socket.on("carry:changes", function (record) {
         });
 
     }
-    createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
 
 });
 
@@ -177,7 +183,7 @@ function displayPictureData(err, data){
         $.each(data, function(index, value){
             var photog = value['photograph'][0]['url'];
             delete value["current_location"]['elevation'];
-            var marker = createMarker(null, "camera", svalue["current_location"]);
+            var marker = createMarker(null, "camera", value["current_location"]);
             var contentString = '<div style="width:150px" align="center"><img  src="'+photog+'" style="width: 100%"></div>';
             var infoWindow = new google.maps.InfoWindow({
                 content: contentString
