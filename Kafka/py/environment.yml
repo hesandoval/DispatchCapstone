@@ -1,4 +1,4 @@
-name: CapstoneEnv1
+name: capstoneEnv1
 dependencies:
 - appnope=0.1.0=py27_0
 - dateutil=2.4.1=py27_0
@@ -35,3 +35,4 @@ dependencies:
   - msgpack-python==0.4.7
   - python-dateutil==2.4.1
   - rethinkdb==2.2.0.post5
+
