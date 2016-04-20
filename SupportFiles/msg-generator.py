@@ -11,7 +11,7 @@ def linspace(a, b, num):
     diff = (float(b) - a)/(num - 1)
     return [diff * i + a  for i in range(num)]
 
-num_samples = 100
+num_samples = 500
 
 parser = argparse.ArgumentParser(description='User store latitude/longitude _start, _end')
 parser.add_argument("latitude_start", type=float, help="latitude starting degree")
