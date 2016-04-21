@@ -50,9 +50,16 @@ root@/srv$Kafka/py$ conda env create -f environment.yml
 ### Generating Fake Data:
 ```bash
 root@/srv$Kafka/py$ source activate CapstoneEnv1
-(CapstoneEnv1)/srv/Kafka/py$ sudo bash test_coordinates.sh
-
-Messages Generated!
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.654767 -121.801105 36.654771 -121.800207
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.654777 -121.799259 36.654770 -121.798227
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.654759 -121.797876 36.654750 -121.796613
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.654748 -121.796240 36.654746 -121.795285
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.654742 -121.794848 36.654720 -121.793443
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.654629 -121.793359 36.654093 -121.793364
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.653983 -121.793369 36.652862 -121.793371
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.652815 -121.793376 36.652335 -121.793379
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.652337 -121.793698 36.652343 -121.794310
+(CapstoneEnv1)root@/srv/Kafka/py$ python msg-generator.py 36.652840 -121.795611 36.652844 -121.797499
 ```
 
 ### Start TCP Server:
