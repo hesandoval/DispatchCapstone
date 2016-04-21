@@ -26,13 +26,10 @@ sudo service kafka start
 cd ~/Downloads
 wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda2-2.5.0-Linux-x86_64.sh
 bash Anaconda2-2.5.0-Linux-x86_64.sh
-source ~/.bashrc
 
 #node setup
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
-sudo apt-get install -y npm
-sudo ln -s /usr/bin/nodejs /usr/bin/node
 sudo npm install forever -g
 
 #rethinkDB setup
