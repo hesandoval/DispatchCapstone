@@ -11,7 +11,7 @@ def linspace(a, b, num):
     diff = (float(b) - a)/(num - 1)
     return [diff * i + a  for i in range(num)]
 
-num_samples = 500
+num_samples = 1000
 
 parser = argparse.ArgumentParser(description='User store latitude/longitude _start, _end')
 parser.add_argument("latitude_start", type=float, help="latitude starting degree")
@@ -92,7 +92,7 @@ for i in xrange(0, num_samples):
     #
 
     # So forevery tenth iteration the code will dump waypoints into a waypoints.json
-    if i%10 == 0:
+    if i%100 == 0:
     	carry_trip["waypoints"] = []
         for val in zip(latitude, longitude):
             obj = {"lat":val[0], "lng":val[1]}
