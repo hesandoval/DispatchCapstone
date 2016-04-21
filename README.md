@@ -41,14 +41,15 @@ $ sudo PORT=80 forver start app.js
 
 ### Load Capstone Env1
 ```bash
-/srv$ cd Kafka/py
-/srv/Kafka/py$ conda env create -f environment.yml
+/srv$ sudo su
+root@/srv$ cd Kafka/py
+root@/srv$Kafka/py$ conda env create -f environment.yml
 ```
 
 
 ### Generating Fake Data:
 ```bash
-/srv/Kafka/py$ source activate CapstoneEnv1
+root@/srv$Kafka/py$ source activate CapstoneEnv1
 (CapstoneEnv1)/srv/Kafka/py$ sudo bash test_coordinates.sh
 
 Messages Generated!
@@ -56,20 +57,20 @@ Messages Generated!
 
 ### Start TCP Server:
 ```bash
-(CapstoneEnv1)/srv$ cd Kafka/py
-(CapstoneEnv1)/srv/Kafka/py$ sudo python Producer/DispatchTCPServer.py
+(CapstoneEnv1)root@/srv$ cd Kafka/py
+(CapstoneEnv1)root@/srvKafka/py$ sudo python Producer/DispatchTCPServer.py
 ```
 
 ### Start Consumer:
 ```bash
-(CapstoneEnv1)/srv/Kafka/py$ sudo python Consumer/TestConsumer.py --setup
+(CapstoneEnv1)root@/srv$Kafka/py$ sudo python Consumer/TestConsumer.py --setup
 Database completed. Run application
-(CapstoneEnv1)/srv/Kafka/py$ sudo python Consumer/TestConsumer.py --database
+(CapstoneEnv1)root@/srvKafka/py$ sudo python Consumer/TestConsumer.py --database
 ...
 ```
 
 ### Start Data Transfer Client:
 ```bash
-(CapstoneEnv1)/srv/Kafka/py$ python Producer/DataTransferClient.py
+(CapstoneEnv1)root@/srvKafka/py$ python Producer/DataTransferClient.py
 ...
 ```
