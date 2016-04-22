@@ -18,7 +18,14 @@ Anaconda2 will now be installed into this location:
 - Press CTRL-C to abort the installation
 - Or specify a different location below
 
-[/home/<user>/anaconda2] >>> /opt/anaconda2/   
+[/home/<user>/anaconda2] >>> /opt/anaconda2/  
+
+Python 2.7.11 :: Continuum Analytics, Inc.
+creating default environment...
+installation finished.
+Do you wish the installer to prepend the Anaconda2 install location
+to PATH in your /home/nick/.bashrc ? [yes|no]
+[no] >>> no
 ...
 ```
 ### Setting Python environment for all users:
