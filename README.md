@@ -99,12 +99,26 @@ Database completed. Run application
 
 ### Killing Processes:
 ```bash
-$ ps
+(CapstoneEnv1)root@capstone-large-2:/srv/DispatchCapstone/Kafka/py# ps -au
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root       931  0.0  0.0  14536   920 tty4     Ss+  Apr20   0:00 /sbin/getty -8 
+root       934  0.0  0.0  14536   924 tty5     Ss+  Apr20   0:00 /sbin/getty -8 
+root       939  0.0  0.0  14536   912 tty2     Ss+  Apr20   0:00 /sbin/getty -8 
+root       940  0.0  0.0  14536   916 tty3     Ss+  Apr20   0:00 /sbin/getty -8 
+root       942  0.0  0.0  14536   920 tty6     Ss+  Apr20   0:00 /sbin/getty -8 
+root      1094  0.0  0.0  14536   920 tty1     Ss+  Apr20   0:00 /sbin/getty -8 
+nick     18668  0.0  0.1  21648  4240 pts/0    Ss   19:36   0:00 -bash
+root     20115  0.4 11.1 4070416 428844 pts/0  Sl   19:46   0:18 java -Xmx1G -Xm
+root     29464  0.0  0.0  63668  2112 pts/0    S    20:18   0:00 sudo su
+root     29465  0.0  0.0  63248  1776 pts/0    S    20:18   0:00 su
+root     29466  0.0  0.0  19820  2284 pts/0    S    20:18   0:00 bash
+root     30170  0.2  0.3  85604 11696 pts/0    S    20:50   0:00 python Producer
+root     30184  0.0  0.0  17164  1328 pts/0    R+   20:51   0:00 ps -au
 ```
-ps lists all running processes
+ps -au lists all running processes
 find process ID number of the process to kill
 ```bash
-$ kill [pid]
+$ kill 30170
 ```
 NOTE: [pid] is the process ID
 example: kill 1234
