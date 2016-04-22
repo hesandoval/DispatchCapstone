@@ -57,13 +57,14 @@ Checking connectivity... done.
 ### Run node project:
 ```bash
 /srv/$ cd DispatchCapstone/WheresCarry
-/srv/$ sudo npm install
+/srv/DispatchCapstone/WheresCarry$ sudo npm install
 /srv/DispatchCapstone/WheresCarry$ sudo PORT=80 forever start app.js
 ```
 
 ### Load Capstone Env1
 ```bash
-/srv$ sudo su
+/srv/DispatchCapstone/WheresCarry$ cd ..
+/srv/DispatchCapstone$ sudo su
 root@/srv$ cd Kafka/py
 root@/srv/Kafka/py$ conda env create -f environment.yml
 ```
