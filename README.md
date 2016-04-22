@@ -79,7 +79,7 @@ Messages Generated!
 
 ### Start TCP Server:
 ```bash
-root@/srv/DispatchCapstone/Kafka/py$ source activte CapstoneEnv1
+root@/srv/DispatchCapstone/Kafka/py$ source activate CapstoneEnv1
 (CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ sudo python Producer/DispatchTCPServer.py
 ```
 
