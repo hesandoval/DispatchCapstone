@@ -24,7 +24,7 @@ Python 2.7.11 :: Continuum Analytics, Inc.
 creating default environment...
 installation finished.
 Do you wish the installer to prepend the Anaconda2 install location
-to PATH in your /home/nick/.bashrc ? [yes|no]
+to PATH in your /home/<user>/.bashrc ? [yes|no]
 [no] >>> no
 ...
 ```
