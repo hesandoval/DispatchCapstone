@@ -2,10 +2,8 @@
 
 ## Project Setup
 Notes for installing dependencies:
+* The script installs java, zookeeper, kafka, anaconda, and node in that order.
 
-* After Anaconda is done installing **DO NOT** provide `yes` as an answer
-to the question when the installer asks if you want to set your path. We will
-set the path manually at the end of the installation
 ```bash
 $ bash setup.sh
 ...
@@ -22,7 +20,11 @@ Anaconda2 will now be installed into this location:
 - Or specify a different location below
 
 [/home/<user>/anaconda2] >>> /opt/anaconda2/  
-
+```
+* After Anaconda is done installing **DO NOT** provide `yes` as an answer
+to the question when the installer asks if you want to set your path. We will
+set the path manually at the end of the installation
+```bash
 Python 2.7.11 :: Continuum Analytics, Inc.
 creating default environment...
 installation finished.
@@ -37,7 +39,7 @@ to PATH in your /home/nick/.bashrc ? [yes|no]
 ```bash
 $ sudo nano /etc/environment
 ```
-* Finally update the environment and PATH:
+* Finally reload the environment and PATH:
 ```bash
 $ source /etc/environment && export PATH
 ```
@@ -55,6 +57,7 @@ Checking connectivity... done.
 ### Run node project:
 ```bash
 /srv/$ cd DispatchCapstone/WheresCarry
+/srv/$ sudo npm install
 $ sudo PORT=80 forver start app.js
 ```
 
