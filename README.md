@@ -2,7 +2,7 @@
 
 ## Project Setup
 Notes for installing dependencies:
-* The script installs java, zookeeper, kafka, anaconda, and node in that order.
+* The script installs java, zookeeper, kafka, anaconda, and node in that order. The java install requires user input
 
 ```bash
 $ bash setup.sh
@@ -58,7 +58,7 @@ Checking connectivity... done.
 ```bash
 /srv/$ cd DispatchCapstone/WheresCarry
 /srv/$ sudo npm install
-$ sudo PORT=80 forver start app.js
+/srv/DispatchCapstone/WheresCarry$ sudo PORT=80 forever start app.js
 ```
 
 ### Load Capstone Env1
