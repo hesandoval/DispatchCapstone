@@ -11,6 +11,15 @@ set the path manually at the end of the installation
 ```bash
 $ bash setup.sh
 ...
+Anaconda2 will now be installed into this location:
+/home/<user>/anaconda2
+
+- Press ENTER to confirm the location
+- Press CTRL-C to abort the installation
+- Or specify a different location below
+
+[/home/<user>/anaconda2] >>> /opt/anaconda2/   
+...
 ```
 ### Setting Python environment for all users:
 * We will update `/etc/environment` to include our anaconda environment
