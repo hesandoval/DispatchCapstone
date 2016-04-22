@@ -99,7 +99,7 @@ Database completed. Run application
 
 ### Killing Processes:
 ```bash
-$ ps
+$ ps -au
 ```
 ps lists all running processes
 find process ID number of the process to kill
