@@ -2,15 +2,18 @@
 
 ## Project Setup
 Notes for installing dependencies:
-* During the Anaconda installation you will need to provide the directory
-to install anaconda, by default it will be set to 
-`/home/<user>/anaconda2` you need to set the path to `/opt/anaconda2/`
+
 * After Anaconda is done installing **DO NOT** provide `yes` as an answer
 to the question when the installer asks if you want to set your path. We will
 set the path manually at the end of the installation
 ```bash
 $ bash setup.sh
 ...
+```
+* During the Anaconda installation you will need to provide the directory
+to install anaconda, by default it will be set to 
+`/home/<user>/anaconda2` you need to set the path to `/opt/anaconda2/`
+```bash
 Anaconda2 will now be installed into this location:
 /home/<user>/anaconda2
 
