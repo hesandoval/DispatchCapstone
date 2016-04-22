@@ -65,34 +65,33 @@ Checking connectivity... done.
 ```bash
 /srv/DispatchCapstone/WheresCarry$ cd ..
 /srv/DispatchCapstone$ sudo su
-root@/srv$ cd Kafka/py
-root@/srv/Kafka/py$ conda env create -f environment.yml
+root@/srv/DispatchCapstone$ cd Kafka/py
+root@/srv/DispatchCapstone/Kafka/py$ conda env create -f environment.yml
 ```
 
 
 ### Generating Fake Data:
 ```bash
-root@/srv/Kafka/py$ chmod +x test_coordinates.sh
-root@/srv/Kafka/py$ ./test_coordinates.sh
+root@/srv/DispatchCapstone/Kafka/py$ chmod +x test_coordinates.sh
+root@/srv/DispatchCapstone/Kafka/py$ ./test_coordinates.sh
 Messages Generated!
 ```
 
 ### Start TCP Server:
 ```bash
-(CapstoneEnv1)root@/srv$ cd Kafka/py
-(CapstoneEnv1)root@/srv/Kafka/py$ sudo python Producer/DispatchTCPServer.py
+(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ sudo python Producer/DispatchTCPServer.py
 ```
 
 ### Start Consumer:
 ```bash
-(CapstoneEnv1)root@/srv/Kafka/py$ sudo python Consumer/TestConsumer.py --setup
+(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ sudo python Consumer/TestConsumer.py --setup
 Database completed. Run application
-(CapstoneEnv1)root@/srv/Kafka/py$ sudo python Consumer/TestConsumer.py --database
+(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ sudo python Consumer/TestConsumer.py --database
 ...
 ```
 
 ### Start Data Transfer Client:
 ```bash
-(CapstoneEnv1)root@/srv/Kafka/py$ python Producer/DataTransferClient.py
+(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ python Producer/DataTransferClient.py
 ...
 ```
