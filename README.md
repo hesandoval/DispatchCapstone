@@ -80,19 +80,32 @@ Messages Generated!
 ### Start TCP Server:
 ```bash
 root@/srv/DispatchCapstone/Kafka/py$ source activate CapstoneEnv1
-(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ sudo python Producer/DispatchTCPServer.py
+(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ python Producer/DispatchTCPServer.py & disown
 ```
 
 ### Start Consumer:
 ```bash
-(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ sudo python Consumer/TestConsumer.py --setup
+(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ python Consumer/TestConsumer.py --setup
 Database completed. Run application
-(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ sudo python Consumer/TestConsumer.py --database
+(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ python Consumer/TestConsumer.py --database & disown
 ...
 ```
 
 ### Start Data Transfer Client:
 ```bash
-(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ python Producer/DataTransferClient.py
+(CapstoneEnv1)root@/srv/DispatchCapstone/Kafka/py$ python Producer/DataTransferClient.py & disown
 ...
 ```
+
+### Killing Processes:
+```bash
+$ ps
+```
+ps lists all running processes
+find process ID number of the process to kill
+```bash
+$ kill [pid]
+```
+NOTE: [pid] is the process ID
+example: kill 1234
+
