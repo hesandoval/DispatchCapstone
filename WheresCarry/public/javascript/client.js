@@ -76,7 +76,7 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
         '<h3 class="panel-title">Status</h3></div>' +
         '<div class="panel-body"><div class="progress">' +
         '<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" style="width: 100%;"' +
-        'aria-valuemin="0" aria-valuemax="100" id="battery_bar"> 100% <span class="icon-f-battery-charge"></span><i class="fa fa-battery-full" aria-hidden="true"></i></div>' +
+        'aria-valuemin="0" aria-valuemax="100" id="battery_bar"><i class="fa fa-battery-full" aria-hidden="true"></i>100% </div>' +
         '</div><div class="row"><div id="chart_div" class="col-xs-8 col-sm-6"></div>' +
         '<div id="live_picture_container" class="col-xs-8 col-sm-6">  <img width="100%" id="live_photo"> </div></div></div></div>');
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
@@ -102,7 +102,7 @@ socket.on("carry:changes", function (record) {
     var elevation = record["new_val"]["current_location"]["elevation"];
     var photog = record["new_val"]['photograph'];
     delete record["new_val"]["current_location"]["elevation"];
-    $("#battery_bar").html(record['new_val']['battery_life'].toFixed(2)+"%");
+    $("#battery_bar").html('<i class="fa fa-battery-full" aria-hidden="true"></i> '+record['new_val']['battery_life'].toFixed(2)+"%");
     $("#battery_bar").css("width", record['new_val']['battery_life'].toFixed(2)+"%");
     window.guages.setValue(0,1,record["new_val"]["current_location"]['speed']);
     if(window.markers.length > 2)
