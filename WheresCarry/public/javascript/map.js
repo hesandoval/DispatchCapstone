@@ -6,7 +6,8 @@ function setupMap(){
     window.map = new google.maps.Map(document.getElementById('map'), {
         center: window.defaultCenter,
         zoom: 18,
-        zmapTypeId: google.maps.MapTypeId.ROADMAP
+        zmapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false
     });
     window.markers = [];
 }

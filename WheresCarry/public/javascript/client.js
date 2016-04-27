@@ -82,7 +82,7 @@ $("#trip_select").on("click", ".trip_id_live", function(event){
     button.innerHTML = tripID + "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
     window.guages = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-        ['Speed', 2]
+        ['MPH', 2]
     ]);
     var options = {
         width: 400, height: 200,
@@ -107,15 +107,16 @@ socket.on("carry:changes", function (record) {
     window.guages.setValue(0,1,record["new_val"]["current_location"]['speed']);
     if(window.markers.length > 2)
     {
-        var lastMarker = window.markers.pop();
-        lastMarker.setPosition(new google.maps.LatLng(record['new_val']['current_location']['lat'], record['new_val']['current_location']['lng']));
-        window.markers.push(lastMarker);
+        window.carrysPostion.setPosition(new google.maps.LatLng(record['new_val']['current_location']['lat'], record['new_val']['current_location']['lng']));
         //var lastMarker = window.markers.pop();
         //lastMarker.setMap(null);
     }
     else
     {
-        createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
+        var carrysPosition = createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
+        window.carrysPostion = carrysPosition;
+        window.markers.push(window.carrysPostion);
+        window.carrysPostion.setMap(window.map);
     }
     if(photog.length != 0){
         var picsrc = photog[0]['url'];
@@ -136,7 +137,7 @@ socket.on("carry:changes", function (record) {
                 var template = "{{ #values}}<li class='trip_id'><a>{{trip_id}}</a></li>{{ /values }}";
                 var html = Mustache.to_html(template, view);
                 $("#trip_select").html(html);
-                $("#dropdownMenu1")[0].innerHTML = record["new_val"]["sender"] + "<span class='caret'></span>"
+                $("#dropdownMenu1")[0].innerHTML = record["new_val"]["sender"] + "<span class='caret'></span>";
                 //console.log("Bottom of else statement after trip completes.");
             }
         });
@@ -271,7 +272,9 @@ function createMarker(color, title, latlng){
         icon: (color === null) ? "http://twemoji.maxcdn.com/16x16/1f4f7.png" : options['image'],
         shadow: options['shadow']
     });
-    addMarker(marker);
+    if(title != "Carry's Location"){
+        addMarker(marker);
+    }
     return marker;
 }
 function getMarkerOptions(color) {
