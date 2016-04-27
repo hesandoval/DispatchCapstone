@@ -52,6 +52,7 @@ function setup(io){
                 .filter(function(doc){
                     return doc('photograph').count().gt(0);
                 })
+                .limit(30)
                 .run(callback);
         });
 
