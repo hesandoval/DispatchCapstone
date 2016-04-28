@@ -115,8 +115,6 @@ socket.on("carry:changes", function (record) {
     {
         var carrysPosition = createMarker("551A8B", "Carry's Location", record['new_val']['current_location']);
         window.carrysPostion = carrysPosition;
-        window.markers.push(window.carrysPostion);
-        window.carrysPostion.setMap(window.map);
     }
     if(photog.length != 0){
         var picsrc = photog[0]['url'];
@@ -272,9 +270,7 @@ function createMarker(color, title, latlng){
         icon: (color === null) ? "http://twemoji.maxcdn.com/16x16/1f4f7.png" : options['image'],
         shadow: options['shadow']
     });
-    if(title != "Carry's Location"){
-        addMarker(marker);
-    }
+    addMarker(marker);
     return marker;
 }
 function getMarkerOptions(color) {
