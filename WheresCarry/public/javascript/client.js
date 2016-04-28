@@ -107,9 +107,8 @@ socket.on("carry:changes", function (record) {
     window.guages.setValue(0,1,record["new_val"]["current_location"]['speed']);
     if(window.markers.length > 2)
     {
-        window.carrysPostion.setPosition(new google.maps.LatLng(record['new_val']['current_location']['lat'], record['new_val']['current_location']['lng']));
-        //var lastMarker = window.markers.pop();
-        //lastMarker.setMap(null);
+        window.carrysPostion.setPosition(new google.maps.LatLng(record['new_val']['current_location']['lat'],
+            record['new_val']['current_location']['lng']));
     }
     else
     {
@@ -122,6 +121,7 @@ socket.on("carry:changes", function (record) {
     }
     if(record['new_val']['completed'])
     {
+        window.carrysPostion.setMap(null);
         socket.emit('carry:changes:stop');
         socket.emit('carry:findTripsByCarryID', record['new_val']['sender'], function(err, data){
             if(err){
